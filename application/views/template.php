@@ -5,9 +5,9 @@
 
 <!--<![endif]-->
 <?php 
-		$this->load->view("head");
-		$this->load->view("header");
-		$this->load->view("home");
+    $this->load->view("head");
+    $this->load->view("header");
+    $this->load->view("home");
 ?>
 
-      
+
