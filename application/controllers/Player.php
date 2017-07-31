@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,20 +7,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 /**
- * Description of torneos
+ * Description of Player
  *
  * @author john.cristobal
  */
-class torneos extends CI_Controller{
+class Player extends CI_Controller{
     //put your code here
     
     public function __construct() {
         parent::__construct();
     }
     
-    public function calendario(){
-        
-        //Load data from Torneos and show into view calendario        
-        $this->load->view('calendario');
+    public function jugador(){
+        $this->load->view('player/single-profile');
     }
 }

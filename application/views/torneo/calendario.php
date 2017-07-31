@@ -23,6 +23,8 @@
      <!--h4>Accordion</h4-->
     
         <div class="panel-group add_bottom_30" id="accordion">
+
+            <h3 class="title">Torneos</h3>
             
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -39,7 +41,7 @@
                 <!--Repeat this section to get info about tournaments-->
                 <section class="row">
                 <div class="col-md-3">
-                    <h4 class="title-green">Torneo Verano 2017</h4>
+                    <a href="<?php echo base_url();?>torneos/resultados"><h4 class="title-green">Torneo Verano 2017</h4></a>
                     <p>Sportway Izcalli</p>
                     <strong>2017.07.30</strong>
                 </div>
@@ -74,7 +76,7 @@
               <div class="panel-body"><!--Colocar datos importantes del torneo-->
                 <section class="row">
                 <div class="col-md-3">
-                    <h4 class="title-green">Torneo Verano 2017</h4>
+                    <a href="<?php echo base_url();?>torneos/resultados"><h4 class="title-green">Torneo Verano 2017</h4></a>
                     <p>Sportway Izcalli</p>
                     <strong>2017.07.30</strong>
                 </div>
@@ -95,7 +97,7 @@
                 
                 <section class="row">
                 <div class="col-md-3">
-                    <h4 class="title-green">Torneo Verano 2017</h4>
+                    <a href="<?php echo base_url();?>torneos/resultados"><h4 class="title-green">Torneo Verano 2017</h4></a>
                     <p>Sportway Izcalli</p>
                     <strong>2017.07.30</strong>
                 </div>

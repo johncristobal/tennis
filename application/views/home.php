@@ -4,22 +4,22 @@
                 
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="img/slider/slide-1.jpg" alt="">
+                            <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt="">
                             <p class="flex-caption">I will help you to achieve your goal</p>
                             </li>
-                            <li><img src="img/slider/slide-2.jpg" alt="">
+                            <li><img src="<?php echo base_url();?>img/slider/slide-2.jpg" alt="">
                             <p class="flex-caption">Your exercises will be carried out to perfection</p>
                             </li>
                             <li>
-                            <img src="img/slider/slide-3.jpg" alt="">
+                            <img src="<?php echo base_url();?>img/slider/slide-3.jpg" alt="">
                             <p class="flex-caption">Lose weight in a short time</p>
                             </li>
                             <li>
-                            <img src="img/slider/slide-4.jpg" alt="">
+                            <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt="">
                             <p class="flex-caption">The pleasure of outdoor recreation</p>
                             </li>
                             <li>
-                            <img src="img/slider/slide-5.jpg" alt="">
+                            <img src="<?php echo base_url();?>img/slider/slide-5.jpg" alt="">
                             <p class="flex-caption">Proper training will make you feel better</p>
                             </li>
                         </ul>
@@ -33,7 +33,7 @@
                 <div class="col-md-3 col-sm-6">
                  <div class="box_calculator">
                         <a href="daily-calorie-calculator.html">
-                        <img src="img/icon-1.png" alt="">
+                        <img src="<?php echo base_url();?>img/icon-1.png" alt="">
                         <h3>Daily Calorie Calculator</h3>
                         <p>Determine your daily calorie needs in a more precise way</p>
                         </a>
@@ -43,7 +43,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="box_calculator">
                         <a href="calories-burned-heart-rate.html">
-                        <img src="img/icon-2.png" alt="">
+                        <img src="<?php echo base_url();?>img/icon-2.png" alt="">
                         <h3>Calorie Burned by heart/rate</h3>
                         <p>The connection between the heart rate and the metabolism</p>
                         </a>
@@ -53,7 +53,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="box_calculator">
                         <a href="calories-burned-calculator.html">
-                        <img src="img/icon-3.png" alt="">
+                        <img src="<?php echo base_url();?>img/icon-3.png" alt="">
                         <h3>Calorie Burned by activities</h3>
                         <p>Estimate the number of calories burned after exercises</p>
                         </a>
@@ -63,7 +63,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="box_calculator">
                         <a href="bmi-calculator.html">
-                        <img src="img/icon-4.png" alt="">
+                        <img src="<?php echo base_url();?>img/icon-4.png" alt="">
                         <h3>Bmi Body mass Calculator</h3>
                         <p>Measure of body fat based on height and weight</p>
                         </a>
@@ -104,7 +104,7 @@
             
                 <div class="col-md-6">
                     <div class="quote clearfix">
-                        <img src="img/testimonial-1.jpg" class="img-circle" alt="">
+                        <img src="<?php echo base_url();?>img/testimonial-1.jpg" class="img-circle" alt="">
                         <p>
                              Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
                         </p>
@@ -114,7 +114,7 @@
                 
                 <div class="col-md-6">
                     <div class="quote clearfix">
-                        <img src="img/testimonial-2.jpg" class="img-circle" alt="">
+                        <img src="<?php echo base_url();?>img/testimonial-2.jpg" class="img-circle" alt="">
                         <p>
                              Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
                         </p>
@@ -124,7 +124,7 @@
                 
                 <div class="col-md-6">
                     <div class="quote clearfix">
-                        <img src="img/testimonial-3.jpg" class="img-circle" alt="">
+                        <img src="<?php echo base_url();?>img/testimonial-3.jpg" class="img-circle" alt="">
                         <p>
                              Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
                         </p>
@@ -134,7 +134,7 @@
                 
                 <div class="col-md-6 clearfix">
                     <div class="quote">
-                        <img src="img/testimonial-4.jpg" class="img-circle" alt="">
+                        <img src="<?php echo base_url();?>img/testimonial-4.jpg" class="img-circle" alt="">
                         <p>
                              Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam.
                         </p>
