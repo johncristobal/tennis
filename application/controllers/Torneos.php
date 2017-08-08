@@ -25,8 +25,15 @@ class Torneos extends CI_Controller{
         $this->load->view('torneo/calendario');
     }
     
-    public function resultados(){
-        $this->load->view('torneo/resultado');
+    public function resultados($i){
         
+        if($i == 1){
+        
+            $this->load->view('torneo/resultado');
+        }
+        else if($i==2){
+            $this->load->view('torneo/resultadorrobin');
+            
+        }
     }
 }

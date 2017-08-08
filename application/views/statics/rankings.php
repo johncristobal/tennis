@@ -20,25 +20,25 @@
             
 				<div class="tab-content">
 			
-                <div class="tab-pane" id="singles">
+                <div class="tab-pane active" id="singles">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt=""> CARLOS MAYA
+                            <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt=""> CARLOS 
                             <p class="flex-caption">Ranking No.1</p>
                             </li>
-                            <li><img src="<?php echo base_url();?>img/slider/slide-2.jpg" alt=""> JOHN VERA
+                            <li><img src="<?php echo base_url();?>img/slider/slide-2.jpg" alt=""> JOHN 
                             <p class="flex-caption">Ranking No.2</p>
                             </li>
                             <li>
-                            <img src="<?php echo base_url();?>img/slider/slide-3.jpg" alt=""> DANIEL FUENTES
+                            <img src="<?php echo base_url();?>img/slider/slide-3.jpg" alt=""> DANIEL 
                             <p class="flex-caption">Ranking No.3</p>
                             </li>
                             <li>
-                            <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt=""> VIRGILIO RODRIGUEZ
+                            <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt=""> VIRGILIO 
                             <p class="flex-caption">Ranking No.4</p>
                             </li>
                             <li>
-                            <img src="<?php echo base_url();?>img/slider/slide-5.jpg" alt=""> ANTONIO GARCÍA
+                            <img src="<?php echo base_url();?>img/slider/slide-5.jpg" alt=""> ANTONIO 
                             <p class="flex-caption">Ranking No.5</p>
                             </li>
                         </ul>
@@ -69,7 +69,7 @@
                             </li>
                         </ul>
                     </div><!-- End slider -->
-					<a  href="<?php echo base_url(); ?>index.php/Welcome/allrankings" class=" button_medium">Ver todos los rankings</a>
+                    <a  href="<?php echo base_url(); ?>index.php/Welcome/allrankings" class=" button_medium">Ver todos los rankings</a>
                 </div>
             </div>
 

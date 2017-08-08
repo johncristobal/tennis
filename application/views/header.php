@@ -5,7 +5,7 @@
         	<div class="col-md-4 col-xs-3"><h1 id="logo"><a href="index.html" title="Planar - Personal Trainer">Tenis - Sportway</a></h1></div>
             <nav class="col-md-8 col-xs-9">
             	<ul id="main-nav" class="sf-menu" >
-                <li><a href="profile.html">Jugadores</a></li>
+                <li><a href="<?php echo base_url();?>player/perfil">Jugadores</a></li>
                     <!--li><a href="profile.html"></a></li-->
                 <li><a href="#">Estadísticas</a>
                 	<ul>
@@ -13,19 +13,14 @@
                         <li><a href="training-programs.html">Dobles</a></li>
                   	</ul>
                 </li>
-                <li><a href="#">Rankings</a>
-                	<ul>
-                        <li><a href="services.html">Singles</a></li>
-                        <li><a href="training-programs.html">Dobles</a></li>
-                  	</ul>
+                <li><a href="<?php echo base_url();?>Estadisticas/rankings">Rankings</a>
                 </li>				
-                <li><a href="#">Torneos</a>
-                <ul>
+                <li><a href="<?php echo base_url();?>torneos/calendario">Torneos</a>
+                <!--ul>
                     <li><a href="<?php echo base_url();?>torneos/calendario">Calendario</a></li>
                         <li><a href="calories-burned-heart-rate.html">Partidos</a></li>
                         <li><a href="calories-burned-calculator.html">Resultados</a></li>
-                       <!-- <li><a href="bmi-calculator.html">BMI calculator</a></li> -->
-                  	</ul>
+                  	</ul-->
                 </li>
                <!-- <li><a href="#">Pages</a>
                 	<ul>

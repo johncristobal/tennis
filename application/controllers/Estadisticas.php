@@ -7,21 +7,19 @@
  */
 
 /**
- * Description of Player
+ * Description of Estadisticas
  *
  * @author john.cristobal
  */
-class Player extends CI_Controller{
+class Estadisticas extends CI_Controller{
     //put your code here
     
     public function __construct() {
         parent::__construct();
     }
     
-    public function jugador(){
-        $this->load->view('player/single-profile');
+    public function rankings(){
+        $this->load->view('statics/rankings');
     }
-    public function perfil(){
-        $this->load->view('player/profile');
-    }
+    //put your code here
 }

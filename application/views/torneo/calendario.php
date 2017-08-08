@@ -41,7 +41,7 @@
                 <!--Repeat this section to get info about tournaments-->
                 <section class="row">
                 <div class="col-md-3">
-                    <a href="<?php echo base_url();?>torneos/resultados"><h4 class="title-green">Torneo Verano 2017</h4></a>
+                    <a href="<?php echo base_url();?>torneos/resultados/1"><h4 class="title-green">Torneo Verano 2017</h4></a>
                     <p>Sportway Izcalli</p>
                     <strong>2017.07.30</strong>
                 </div>
@@ -76,7 +76,7 @@
               <div class="panel-body"><!--Colocar datos importantes del torneo-->
                 <section class="row">
                 <div class="col-md-3">
-                    <a href="<?php echo base_url();?>torneos/resultados"><h4 class="title-green">Torneo Verano 2017</h4></a>
+                    <a href="<?php echo base_url();?>torneos/resultados/2"><h4 class="title-green">Torneo Verano 2017</h4></a>
                     <p>Sportway Izcalli</p>
                     <strong>2017.07.30</strong>
                 </div>
@@ -97,7 +97,7 @@
                 
                 <section class="row">
                 <div class="col-md-3">
-                    <a href="<?php echo base_url();?>torneos/resultados"><h4 class="title-green">Torneo Verano 2017</h4></a>
+                    <a href="<?php echo base_url();?>torneos/resultados/2"><h4 class="title-green">Torneo Verano 2017</h4></a>
                     <p>Sportway Izcalli</p>
                     <strong>2017.07.30</strong>
                 </div>
