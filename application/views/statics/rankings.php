@@ -79,6 +79,8 @@
 
         </div><!-- End container -->
  
+        <?php $this->load->view("footer");?>        
+
  <div id="toTop">Back to Top</div>  
  
 <!-- FLEXSLIDER -->  

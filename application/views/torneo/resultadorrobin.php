@@ -116,8 +116,22 @@
                     <div class="pricing-table green">
                         
                         <div class="pricing-table-header" style="text-align: left;">
-                            <span class="price-value"><span>Torneo Verano 2017 Round Robin</span><!--span class="mo">$</span--></span>
-                            <span class="heading">Sportway Izcalli<br><strong>2017.07.30</strong></span>
+                            <span class="price-value">
+                                <span>Torneo Verano 2017 Round Robin</span>
+                                <!--span class="mo">$</span--></span>
+                            <span class="heading">Sportway Izcalli
+                                <br>
+                                <strong>2017.07.30</strong>
+                                <table width="100%" align="right">
+                                    <tr>
+                                        <td width="100%" align="right">
+                                            <button type="button">Ver tabla general</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </span>
+                            
+
                         </div>
                         
                         <div class="pricing-table-space"></div>
@@ -146,67 +160,6 @@
                             <p><strong>Gym + Home </strong>training</p>
                     </div-->
                     
-                <table class="table-striped" width="100%">
-                    <thead>
-                      <tr>
-                        <th>Semifinales</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                        <td width="20%">6-2 6-0</td>
-                      </tr>
-                      <tr>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                        <td width="20%">6-2 6-0</td>
-                      </tr>
-                      <!--tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                      </tr-->
-                    </tbody>
-                </table>
-                    <br>
-                <table class="table-striped" width="100%">
-                    <thead>
-                      <tr>
-                        <th>Cuartos de final</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                        <td width="20%">6-2 6-0</td>
-                      </tr>
-                      <tr>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                        <td width="20%">6-2 6-0</td>
-                      </tr>
-                      <tr>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                        <td width="20%">6-2 6-0</td>
-                      </tr>
-                      <tr>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
-                        <td width="20%">6-2 6-0</td>
-                      </tr>
-                      <!--tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                      </tr-->
-                    </tbody>
-                </table>  
-                    
-                    <br>
                 <table class="table-striped" width="100%">
                     <thead>
                       <tr>
@@ -261,6 +214,241 @@
                     </tbody>
                 </table>                      
                     
+<table class="table-striped" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Semana n</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                        <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>                      <!--tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr-->
+                    </tbody>
+                </table>    
+                    
+<table class="table-striped" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Semana n</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                        <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>                      <!--tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr-->
+                    </tbody>
+                </table>                       
+
+<table class="table-striped" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Semana n</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                        <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>
+                      <tr>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                          <td width="20%"><span style="font-size: 12px;">(1)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John</a></td>
+                        <td width="20%">6-2 6-0</td>
+                      </tr>                      <!--tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr-->
+                    </tbody>
+                </table>   
+                    
+                </div>
+            </div>
+            <br>
+            <div class="row second">
+                <div class="col-md-12 infomsg2 alert" style="font-weight: 600; font-size: larger; text-align: center;" id="tabla">
+                    Tabla general
+                </div>
+                <div class="col-md-12">
+                    <table class="table" width="100%">
+                    <thead>
+                      <tr>
+                        <th>Posición</th>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Puntos</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <tr>
+                          <td width="20%" align="center">1. </td>
+                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
+                          <td width="20%" align="center">30</td>
+                          <td width="20%" align="center">30</td>
+                      </tr>
+                      <!--tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                      </tr-->
+                    </tbody>
+                </table> 
                 </div>
             </div>
 
@@ -274,6 +462,14 @@
         <?php 
             $this->load->view("scriptfoo");
         ?> 
+         
+         <script type="text/javascript">
+            $("button").click(function() {
+                $('html,body').animate({
+                    scrollTop: $(".second").offset().top},
+                    'slow');
+            });
+             </script>
 
 </body>
 </html>
