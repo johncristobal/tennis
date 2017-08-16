@@ -44,7 +44,7 @@
                         </ul>
 					
                     </div><!-- End slider -->
-					<a  href="<?php echo base_url(); ?>index.php/Welcome/allrankings" class=" button_medium">Ver todos los rankings</a>
+					<a   href="<?php echo base_url();?>Estadisticas/allRankings"  class=" button_medium">Ver todos los rankings</a>
                 </div>
                 <div class="tab-pane" id="dobles">
                        <div class="flexslider">
@@ -69,7 +69,7 @@
                             </li>
                         </ul>
                     </div><!-- End slider -->
-                    <a  href="<?php echo base_url(); ?>index.php/Welcome/allrankings" class=" button_medium">Ver todos los rankings</a>
+                    <a  href="<?php echo base_url();?>Estadisticas/allRankings" class=" button_medium">Ver todos los rankings</a>
                 </div>
             </div>
 

@@ -21,5 +21,9 @@ class Estadisticas extends CI_Controller{
     public function rankings(){
         $this->load->view('statics/rankings');
     }
+	 
+	public function allRankings(){
+        $this->load->view('statics/all-rankings');
+    }
     //put your code here
 }
