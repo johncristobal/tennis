@@ -22,13 +22,17 @@ class Torneos extends CI_Controller{
     public function calendario(){
         
         //Load data from Torneos and show into view calendario        
-        $this->load->view('torneo/calendario');
+        $this->load->model('Torneomodel');
+        
+        $data['datos'] = $this->Torneomodel->gettorneos();
+        //$i = $this->Torneomodel->gettorneos();
+        //echo $i[0]->id;
+        $this->load->view('torneo/calendario',$data);
     }
     
     public function resultados($i){
         
-        if($i == 1){
-        
+        if($i == 1){        
             $this->load->view('torneo/resultado');
         }
         else if($i==2){

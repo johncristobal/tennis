@@ -25,36 +25,39 @@
         <div class="panel-group add_bottom_30" id="accordion">
 
             <h3 class="title">Torneos</h3>
-            
+            <?php $mesesN = array("January"=>"Enero","February"=>"Febrero","March"=>"Marzo","April"=>"Abril","May"=>"Mayo","June"=>"Junio","July"=>"Julio","August"=>"Agosto","September"=>"Septiembre","October"=>"Octubre","November"=>"Noviembre","December"=>"Diciembre");?>
+           <?php foreach ($datos as $row) { ?>
+                                       
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                  Mes Año
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$row->id;?>">
+                  <!--Mes Año-->
+                  Inicio: <?php setlocale(LC_ALL,"es_ES"); $nameing = date("F", strtotime($row->fecha_inicio)); echo $mesesN[$nameing];?>
                 </a>
               </h4>
             </div>
               
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="collapse<?=$row->id;?>" class="panel-collapse collapse in">
                 
               <div class="panel-body"><!--Colocar datos importantes del torneo-->                  
                 <!--Repeat this section to get info about tournaments-->
                 <section class="row">
                 <div class="col-md-3">
-                    <a href="<?php echo base_url();?>torneos/resultados/1"><h4 class="title-green">Torneo Verano 2017</h4></a>
-                    <p>Sportway Izcalli</p>
-                    <strong>2017.07.30</strong>
+                    <a href="<?php echo base_url();?>torneos/resultados/<?=$row->id;?>"><h4 class="title-green"><?=$row->nombre;?></h4></a>
+                    <p><?=$row->lugar;?></p>
+                    <strong><?php echo $row->fecha_inicio;?></strong>
                 </div>
                   
                 <div class="col-md-3">
                     <h4>&nbsp;</h4>
-                    <strong>Singles</strong>
+                    <strong><?=$row->descripcion;?></strong>
                     <p>&nbsp;</p>
                 </div>
                     
-                    <div class="col-md-3" style="border-right-style: solid;">
+                    <div class="col-md-3">
                     <h4>&nbsp;</h4>
-                    <p>Pasto</p>
+                    <p><?=$row->tipo_campo;?></p>
                     <strong>&nbsp;</strong>
                 </div>
                 </section>
@@ -63,62 +66,8 @@
               </div>
             </div>
           </div>
-            
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                  Mes Año
-                </a>
-              </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-              <div class="panel-body"><!--Colocar datos importantes del torneo-->
-                <section class="row">
-                <div class="col-md-3">
-                    <a href="<?php echo base_url();?>torneos/resultados/2"><h4 class="title-green">Torneo Verano 2017</h4></a>
-                    <p>Sportway Izcalli</p>
-                    <strong>2017.07.30</strong>
-                </div>
-                  
-                <div class="col-md-3">
-                    <h4>&nbsp;</h4>
-                    <strong>Singles</strong>
-                    <p>&nbsp;</p>
-                </div>
-                    
-                    <div class="col-md-3" style="border-right-style: solid;">
-                    <h4>&nbsp;</h4>
-                    <p>Pasto</p>
-                    <strong>&nbsp;</strong>
-                </div>
-                </section>
-                <hr>
-                
-                <section class="row">
-                <div class="col-md-3">
-                    <a href="<?php echo base_url();?>torneos/resultados/2"><h4 class="title-green">Torneo Verano 2017</h4></a>
-                    <p>Sportway Izcalli</p>
-                    <strong>2017.07.30</strong>
-                </div>
-                  
-                <div class="col-md-3">
-                    <h4>&nbsp;</h4>
-                    <strong>Singles</strong>
-                    <p>&nbsp;</p>
-                </div>
-                    
-                    <div class="col-md-3" style="border-right-style: solid;">
-                    <h4>&nbsp;</h4>
-                    <p>Pasto</p>
-                    <strong>&nbsp;</strong>
-                </div>
-                </section>
-                <hr>
-                
-              </div>
-            </div>
-          </div>
+        <?php } ?>
+
                        
         </div>
     	
