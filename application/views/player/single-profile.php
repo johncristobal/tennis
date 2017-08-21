@@ -9,17 +9,17 @@
         
         <div class="container">
                     
-   			 <h3 class="title">Vera Cristobal</h3>
+   			 <h3 class="title"><?php echo $datos->nombre;?></h3>
              <div class="row">
                     <div class="col-md-6">
                    <h3>Acerca de mi</h3>
-				   <p><strong>Nombre Completo:</strong> John Vera Cristobal Jimenez </p>
-				   <p><strong>Ranking:</strong> 2</p>
-				   <p><strong>Edad:</strong> 25 años</p>
-				   <p><strong>Altura:</strong> 1.69 cms</p>
-				   <p><strong>Lugar de Nacimiento:</strong> Veracruz,Veracruz </p>
-				   <p><strong>Nombre Completo:</strong> John Vera Cristobal Jimenez </p>
-				   <p><strong>Plays:</strong> RIGHT-HANDED, TWO-HANDED BACKHAND </p>
+				   <p><strong>Nombre Completo:</strong> <?php echo $datos->nombre;?> </p>
+				   <p><strong>Ranking:</strong> <?php echo $datos->rank_act;?></p>
+				   <p><strong>Edad:</strong> <?php echo $datos->edad;?> años</p>
+				   <p><strong>Altura:</strong> <?php echo $datos->altura;?> cms</p>
+				   <p><strong>Lugar de Nacimiento:</strong>  </p>
+				   <p><strong>Fecha de Nacimiento:</strong> <?php echo $datos->fecha_nac;?> </p>
+				   <p><strong>Plays:</strong> <?php echo $datos->plays;?></p>
                     </div>
 					
                     

@@ -36,7 +36,7 @@
 
 <!-- Jquery -->
 <script src="<?php echo base_url();?>js/jquery.1.7.2.min.js"></script>
-
+<script src="<?php echo base_url();?>js/buscar.js"></script>
 <!-- Support media queries for IE8 -->
 <script src="<?php echo base_url();?>js/respond.min.js"></script>
 

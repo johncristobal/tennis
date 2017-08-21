@@ -8,8 +8,10 @@
 ?>
         
         <div class="container">
-        
+
+			
         	<div id="sub-head">
+
             <div class="flyIn">
 			<h2>Jugador de la semana</h2>
 
@@ -21,9 +23,19 @@
 				<br>
 				<p>Campeón del primer torneo de Singles</p>
 				<br>
-				<p><a href="<?php echo base_url(); ?>index.php/Welcome/singleprofile">Ver perfil</a></p>
+				<p><a href="<?php echo base_url(); ?>Player/jugador/3">Ver perfil</a></p>
             </div>
+			
             </div><!-- End sub-head -->
+			<div class="row">
+			 <div class="col-md-6">           
+                   
+                    <form>
+                        <div class="form-bg-1"><input type="text" id="jugador" class="form-control" placeholder="Buscar Jugador"></div>
+						<div id="res_jugadores"></div>
+                    </form>
+             </div>
+			 </div>
 	<h3 class="title">HEAD TO HEAD</h3>
     
 	<div class="row">
