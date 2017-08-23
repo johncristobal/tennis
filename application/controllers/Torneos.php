@@ -27,6 +27,11 @@ class Torneos extends CI_Controller{
         $data['datos'] = $this->Torneomodel->gettorneos();
         //$i = $this->Torneomodel->gettorneos();
         //echo $i[0]->id;
+        
+        //logica para separar los torneos por meses....
+        //data[enero] = datos...
+        //data[febrerp] = datos...
+        
         $this->load->view('torneo/calendario',$data);
     }
     

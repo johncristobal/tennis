@@ -25,7 +25,7 @@ public function getJugador($nombre){
 	}else{
 		return FALSE;
 	}
-}
+    }
 }
 
 ?>

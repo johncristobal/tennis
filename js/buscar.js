@@ -4,7 +4,7 @@ jQuery(document).ready(function(){
 	var base_url = window.location.pathname;
 	var nombre=$(this).val();
 	
-	$.post('http://localhost/Tennis/player/buscarJugador',{ nombre : nombre},function(data){
+	$.post('http://localhost/CodeTenis/player/buscarJugador',{ nombre : nombre},function(data){
 		if(data){
 			$("#res_jugadores").html(data);
 		}else{

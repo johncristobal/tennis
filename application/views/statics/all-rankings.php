@@ -5,8 +5,8 @@
 
 <!--<![endif]-->
 <?php 
-		$this->load->view("head");
-		$this->load->view("header");
+    $this->load->view("head");
+    $this->load->view("header");
 ?>
 <div class="container">
         

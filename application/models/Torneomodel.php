@@ -22,9 +22,11 @@ class Torneomodel extends CI_Model{
         $this->db->join('tipo_torneo tt', 'tt.id = t.tipo');
         //$this->db->where('news_id', $news_id );
 
+        //where year = 2017
+        
         $query = $this->db->get();
 
-        if ( $query->num_rows() > 0 )
+        if ($query->num_rows() > 0 )
         {
             $row = $query->result();
             return $row;
