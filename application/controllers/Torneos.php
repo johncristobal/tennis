@@ -20,7 +20,7 @@ class Torneos extends CI_Controller{
     }
     
     public function calendario(){
-        
+                
         //Load data from Torneos and show into view calendario        
         $this->load->model('Torneomodel');
         
@@ -33,6 +33,9 @@ class Torneos extends CI_Controller{
         //data[febrerp] = datos...
         
         $this->load->view('torneo/calendario',$data);
+                
+        //$this->load->view('mailsample');
+
     }
     
     public function resultados($i){

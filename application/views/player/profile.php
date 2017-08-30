@@ -9,15 +9,40 @@
         
         <div class="container">
 
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                   
+                <form>
+                    <div class="form-bg-1"><input type="text" id="jugador" class="form-control" placeholder="Buscar Jugador"></div>
+                    <div id="res_jugadores"></div>
+                </form>
+                <!--form action="/action_page.php" method="get">
+                    <input list="browsers" name="browser" class="form-control" placeholder="Buscar jugador...">
+                <datalist id="browsers">
+                  <option value="Internet Explorer">
+                  <option value="Firefox">
+                  <option value="Chrome">
+                  <option value="Opera">
+                  <option value="Safari">
+                </datalist>
+                <input type="submit">
+                </form-->
+                </div>
+            </div>
+            
+            <br>            
+
 			
-        	<div id="sub-head">
+            <div id="sub-head">
 
             <div class="flyIn">
 			<h2>Jugador de la semana</h2>
 
 			<p class="col-md-4 text-center"><img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive"></p>
 				<br>
-                <p>Vera Cristobal</p>
+                                <p>Vera Cristobal</p>
 				<br>
 				<p>Ranking: 2</p>
 				<br>
@@ -27,18 +52,11 @@
             </div>
 			
             </div><!-- End sub-head -->
-			<div class="row">
-			 <div class="col-md-6">           
-                   
-                    <form>
-                        <div class="form-bg-1"><input type="text" id="jugador" class="form-control" placeholder="Buscar Jugador"></div>
-						<div id="res_jugadores"></div>
-                    </form>
-             </div>
-			 </div>
-	<h3 class="title">HEAD TO HEAD</h3>
+				
+            <h3 class="title">HEAD TO HEAD</h3>
     
-	<div class="row">
+	
+            <div class="row">
     
 		<div class="col-md-6">
 
@@ -90,7 +108,10 @@
         <?php 
            $this->load->view("scriptfoo");
         ?> 
-
+        
+        <?php
+           $this->load->view("buscarscript");
+        ?>
 
 </body>
 </html>
