@@ -19,26 +19,26 @@ class Player extends CI_Controller{
     }
     
     public function jugador($id){
-		$this->load->model("Jugador");
-		$result=$this->Jugador->getInfo($id);
-		$data['datos']=$result;
+        $this->load->model("Jugador");
+        $result=$this->Jugador->getInfo($id);
+        $data['datos']=$result;
         $this->load->view('player/single-profile',$data);
     }
     public function perfil(){		
         $this->load->view('player/profile');
     }
-	public function buscarJugador(){
-		if($this->input->post()){
-		$this->load->model("Jugador");
-		$nombre=$this->input->post('nombre');
-		$jugadores=$this->Jugador->getJugador($nombre);
-		if($jugadores){
-			foreach($jugadores as $fila){
-				echo "<a href='".base_url()."Player/jugador/".$fila->id."' >".$fila->nombre."</a><br>";
-			}
-			
-		}
-		
-		}
-	}
+
+    public function buscarJugador(){
+        if($this->input->post())
+        {
+            $this->load->model("Jugador");
+            $nombre=$this->input->post('nombre');
+            $jugadores=$this->Jugador->getJugador($nombre);
+            if($jugadores){
+                foreach($jugadores as $fila){
+                    echo "<a href='".base_url()."Player/jugador/".$fila->id."' >".$fila->nombre."</a><br>";
+                }
+            }   
+        }
+    }
 }
