@@ -45,4 +45,16 @@ class Torneos extends CI_Controller{
             
         }
     }
+    
+    public function creartorneo(){
+        //cargar vista para crear torneos
+        
+        //1 - seleccioanr tipo de toenro => a partir de aqui se define la vista
+        //como crear cada torneo
+        //1.1 - Rodun robiin:
+        //  * seleccionar el numerpo de jugadores...
+        //      si son 8 jugadores---seran 8 semanas segun yo con 4 partidos cada una
+        //  * pintar las casillas donde seleccionaras a los jugadores para cada semana
+        
+    }
 }
