@@ -33,7 +33,7 @@
               <h4 class="panel-title">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse<?=$row->id;?>">
                   <!--Mes Año-->
-                  Inicio: <?php setlocale(LC_ALL,"es_ES"); $nameing = date("F", strtotime($row->fecha_inicio)); echo $mesesN[$nameing];?>
+                  Inicio: <?php date_default_timezone_set('America/Mexico_City'); setlocale(LC_ALL,"es_ES"); $nameing = date("F", strtotime($row->fecha_inicio)); echo $mesesN[$nameing];?>
                 </a>
               </h4>
             </div>
@@ -67,8 +67,10 @@
             </div>
           </div>
         <?php } ?>
-
-                       
+		<form name="creaRound" method="post" action="<?php echo base_url();?>Torneos/generaRoundRobin">
+		<input type="text" name="no_jugadores" value="" placeholder="Número de Jugadores">
+		<button>Enviar</button>
+        </form>              
         </div>
     	
     </div><!--  End col-md-6 --> 
