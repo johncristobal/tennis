@@ -67,10 +67,7 @@
             </div>
           </div>
         <?php } ?>
-		<form name="creaRound" method="post" action="<?php echo base_url();?>Torneos/generaRoundRobin">
-		<input type="text" name="no_jugadores" value="" placeholder="Número de Jugadores">
-		<button>Enviar</button>
-        </form>              
+		              
         </div>
     	
     </div><!--  End col-md-6 --> 

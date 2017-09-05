@@ -3,19 +3,21 @@
 
 <!-- Basic Page Needs -->
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PLANAR | Personal trainer site template</title>
 <meta name="description" content="Only 16$ - PLANAR Personal trainer site template with calories calculators">
 <meta name="author" content="Ansonika">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
 <!-- Favicons-->
 <link rel="shortcut icon" href="<?php echo base_url();?>img/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" type="image/x-icon" href="<?php echo base_url();?>img/apple-touch-icon-57x57-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="<?php echo base_url();?>img/apple-touch-icon-72x72-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="<?php echo base_url();?>img/apple-touch-icon-114x114-precomposed.png">
 <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="<?php echo base_url();?>img/apple-touch-icon-144x144-precomposed.png">
-
-<!-- Mobile Specific Metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- CSS -->
 <link href="<?php echo base_url();?>css/bootstrap.css" rel="stylesheet">

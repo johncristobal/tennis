@@ -19,9 +19,9 @@ class Player extends CI_Controller{
     }
     
     public function jugador($id){
-		$this->load->model("Jugador");
-		$result=$this->Jugador->getInfo($id);
-		$data['datos']=$result;
+        $this->load->model("Jugador");
+        $result=$this->Jugador->getInfo($id);
+        $data['datos']=$result;
         $this->load->view('player/single-profile',$data);
     }
     public function perfil(){		
