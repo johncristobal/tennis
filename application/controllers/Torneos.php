@@ -42,6 +42,17 @@ class Torneos extends CI_Controller{
         }
     }
     
+    public function registrotorneo(){
+        //vista form registro torneo
+        $this->load->view('torneo/creartorneo');
+
+        //vista torneo RR
+        //$this->load->view('torneo/creartorneorr');
+        
+        //vista torneo RR
+        //$this->load->view('torneo/creartorneoel');
+    }
+    
     public function creartorneo(){
         //vista form registro torneo
         //$this->load->view('torneo/creartorneo');
