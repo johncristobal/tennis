@@ -64,6 +64,23 @@ class Torneos extends CI_Controller{
         //$this->load->view('torneo/creartorneoel');
     }
 	
+    public function creartorneoel(){
+        
+        //load model
+        $this->load->model('Estadisticas');
+        $buscar['datarank']=$this->Estadisticas->getAllRankings();
+        
+        //echo count($buscar['datarank']);
+        //vista form registro torneo
+        $this->load->view('torneo/creartorneoel',$buscar);
+
+        //vista torneo RR
+        //$this->load->view('torneo/creartorneorr');
+        
+        //vista torneo RR
+        //$this->load->view('torneo/creartorneoel');
+    }
+    
     public function generaRoundRobin(){		
         if($this->input->post()){
             $total=$this->input->post('no_jugadores');
