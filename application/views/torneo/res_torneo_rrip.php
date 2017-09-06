@@ -109,7 +109,7 @@
                                     <tr>
                                         <td width="30%"><?=$calendario[$i][$j];?></td>
                                         <td width="15%" style="text-align: center;"></td>
-                                        <td width="30%"><?=$calendario[$i][$total-1-$j];?></td>
+                                        <td width="30%"><?=$calendario[$i][$total-2-$j];?></td>
                                     </tr>
                         <?php
                                 }
