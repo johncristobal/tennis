@@ -36,6 +36,8 @@
     	
     </div><!--  End col-md-6 --> 
     
+    <form method="post" action="<?php echo base_url();?>torneos/creartorneo"> 
+    
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -78,7 +80,7 @@
                 <div class="form-group">
                     <label>Tipo de campo:</label>
                     <select class="form-control" name="campo" style="background-color: #fff; border: 1px solid #00aeef;">
-                        <option value="1">Pasto</option>
+                        <option value="Pasto">Pasto</option>
                     </select>
                 </div>
             </div>
@@ -111,8 +113,9 @@
                 <h4 class="modal-title">¿Desea crear el registro para el torneo?</h4>
               </div>
               <div class="modal-footer">
-                  <a href="#shownext" type="button" class="btn btn-info btn-lg" data-dismiss="modal" onclick="showDiv();">Sí</a>
-                  <a href="#shownext" type="button" class="btn btn-default btn-lg" data-dismiss="modal" onclick="showDiv();">No</a>
+                  <input type="submit" class="btn btn-info btn-lg" value="Si">
+                  <!--a href="" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Sí</a-->
+                  <a href="" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
               </div>
             </div>
 
@@ -122,6 +125,9 @@
         <div class="col-sm-4"></div>
 
     </div>
+    
+    </form>
+    
     
         
 <?php 

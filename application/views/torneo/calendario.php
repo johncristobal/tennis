@@ -26,7 +26,29 @@
 
             <h3 class="title">Torneos</h3>
             <?php $mesesN = array("January"=>"Enero","February"=>"Febrero","March"=>"Marzo","April"=>"Abril","May"=>"Mayo","June"=>"Junio","July"=>"Julio","August"=>"Agosto","September"=>"Septiembre","October"=>"Octubre","November"=>"Noviembre","December"=>"Diciembre");?>
-           <?php foreach ($datos as $row) { ?>
+            
+           <?php            
+           if(count($datos) >= 0){
+           ?>
+            <div class="container">
+            <div class="modal-header">
+                <h4 class="modal-title">No se encontraron registros de torneos</h4>
+            </div>
+            <div class="modal-body">
+                <h5>¿Desea crear un nuevo torneo?</h5>
+            </div>
+            <div class="modal-footer centered">
+                <a href="<?php echo base_url();?>torneos/registrotorneo" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Sí</a>
+                <a href="" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
+            </div>
+            </div>
+            
+           <?php
+           }
+           else
+           {
+           foreach ($datos as $row) { 
+            ?>
                                        
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -66,7 +88,10 @@
               </div>
             </div>
           </div>
-        <?php } ?>
+           <?php            
+                }            
+            }
+           ?>
 		              
         </div>
     	

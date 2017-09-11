@@ -26,7 +26,7 @@
     
         <div class="panel-group add_bottom_30" id="accordion">
 
-            <h3 class="title">Crear torneo: #nombre</h3>
+            <h3 class="title">Crear torneo: <?=$this->session->userdata('nombre');?></h3>
                  
             <!--form name="creaRound" method="post" action="<?php echo base_url();?>Torneos/generaRoundRobin">
 		<input type="text" name="no_jugadores" value="" placeholder="Número de Jugadores">
@@ -40,16 +40,16 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label>Nombre del torneo: #nombre</label>                    
+                    <label>Nombre del torneo: <?=$this->session->userdata('nombre');?></label>                    
                     <br>
-                    <label>Fecha de inicio: #fecha</label>                    
+                    <label>Fecha de inicio: <?=$this->session->userdata('fecha');?></label>                    
                 </div>
             </div>      
                 <div class="col-md-4">
                 <div class="form-group">
-                    <label>Lugar: #lugar</label>                    
+                    <label>Lugar: <?=$this->session->userdata('lugar');?></label>                    
                     <br>
-                    <label>Torneo: #tipo</label>                    
+                    <label>Torneo: <?=$this->session->userdata('tipo_torneo');?></label>                    
                 </div>
             </div> 
         </div>

@@ -57,8 +57,35 @@ class Torneos extends CI_Controller{
         //vista form registro torneo
         //$this->load->view('torneo/creartorneo');
 
-        //vista torneo RR
-        $this->load->view('torneo/creartorneorr');
+        //faltan validaciones....
+        $data['nombre'] = $this->input->post('nombre');
+        $data['tipo_torneo'] = $this->input->post('tipo');
+        $data['fecha'] = $this->input->post('fecha');
+        $data['lugar'] = $this->input->post('lugar');
+        $data['campo'] = $this->input->post('campo');
+
+        $newdata = array(
+                   'nombre' => $this->input->post('nombre'),
+                   'tipo_torneo' => $this->input->post('tipo'),
+                   'fecha' =>  $this->input->post('fecha'),
+                   'lugar' =>  $this->input->post('lugar'),
+                   'campo' =>  $this->input->post('campo')
+               );
+
+        $this->session->set_userdata($newdata);
+        
+        if($data['tipo_torneo'] == "1"){
+            //vista torneo RR
+            $this->load->view('torneo/creartorneorr',$data);
+        }else if($data['tipo_torneo'] == "2"){
+            //load model
+            $this->load->model('Estadisticas');
+            $data['datarank']=$this->Estadisticas->getAllRankings();
+
+            //echo count($buscar['datarank']);
+            //vista form registro torneo
+            $this->load->view('torneo/creartorneoel',$data);
+        }
         
         //vista torneo RR
         //$this->load->view('torneo/creartorneoel');
@@ -67,12 +94,12 @@ class Torneos extends CI_Controller{
     public function creartorneoel(){
         
         //load model
-        $this->load->model('Estadisticas');
-        $buscar['datarank']=$this->Estadisticas->getAllRankings();
+        //$this->load->model('Estadisticas');
+        //$buscar['datarank']=$this->Estadisticas->getAllRankings();
         
         //echo count($buscar['datarank']);
         //vista form registro torneo
-        $this->load->view('torneo/creartorneoel',$buscar);
+        //$this->load->view('torneo/creartorneoel',$buscar);
 
         //vista torneo RR
         //$this->load->view('torneo/creartorneorr');
@@ -98,12 +125,29 @@ class Torneos extends CI_Controller{
                 //load view with data
                 $data['calendario'] = $calen;
                 $data['total'] = $total;
+                
+                $newdata = array(
+                   'calen_par' => $calen,
+                   'total' => $total
+                   );
+
+                $this->session->set_userdata($newdata);
+                
                 $this->load->view('torneo/res_torneo_rrp',$data);
             }else{
                 $calen = $this->roundRobinImpar($total,$jugadores);
                 //load view with data
+                
                 $data['calendario'] = $calen;
                 $data['total'] = $total;
+                    
+                $newdata = array(
+                   'calen_impar' => $calen,
+                   'total' => $total
+                   );
+
+                $this->session->set_userdata($newdata);
+                
                 $this->load->view('torneo/res_torneo_rrip',$data);
             }
         }
@@ -179,5 +223,15 @@ class Torneos extends CI_Controller{
         }*/
         
         return $calendario;
+    }
+    
+    public function saveTorneo(){
+        
+        //valida tipo torneo de sesion
+        //si es 1 => rr+ --- els e directa
+        
+        //get data of torneo from sesion and save it --- using model
+        //save partidos...use the same for from thwe view...
+        
     }
 }
