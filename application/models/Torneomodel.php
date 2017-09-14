@@ -32,10 +32,16 @@ class Torneomodel extends CI_Model{
             return $row;
         }
     }
-	
-    public function selectJugadores($numJugadores){
+	public function getJugadores(){
+		$query="SELECT * FROM jugador";
+		$results=$this->db->query($query);
+		if($results->num_rows()>0){
+			return $results->result();
+		}		
+	}
+    public function selectJugadores($where){
         //Seleccionar aleatoriamente el numero de jugadores para el torneo
-        $query="SELECT * FROM jugador ORDER BY rand() LIMIT $numJugadores";
+        $query="SELECT * FROM jugador WHERE $where ORDER BY rand()";
         $results=$this->db->query($query);
         if($results->num_rows()>0){
             return $results->result();
