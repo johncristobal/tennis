@@ -36,8 +36,8 @@
     	
     </div><!--  End col-md-6 --> 
     
-    <form method="post" action="<?php echo base_url();?>torneos/creartorneo"> 
-    
+    <form method="post" name="formulario" action="<?php echo base_url();?>torneos/creartorneo"> 
+    <input name="array" type="hidden" name="array" value="">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -86,6 +86,37 @@
             </div>
         </div>
         <div class="row"><br></div>
+        <div class="row">
+            <div class="col-md-8">
+			<label>Selección de Jugadores</label>
+			<table style=" border: 1px solid #00aeef;" border="2">
+			<thead>
+			<th></th>
+			<th>Jugadores</th>
+			<th></th>
+			</thead>
+			<tbody>
+			<?php 
+			if($jugadores){
+				foreach($jugadores as $fila){
+					echo "
+					<tr>
+					<td><input type='button'  name='jugadores' onclick='agregar(".$fila->id.")' value='>'></td>					
+					<td id='".$fila->id."'>".$fila->nombre."</td>
+					
+					</tr>
+					";
+				}
+			}
+			?>
+
+			</tbody>
+			</table>
+            </div>
+            
+
+        </div>		
+        <div class="row"><br></div>
 
         <div class="row">
             <div class="col-md-4">
@@ -113,7 +144,7 @@
                 <h4 class="modal-title">¿Desea crear el registro para el torneo?</h4>
               </div>
               <div class="modal-footer">
-                  <input type="submit" class="btn btn-info btn-lg" value="Si">
+                  <input type="submit" id="enviar"  class="btn btn-info btn-lg" value="Si">
                   <!--a href="" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Sí</a-->
                   <a href="" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
               </div>
@@ -139,6 +170,45 @@
 <?php 
     $this->load->view("scriptfoo");
 ?> 
-
+<script>
+var jugadores = [];
+ function agregar(id){
+	var color=document.getElementById(id).style.backgroundColor;
+	if(color.length == 0){
+	document.getElementById(id).style.backgroundColor = '#09f719';
+	jugadores.push(id);
+	}else{
+	document.getElementById(id).style.backgroundColor = '';
+	quitarArreglo(id);
+	}
+	var arv = jugadores.toString();
+	document.formulario.array.value=arv;
+	
+ }
+function quitarArreglo(id){
+	var index = jugadores.indexOf(id);
+	if (index > -1) {
+		jugadores.splice(index, 1);
+	}	
+} 
+/*$("#formulario").submit(function () {
+	var formData = $("#formulario").serialize();
+      var destino="<?php echo base_url();?>Torneos/generaRoundRobin";        
+                    
+                    $.ajax({
+                        url: destino,
+                        type: "POST",
+                        data: formData+"&jugadores="+jugadores,
+                        contentType: false,
+                        processData: false,
+                        success: function (datos)
+                        {
+							alert(datos);
+                           // $("#resultado").html(datos);
+                        }
+                    });
+                    return false;
+            });*/
+</script>
 </body>
 </html>

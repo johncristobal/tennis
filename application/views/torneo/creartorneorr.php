@@ -45,21 +45,31 @@
                     <label>Fecha de inicio: <?=$this->session->userdata('fecha');?></label>                    
                 </div>
             </div>      
-                <div class="col-md-4">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label>Lugar: <?=$this->session->userdata('lugar');?></label>                    
                     <br>
-                    <label>Torneo: <?=$this->session->userdata('tipo_torneo');?></label>                    
+                    <label>Torneo: <?=$this->session->userdata('tipo_torneo');?></label>     					
                 </div>
             </div> 
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Número de Jugadores: <?= count($this->session->userdata('jugadoresTorneo'));?></label>                    
+                    <br>
+                     					
+                </div>
+            </div> 			
+			
         </div>
         <div class="row"><br></div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                <form name="creaRound" method="post" action="<?php echo base_url();?>torneos/generaRoundRobin">                    
+                <form name="creaRound" method="post" action="<?php echo base_url();?>torneos/generaRoundRobin">    
+					<label>Número de Jugadores:</label>                 
                       <div class="input-group">
-                        <input type="text" class="form-control" name="no_jugadores" value="" placeholder="Número de Jugadores" style="background-color: #fff; border: 1px solid #00aeef;">
+					                     
+                        <input type="text" class="form-control" name="no_jugadores" value="<?= count($this->session->userdata('jugadoresTorneo'));?>"  placeholder="Número de Jugadores" style="background-color: #fff; border: 1px solid #00aeef;">
                         <div class="input-group-btn">
                           <button class="btn btn-default" type="submit">
                             <i class="glyphicon glyphicon-repeat"></i>

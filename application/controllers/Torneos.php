@@ -33,17 +33,21 @@ class Torneos extends CI_Controller{
     
     public function resultados($i){
         
-        if($i == 1){
+        if($i == 1){        
             $this->load->view('torneo/resultado');
         }
         else if($i==2){
-            $this->load->view('torneo/resultadorrobin');            
+            $this->load->view('torneo/resultadorrobin');
+            
         }
     }
     
     public function registrotorneo(){
         //vista form registro torneo
-        $this->load->view('torneo/creartorneo');
+		//cargamos modelo 
+		$this->load->model('Torneomodel');
+		$data['jugadores']=$this->Torneomodel->getJugadores();
+        $this->load->view('torneo/creartorneo',$data);
 
         //vista torneo RR
         //$this->load->view('torneo/creartorneorr');
@@ -57,20 +61,23 @@ class Torneos extends CI_Controller{
         //$this->load->view('torneo/creartorneo');
 
         //faltan validaciones....
+		$jugadores=explode(',',$this->input->post('array')); 
+		$data['jugadores']=$jugadores;
         $data['nombre'] = $this->input->post('nombre');
         $data['tipo_torneo'] = $this->input->post('tipo');
         $data['fecha'] = $this->input->post('fecha');
         $data['lugar'] = $this->input->post('lugar');
         $data['campo'] = $this->input->post('campo');
 
-        //save data into session...
         $newdata = array(
-            'nombre' => $this->input->post('nombre'),
-            'tipo_torneo' => $this->input->post('tipo'),
-            'fecha' =>  $this->input->post('fecha'),
-            'lugar' =>  $this->input->post('lugar'),
-            'campo' =>  $this->input->post('campo')
-        );
+                   'nombre' => $this->input->post('nombre'),
+                   'tipo_torneo' => $this->input->post('tipo'),
+                   'fecha' =>  $this->input->post('fecha'),
+                   'lugar' =>  $this->input->post('lugar'),
+                   'campo' =>  $this->input->post('campo'),
+				   'jugadoresTorneo'=>$jugadores
+               );
+
         $this->session->set_userdata($newdata);
         
         if($data['tipo_torneo'] == "1"){
@@ -84,7 +91,8 @@ class Torneos extends CI_Controller{
             //echo count($buscar['datarank']);
             //vista form registro torneo
             $this->load->view('torneo/creartorneoel',$data);
-        }        
+        }
+        
         //vista torneo RR
         //$this->load->view('torneo/creartorneoel');
     }
@@ -106,11 +114,21 @@ class Torneos extends CI_Controller{
         //$this->load->view('torneo/creartorneoel');
     }
     
-    public function generaRoundRobin(){
+    public function generaRoundRobin(){		
         if($this->input->post()){
+			
             $total=$this->input->post('no_jugadores');
+			$jugadoresSelected=$this->session->userdata('jugadoresTorneo');
+			
+			for($i=0;$i<count($jugadoresSelected);$i++){
+				$contador=count($jugadoresSelected);
+				@$where.=" id=".$jugadoresSelected[$i];
+				if(($i+1)<$contador){
+				$where.=" OR ";	
+				}
+			}
             $this->load->model('Torneomodel');
-            $buscar=$this->Torneomodel->selectJugadores($total);
+            $buscar=$this->Torneomodel->selectJugadores($where);
             $jugadores=array();
             if($buscar){
                 foreach($buscar as $fila){
@@ -148,7 +166,9 @@ class Torneos extends CI_Controller{
                 
                 $this->load->view('torneo/res_torneo_rrip',$data);
             }
-        }
+        }else{
+			echo "error";
+		}
     }
         
     public function roundRobinPar($total,$jugadores){
@@ -226,7 +246,7 @@ class Torneos extends CI_Controller{
     public function saveTorneo(){
         
         //valida tipo torneo de sesion
-        //si es 1 => rr+ --- else directa
+        //si es 1 => rr+ --- els e directa
         
         //get data of torneo from sesion and save it --- using model
         //save partidos...use the same for from thwe view...
