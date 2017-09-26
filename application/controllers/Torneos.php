@@ -44,9 +44,9 @@ class Torneos extends CI_Controller{
     
     public function registrotorneo(){
         //vista form registro torneo
-		//cargamos modelo 
-		$this->load->model('Torneomodel');
-		$data['jugadores']=$this->Torneomodel->getJugadores();
+        //cargamos modelo 
+        $this->load->model('Torneomodel');
+        $data['jugadores']=$this->Torneomodel->getJugadores();
         $this->load->view('torneo/creartorneo',$data);
 
         //vista torneo RR
@@ -59,42 +59,51 @@ class Torneos extends CI_Controller{
     public function creartorneo(){
         //vista form registro torneo
         //$this->load->view('torneo/creartorneo');
+        if($this->input->post()){
+			
+            //faltan validaciones....
+            //Guardamos informacion en seson
+            $jugadores=explode(',',$this->input->post('array')); 
+            $data['jugadores']=$jugadores;
+            $data['nombre'] = $this->input->post('nombre');
+            $data['tipo_torneo'] = $this->input->post('tipo');
+            $data['fecha'] = $this->input->post('fecha');
+            $data['lugar'] = $this->input->post('lugar');
+            $data['campo'] = $this->input->post('campo');
 
-        //faltan validaciones....
-		$jugadores=explode(',',$this->input->post('array')); 
-		$data['jugadores']=$jugadores;
-        $data['nombre'] = $this->input->post('nombre');
-        $data['tipo_torneo'] = $this->input->post('tipo');
-        $data['fecha'] = $this->input->post('fecha');
-        $data['lugar'] = $this->input->post('lugar');
-        $data['campo'] = $this->input->post('campo');
+            $newdata = array(
+                'nombre' => $this->input->post('nombre'),
+                'tipo_torneo' => $this->input->post('tipo'),
+                'fecha' =>  $this->input->post('fecha'),
+                'lugar' =>  $this->input->post('lugar'),
+                'campo' =>  $this->input->post('campo'),
+                'jugadoresTorneo'=>$jugadores
+            );
 
-        $newdata = array(
-                   'nombre' => $this->input->post('nombre'),
-                   'tipo_torneo' => $this->input->post('tipo'),
-                   'fecha' =>  $this->input->post('fecha'),
-                   'lugar' =>  $this->input->post('lugar'),
-                   'campo' =>  $this->input->post('campo'),
-				   'jugadoresTorneo'=>$jugadores
-               );
-
-        $this->session->set_userdata($newdata);
+            $this->session->set_userdata($newdata); 
         
-        if($data['tipo_torneo'] == "1"){
-            //vista torneo RR
-            $this->load->view('torneo/creartorneorr',$data);
-        }else if($data['tipo_torneo'] == "2"){
-            //load model
-            $this->load->model('Estadisticas');
-            $data['datarank']=$this->Estadisticas->getAllRankings();
+            //Si es 1..Rodun robin y lanzamos------------------
+            if($data['tipo_torneo'] == "1"){
+                //vista torneo RR
+                //$this->load->view('torneo/creartorneorr',$data);
 
-            //echo count($buscar['datarank']);
-            //vista form registro torneo
-            $this->load->view('torneo/creartorneoel',$data);
-        }
-        
-        //vista torneo RR
-        //$this->load->view('torneo/creartorneoel');
+                $total=count($jugadores);//$this->input->post('no_jugadores');
+                $jugadoresSelected=$this->session->userdata('jugadoresTorneo');
+                $this->generaRoundRobin($total,$jugadoresSelected);
+            }
+            //Caso 2.....elimincacion directa.------------------
+            else if($data['tipo_torneo'] == "2"){
+                //load model
+                $this->load->model('Estadisticas');
+                $data['datarank']=$this->Estadisticas->getAllRankings();
+
+                //echo count($buscar['datarank']);
+                //vista form registro torneo
+                $this->load->view('torneo/creartorneoel',$data);
+            }
+        }else{
+            echo "error";
+        }        
     }
 	
     public function creartorneoel(){
@@ -114,61 +123,62 @@ class Torneos extends CI_Controller{
         //$this->load->view('torneo/creartorneoel');
     }
     
-    public function generaRoundRobin(){		
-        if($this->input->post()){
+    public function generaRoundRobin($total,$jugadoresSelected){		
+        //if($this->input->post()){
 			
-            $total=$this->input->post('no_jugadores');
-			$jugadoresSelected=$this->session->userdata('jugadoresTorneo');
-			
-			for($i=0;$i<count($jugadoresSelected);$i++){
-				$contador=count($jugadoresSelected);
-				@$where.=" id=".$jugadoresSelected[$i];
-				if(($i+1)<$contador){
-				$where.=" OR ";	
-				}
-			}
-            $this->load->model('Torneomodel');
-            $buscar=$this->Torneomodel->selectJugadores($where);
-            $jugadores=array();
-            if($buscar){
-                foreach($buscar as $fila){
-                    array_push($jugadores,$fila->nombre);
-                }
-            }	
-    
-            if(($total%2)==0){
-                $calen = $this->roundRobinPar($total,$jugadores);
-                //load view with data
-                $data['calendario'] = $calen;
-                $data['total'] = $total;
-                
-                $newdata = array(
-                   'calen_par' => $calen,
-                   'total' => $total
-                   );
+        //$total=$this->input->post('no_jugadores');
+        //$jugadoresSelected=$this->session->userdata('jugadoresTorneo');
 
-                $this->session->set_userdata($newdata);
-                
-                $this->load->view('torneo/res_torneo_rrp',$data);
-            }else{
-                $calen = $this->roundRobinImpar($total,$jugadores);
-                //load view with data
-                
-                $data['calendario'] = $calen;
-                $data['total'] = $total;
-                    
-                $newdata = array(
-                   'calen_impar' => $calen,
-                   'total' => $total
-                   );
-
-                $this->session->set_userdata($newdata);
-                
-                $this->load->view('torneo/res_torneo_rrip',$data);
+        for($i=0;$i<count($jugadoresSelected);$i++){
+            $contador=count($jugadoresSelected);
+            @$where.=" id=".$jugadoresSelected[$i];
+            if(($i+1)<$contador){
+                $where.=" OR ";	
             }
+        }
+
+        $this->load->model('Torneomodel');
+        $buscar=$this->Torneomodel->selectJugadores($where);
+        $jugadores=array();
+        if($buscar){
+            foreach($buscar as $fila){
+                array_push($jugadores,$fila->nombre);
+            }
+        }	
+
+        if(($total%2)==0){
+            $calen = $this->roundRobinPar($total,$jugadores);
+            //load view with data
+            $data['calendario'] = $calen;
+            $data['total'] = $total;
+
+            $newdata = array(
+               'calen_par' => $calen,
+               'total' => $total
+               );
+
+            $this->session->set_userdata($newdata);
+
+            $this->load->view('torneo/res_torneo_rrp',$data);
         }else{
-			echo "error";
-		}
+            $calen = $this->roundRobinImpar($total,$jugadores);
+            //load view with data
+
+            $data['calendario'] = $calen;
+            $data['total'] = $total;
+
+            $newdata = array(
+               'calen_impar' => $calen,
+               'total' => $total
+               );
+
+            $this->session->set_userdata($newdata);
+
+            $this->load->view('torneo/res_torneo_rrip',$data);
+        }
+        //}else{
+        //    echo "error";
+        //}
     }
         
     public function roundRobinPar($total,$jugadores){

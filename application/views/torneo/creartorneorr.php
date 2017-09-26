@@ -8,7 +8,6 @@
     $this->load->view("head");
     $this->load->view("header");
 ?>            
-
   
     <div class="container">
         
@@ -24,15 +23,15 @@
     <div class="col-md-12">
      <!--h4>Accordion</h4-->
     
-        <div class="panel-group add_bottom_30" id="accordion">
+    <div class="panel-group add_bottom_30" id="accordion">
 
-            <h3 class="title">Crear torneo: <?=$this->session->userdata('nombre');?></h3>
-                 
-            <!--form name="creaRound" method="post" action="<?php echo base_url();?>Torneos/generaRoundRobin">
-		<input type="text" name="no_jugadores" value="" placeholder="Número de Jugadores">
-		<button>Enviar</button>
-            </form-->              
-        </div>
+        <h3 class="title">Crear torneo: <?=$this->session->userdata('nombre');?></h3>
+
+        <!--form name="creaRound" method="post" action="<?php echo base_url();?>Torneos/generaRoundRobin">
+            <input type="text" name="no_jugadores" value="" placeholder="Número de Jugadores">
+            <button>Enviar</button>
+        </form-->              
+    </div>
     	
     </div><!--  End col-md-6 --> 
     
@@ -66,7 +65,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                 <form name="creaRound" method="post" action="<?php echo base_url();?>torneos/generaRoundRobin">    
-					<label>Número de Jugadores:</label>                 
+                    <label>Número de Jugadores:</label>                 
                       <div class="input-group">
 					                     
                         <input type="text" class="form-control" name="no_jugadores" value="<?= count($this->session->userdata('jugadoresTorneo'));?>"  placeholder="Número de Jugadores" style="background-color: #fff; border: 1px solid #00aeef;">

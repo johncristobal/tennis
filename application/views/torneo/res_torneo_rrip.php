@@ -57,17 +57,17 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                <form name="creaRound" method="post" action="<?php echo base_url();?>torneos/generaRoundRobin">                    
+                <!--form name="creaRound" method="post" action="<?php echo base_url();?>torneos/creartorneo"-->                    
                       <div class="input-group">
-                        <input type="text" class="form-control" name="no_jugadores" value="<?=$total;?>" placeholder="Número de Jugadores" style="background-color: #fff; border: 1px solid #00aeef;">
+                          <input type="text" class="form-control" name="no_jugadores" disabled="true" value="Número de jugadores: <?=$total;?>" placeholder="Número de Jugadores" style="background-color: #fff; border: 1px solid #00aeef;">
                         <div class="input-group-btn">
-                          <button class="btn btn-default" type="submit">
+                            <button class="btn btn-default" onclick="location.reload();">
                             <i class="glyphicon glyphicon-repeat"></i>
                             Volver a generar
                           </button>
                         </div>
                       </div>                    
-                </form>
+                <!--/form-->
             </div>
             </div>
 
