@@ -60,8 +60,7 @@
         </div>
     	
     </div><!--  End col-md-6 --> 
-    
-    
+        
     <form method="post" name="formulario" action="<?php echo base_url();?>torneos/creartorneo"> 
     <input name="array" type="hidden" name="array" value="">
     <div class="container">
@@ -222,7 +221,6 @@
                   <a href="" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
               </div>
             </div>
-
           </div>
         </div>
         </div>

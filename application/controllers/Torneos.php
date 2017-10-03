@@ -15,6 +15,9 @@ class Torneos extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+
+        $this->load->model('Torneomodel');
+
     }
     
     public function calendario(){
@@ -68,8 +71,8 @@ class Torneos extends CI_Controller{
             $data['nombre'] = $this->input->post('nombre');
             $data['tipo_torneo'] = $this->input->post('tipo');
             $data['fecha'] = $this->input->post('fecha');
-            $data['lugar'] = $this->input->post('lugar');
-            $data['campo'] = $this->input->post('campo');
+            $data['lugar'] = $this->Torneomodel->getLugar($this->input->post('lugar'));
+            $data['campo'] = $this->Torneomodel->getCampo($this->input->post('campo'));//$this->input->post('campo');
 
             $newdata = array(
                 'nombre' => $this->input->post('nombre'),
@@ -125,7 +128,7 @@ class Torneos extends CI_Controller{
     
     public function generaRoundRobin($total,$jugadoresSelected){		
         //if($this->input->post()){
-			
+	
         //$total=$this->input->post('no_jugadores');
         //$jugadoresSelected=$this->session->userdata('jugadoresTorneo');
 
@@ -137,14 +140,13 @@ class Torneos extends CI_Controller{
             }
         }
 
-        $this->load->model('Torneomodel');
         $buscar=$this->Torneomodel->selectJugadores($where);
         $jugadores=array();
         if($buscar){
             foreach($buscar as $fila){
                 array_push($jugadores,$fila->nombre);
             }
-        }	
+        }
 
         if(($total%2)==0){
             $calen = $this->roundRobinPar($total,$jugadores);
@@ -185,7 +187,7 @@ class Torneos extends CI_Controller{
 	$calendario[$total][$total-1]="";
 	$cont=0;
 	//Algoritmo de ordenamiento 
-        for($i=0;$i<$total-1;$i++){	
+        for($i=0;$i<$total-1;$i++){
             $aux=0;
             for($j=0;$j<$total;$j++){
                 $posicion=$cont+$j;	
@@ -204,7 +206,7 @@ class Torneos extends CI_Controller{
 	//Algoritmo para poner el último digito al final de cada fila
 	for($i=0;$i<$total;$i++){
             $calendario[$i][$total-1]=$jugadores[$total-1];
-	}	
+        }
 	
 	//Algoritmo para hacer los enfrentamientos, el primero de la fila va contra el último y así... :P 1-6 2-5-3-4 para la primera fecha
 	/*for ($i=0;$i<$total-1;$i++){
@@ -260,6 +262,24 @@ class Torneos extends CI_Controller{
         
         //get data of torneo from sesion and save it --- using model
         //save partidos...use the same for from thwe view...
+        echo "Hola";
         
+        $calendario=$this->session->get('calen_par');
+        $total=$this->session->get('total');
+        //torneo con jugadores par
+        if(($total%2)==0){
+            for ($i=0;$i<$total-1;$i++){
+                //ronda $i
+                for($j=0;$j<($total/2);$j++){   
+                    //jugador 1 
+                    $calendario[$i][$j];
+                    //jugador 2
+                    $calendario[$i][$total-1-$j];
+                }
+            }
+        }else{
+            
+        }
+        echo $calendario;
     }
 }

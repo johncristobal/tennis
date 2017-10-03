@@ -32,7 +32,8 @@ class Torneomodel extends CI_Model{
             return $row;
         }
     }
-	public function getJugadores(){
+	
+    public function getJugadores(){
 		$query="SELECT * FROM jugador";
 		$results=$this->db->query($query);
 		if($results->num_rows()>0){
@@ -46,5 +47,28 @@ class Torneomodel extends CI_Model{
         if($results->num_rows()>0){
             return $results->result();
         }		
+    }
+    
+    public function getLugar($id){
+        $this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo_campo");
+        //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
+
+        $this->db->from('torneo t');
+        $this->db->join('tipo_torneo tt', 'tt.id = t.tipo');
+        //$this->db->where('news_id', $news_id );
+
+        //where year = 2017
+        
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0 )
+        {
+            $row = $query->result();
+            return $row;
+        }
+    }
+    
+    public function getCampo($id){
+        
     }
 }

@@ -74,7 +74,8 @@
             <div class="col-md-4"></div>
         </div>               
     </div>
-    
+
+    <form method="post" action="<?php echo base_url();?>torneos/savetorneo">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -143,8 +144,8 @@
                 <h4 class="modal-title">¿Desea guardar los partidos para este torneo?</h4>
               </div>
               <div class="modal-footer">
-                  <a href="#shownext" type="button" class="btn btn-info btn-lg" data-dismiss="modal" onclick="showDiv();">Sí</a>
-                  <a href="#shownext" type="button" class="btn btn-default btn-lg" data-dismiss="modal" onclick="showDiv();">No</a>
+                  <input type="submit" class="btn btn-info btn-lg" value="Si"></a>
+                  <a href="#shownext" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
               </div>
             </div>
 
@@ -154,6 +155,7 @@
         <div class="col-sm-2"></div>
 
     </div>
+    </form>
         <br>
     <br>
     <br>
