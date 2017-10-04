@@ -23,8 +23,7 @@ class Torneos extends CI_Controller{
     public function calendario(){
                 
         //Load data from Torneos and show into view calendario        
-        $this->load->model('Torneomodel');
-        
+        $this->load->model('Torneomodel');        
         $data['datos'] = $this->Torneomodel->gettorneos();
         
         //logica para separar los torneos por meses....
@@ -76,7 +75,7 @@ class Torneos extends CI_Controller{
 
             $newdata = array(
                 'nombre' => $this->input->post('nombre'),
-                'tipo_torneo' => $this->input->post('tipo'),
+                'tipo' => $this->input->post('tipo'),
                 'fecha' =>  $this->input->post('fecha'),
                 'lugar' =>  $this->input->post('lugar'),
                 'campo' =>  $this->input->post('campo'),
@@ -107,23 +106,6 @@ class Torneos extends CI_Controller{
         }else{
             echo "error";
         }        
-    }
-	
-    public function creartorneoel(){
-        
-        //load model
-        //$this->load->model('Estadisticas');
-        //$buscar['datarank']=$this->Estadisticas->getAllRankings();
-        
-        //echo count($buscar['datarank']);
-        //vista form registro torneo
-        //$this->load->view('torneo/creartorneoel',$buscar);
-
-        //vista torneo RR
-        //$this->load->view('torneo/creartorneorr');
-        
-        //vista torneo RR
-        //$this->load->view('torneo/creartorneoel');
     }
     
     public function generaRoundRobin($total,$jugadoresSelected){		
@@ -255,31 +237,103 @@ class Torneos extends CI_Controller{
         return $calendario;
     }
     
+    public function lastid(){
+        $tabla = 'torneo';
+        $id = $this->Torneomodel->getLastId($tabla);
+        if($id)
+            echo $id->id;
+        else
+            echo "0";
+    }
+    
     public function saveTorneo(){
         
         //valida tipo torneo de sesion
-        //si es 1 => rr+ --- els e directa
+        //si es 1 => rr+ --- else directa
+        //get last id        
+        $tabla = 'torneo';
+        $id = $this->Torneomodel->getLastId($tabla);
+        if($id){
+            $idtorneo = $id->id+1;
+        }
+        else{
+            $idtorneo = "0";
+        }
         
-        //get data of torneo from sesion and save it --- using model
-        //save partidos...use the same for from thwe view...
-        echo "Hola";
+        $data = array(
+            "id" => $idtorneo,
+            'nombre' => $this->session->userdata('nombre'),
+            'tipo' => $this->session->userdata('tipo'),
+            'fecha_inicio' => $this->session->userdata('fecha'),
+            'fecha_fin' => "0000/00/00",
+            'lugar' => $this->session->userdata('lugar')
+        );
         
-        $calendario=$this->session->get('calen_par');
-        $total=$this->session->get('total');
-        //torneo con jugadores par
-        if(($total%2)==0){
-            for ($i=0;$i<$total-1;$i++){
-                //ronda $i
-                for($j=0;$j<($total/2);$j++){   
-                    //jugador 1 
-                    $calendario[$i][$j];
-                    //jugador 2
-                    $calendario[$i][$total-1-$j];
+        $res = $this->Torneomodel->saveTorneo($data);
+        if($res == "-1"){
+            echo "error";
+        }else{
+            //save partidos...use the same for from thwe view...        
+            $total=$this->session->userdata('total');
+            //torneo con jugadores par
+            if(($total%2)==0){
+                $calendario=$this->session->userdata('calen_par');
+                for ($i=0;$i<$total-1;$i++){
+                    //ronda $i
+                    for($j=0;$j<($total/2);$j++){   
+                        $games['resultado'] = "0"; 
+
+                        $games['fktorneo'] = $res; 
+                        $games['ronda'] = $i; 
+                        //jugador 1 
+                        $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
+                        //jugador 2
+                        $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1-$j])->id;
+                        $games['fecha'] = $this->session->userdata('fecha');
+                        $this->Torneomodel->saveGames($games);
+                    }
+                }
+            }else{
+                //impar
+                $calendario=$this->session->userdata('calen_impar');                
+                
+                for ($i=0;$i<=$total-1;$i++){
+                    for($j=0;$j<(($total-1)/2);$j++){     
+                        //jugador 1
+                        $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
+                        //jugador 2
+                        $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-2-$j])->id;
+                          
+                        $games['resultado'] = "0"; 
+
+                        $games['fktorneo'] = $res; 
+                        $games['ronda'] = $i; 
+                        $games['fecha'] = $this->session->userdata('fecha');
+                        $this->Torneomodel->saveGames($games);
+                    }
+                    //descansa                    
+                    $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;
+                    //descansa                    
+                    $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;
+                    $games['resultado'] = "0"; 
+                    $games['fktorneo'] = $res; 
+                    $games['ronda'] = $i; 
+                    $games['fecha'] = $this->session->userdata('fecha');
+                    $this->Torneomodel->saveGames($games);
                 }
             }
-        }else{
-            
         }
-        echo $calendario;
+        //return redirec(base_url());
+        $this->load->model('Torneomodel');        
+        $data['datos'] = $this->Torneomodel->gettorneos();
+        
+        //logica para separar los torneos por meses....
+        //data[enero] = datos...
+        //data[febrerp] = datos...
+        
+        $this->load->view('torneo/calendario',$data);                
+        //echo $calendario;
+        //when finish save data---delete session info
+        
     }
 }

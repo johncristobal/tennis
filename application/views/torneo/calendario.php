@@ -77,11 +77,11 @@
                     <p>&nbsp;</p>
                 </div>
                     
-                    <div class="col-md-3">
+                <!--div class="col-md-3">
                     <h4>&nbsp;</h4>
                     <p><?=$row->tipo_campo;?></p>
                     <strong>&nbsp;</strong>
-                </div>
+                </div-->
                 </section>
                 <hr>
                   

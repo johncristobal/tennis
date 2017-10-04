@@ -15,7 +15,7 @@ class Torneomodel extends CI_Model{
     
     public function gettorneos(){
         //$this->db->select('*');
-        $this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo_campo");
+        $this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
         //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
 
         $this->db->from('torneo t');
@@ -40,6 +40,7 @@ class Torneomodel extends CI_Model{
 			return $results->result();
 		}		
 	}
+
     public function selectJugadores($where){
         //Seleccionar aleatoriamente el numero de jugadores para el torneo
         $query="SELECT * FROM jugador WHERE $where ORDER BY rand()";
@@ -50,7 +51,7 @@ class Torneomodel extends CI_Model{
     }
     
     public function getLugar($id){
-        $this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo_campo");
+        $this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar");
         //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
 
         $this->db->from('torneo t');
@@ -69,6 +70,31 @@ class Torneomodel extends CI_Model{
     }
     
     public function getCampo($id){
+        
+    }
+    
+    public function saveTorneo($header){
+        $this->db->insert('torneo', $header);
+        
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
+    
+    public function saveGames($datos){
+        $this->db->insert('partidos', $datos);
+        
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
+    
+    public function getLastId($tabla){
+        $last_row=$this->db->select('id')->from($tabla)->order_by('id',"desc")->limit(1)->get()->row();
+        return $last_row;
+    }
+    
+    public function getIdFromName($name){
+        $last_row=$this->db->select('id')->from('jugador')->where('nombre',$name)->limit(1)->get()->row();
+        return $last_row;
         
     }
 }
