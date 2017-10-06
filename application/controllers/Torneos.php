@@ -35,12 +35,38 @@ class Torneos extends CI_Controller{
     
     public function resultados($i){
         
-        if($i == 1){        
-            $this->load->view('torneo/resultado');
-        }
-        else if($i==2){
-            $this->load->view('torneo/resultadorrobin');
-            
+        //id from the tournament...
+        //get data from database
+        //get games fktorneo
+        $datatorneoo = $this->Torneomodel->getTorneoData($i);
+        switch ($datatorneoo[0]->tipo) {
+            case 1:
+                $partidos = $this->Torneomodel->getGames($i);
+                //echo "...".$partidos->ronda;
+                $data['torneodata'] = $datatorneoo;
+                $data['partidosdata'] = $partidos;
+                
+                echo count($partidos);
+                echo "<br>";
+                //echo $partidos;
+                foreach ($partidos as $value) {
+                    echo "Cantidad de datos en value: ".count($value)."<br>";
+                    echo "Ronda: n<br>";
+                    foreach ($value as $rondas) {
+                        
+                        echo "Jugador1 = ".$rondas->fkjugador1."<br>";
+                        echo "Jugador2 = ".$rondas->fkjugador2."<br>";
+                    }
+                    //echo $value[0]->fkjugador1."<br>";
+                    //echo $value[1]->fkjugador1."<br>";
+                }
+                //$this->load->view('torneo/resultadorrobin',$data);            
+                break;
+            case 2:
+                //$this->load->view('torneo/resultado');            
+                break;
+            default:
+                break;
         }
     }
     
@@ -244,6 +270,7 @@ class Torneos extends CI_Controller{
             echo $id->id;
         else
             echo "0";
+
     }
     
     public function saveTorneo(){
@@ -283,13 +310,14 @@ class Torneos extends CI_Controller{
                     for($j=0;$j<($total/2);$j++){   
                         $games['resultado'] = "0"; 
 
-                        $games['fktorneo'] = $res; 
+                        $games['fktorneo'] = $idtorneo; 
                         $games['ronda'] = $i; 
                         //jugador 1 
                         $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
                         //jugador 2
                         $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1-$j])->id;
                         $games['fecha'] = $this->session->userdata('fecha');
+                        $games['ganador'] = "0";
                         $this->Torneomodel->saveGames($games);
                     }
                 }
@@ -298,25 +326,27 @@ class Torneos extends CI_Controller{
                 $calendario=$this->session->userdata('calen_impar');                
                 
                 for ($i=0;$i<=$total-1;$i++){
-                    for($j=0;$j<(($total-1)/2);$j++){     
+                    for($j=0;$j<(($total-1)/2);$j++){
                         //jugador 1
                         $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
                         //jugador 2
                         $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-2-$j])->id;
                           
                         $games['resultado'] = "0"; 
-
-                        $games['fktorneo'] = $res; 
+                        $games['ganador'] = "0";
+                        $games['fktorneo'] = $idtorneo; 
                         $games['ronda'] = $i; 
                         $games['fecha'] = $this->session->userdata('fecha');
                         $this->Torneomodel->saveGames($games);
                     }
                     //descansa                    
+                    $games['ganador'] = "0";
+                    //descansa                    
                     $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;
                     //descansa                    
                     $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;
                     $games['resultado'] = "0"; 
-                    $games['fktorneo'] = $res; 
+                    $games['fktorneo'] = $idtorneo; 
                     $games['ronda'] = $i; 
                     $games['fecha'] = $this->session->userdata('fecha');
                     $this->Torneomodel->saveGames($games);
@@ -331,9 +361,9 @@ class Torneos extends CI_Controller{
         //data[enero] = datos...
         //data[febrerp] = datos...
         
-        $this->load->view('torneo/calendario',$data);                
+        //$this->load->view('torneo/calendario',$data);                
+        redirect('/torneos/calendario', 'refresh');
         //echo $calendario;
-        //when finish save data---delete session info
-        
+        //when finish save data---delete session info        
     }
 }

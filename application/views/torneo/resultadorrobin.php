@@ -117,11 +117,11 @@
                         
                         <div class="pricing-table-header" style="text-align: left;">
                             <span class="price-value">
-                                <span>Torneo Verano 2017 Round Robin</span>
+                                <span><?=$torneodata[0]->nombre;?></span>
                                 <!--span class="mo">$</span--></span>
-                            <span class="heading">Sportway Izcalli
+                            <span class="heading"><?=$torneodata[0]->lugar;?>
                                 <br>
-                                <strong>2017.07.30</strong>
+                                <strong><?=$torneodata[0]->fecha_inicio;?></strong>
                                 <table width="100%" align="right">
                                     <tr>
                                         <td width="100%" align="right">
