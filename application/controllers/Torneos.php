@@ -17,6 +17,7 @@ class Torneos extends CI_Controller{
         parent::__construct();
 
         $this->load->model('Torneomodel');
+        $this->load->model('Estadisticas');
 
     }
     
@@ -42,6 +43,7 @@ class Torneos extends CI_Controller{
         switch ($datatorneoo[0]->tipo) {
             case 1:
                 $partidos = $this->Torneomodel->getGames($i);
+                //$estats = $this->Estadisticas->getDataPlayer($i);
                 //echo "...".$partidos->ronda;
                 $data['torneodata'] = $datatorneoo;
                 $data['partidos'] = $partidos;

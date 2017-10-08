@@ -15,13 +15,14 @@ class Torneomodel extends CI_Model{
 
 
     public function getTorneoData($id){
-        $this->db->select('*');
+        $this->db->select('t.id,t.nombre,t.fecha_inicio,lug.lugar,tt.descripcion,t.tipo');
         //$this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
         //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
 
         $this->db->from('torneo t');
-        //$this->db->join('tipo_torneo tt', 'tt.id = t.tipo');
-        $this->db->where('id', $id );
+        $this->db->join('lugar lug', 'lug.id = t.lugar');
+        $this->db->join('tipo_torneo tt', 'tt.id = t.tipo');
+        $this->db->where('t.id', $id );
 
         //where year = 2017
         
@@ -38,14 +39,13 @@ class Torneomodel extends CI_Model{
         
         //then---the idea is
         //get the number of round and return data separated in block
-        $last_row=$this->db->select('ronda')->from('partidos')->where('fktorneo',$id)->order_by('id',"desc")->limit(1)->get()->row();
+        $last_row=$this->db->select('ronda')->from('partidos')->where('fktorneo',$id)->order_by('ronda',"desc")->limit(1)->get()->row();
         //here we have $idtorneo and $lastronda...so...
         $arregloRondas = array();
         
         for($i=0;$i<=$last_row->ronda;$i++){
-            $partidosi = $this->db->select("resultado,fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2")
+            $partidosi = $this->db->select("resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2")
                     ->from('partidos p')
-                    //->join('jugador j','j.id = ')
                     ->where('fktorneo',$id)
                     ->where('ronda',$i)
                     ->get()->result();
@@ -54,43 +54,27 @@ class Torneomodel extends CI_Model{
                 
                 $rondas->rank1 = $this->getrankingfromid($rondas->fkjugador1);
                 $rondas->rank2 = $this->getrankingfromid($rondas->fkjugador2);
-                $rondas->fkjugador1 = $this->getNameFromId($rondas->fkjugador1);
-                $rondas->fkjugador2 = $this->getNameFromId($rondas->fkjugador2);
-                //echo "Jugador1 = ".$rondas->fkjugador1."<br>";
-                //echo "Jugador2 = ".$rondas->fkjugador2."<br>";
+                $rondas->nombre1 = $this->getNameFromId($rondas->fkjugador1);
+                $rondas->nombre2 = $this->getNameFromId($rondas->fkjugador2);
             }
             
             array_push($arregloRondas, $partidosi);
         }
         
         return $arregloRondas;
-        //return $last_row;
-        /*$this->db->select('*');
-        //$this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
-        //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
-
-        $this->db->from('partidos t');
-        //$this->db->join('tipo_torneo tt', 'tt.id = t.tipo');
-        $this->db->where('fktorneo', $id );
-
-        //where year = 2017
-        
-        $query = $this->db->get();
-
-        if ($query->num_rows() > 0 )
-        {
-            $row = $query->result();
-            return $row;
-        }*/        
+ 
     }
     
     public function gettorneos(){
         //$this->db->select('*');
-        $this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
+        $this->db->select('t.id,t.nombre,t.fecha_inicio,lug.lugar,tt.descripcion');
+        //$this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
         //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
 
         $this->db->from('torneo t');
+        $this->db->join('lugar lug', 'lug.id = t.lugar');
         $this->db->join('tipo_torneo tt', 'tt.id = t.tipo');
+
         //$this->db->where('news_id', $news_id );
 
         //where year = 2017
