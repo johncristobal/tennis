@@ -44,9 +44,9 @@ class Torneos extends CI_Controller{
                 $partidos = $this->Torneomodel->getGames($i);
                 //echo "...".$partidos->ronda;
                 $data['torneodata'] = $datatorneoo;
-                $data['partidosdata'] = $partidos;
+                $data['partidos'] = $partidos;
                 
-                echo count($partidos);
+                /*echo count($partidos);
                 echo "<br>";
                 //echo $partidos;
                 foreach ($partidos as $value) {
@@ -59,8 +59,8 @@ class Torneos extends CI_Controller{
                     }
                     //echo $value[0]->fkjugador1."<br>";
                     //echo $value[1]->fkjugador1."<br>";
-                }
-                //$this->load->view('torneo/resultadorrobin',$data);            
+                }*/
+                $this->load->view('torneo/resultadorrobin',$data);            
                 break;
             case 2:
                 //$this->load->view('torneo/resultado');            

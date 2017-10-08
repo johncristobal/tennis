@@ -43,7 +43,23 @@ class Torneomodel extends CI_Model{
         $arregloRondas = array();
         
         for($i=0;$i<=$last_row->ronda;$i++){
-            $partidosi = $this->db->select('*')->from('partidos')->where('fktorneo',$id)->where('ronda',$i)->get()->result();
+            $partidosi = $this->db->select("resultado,fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2")
+                    ->from('partidos p')
+                    //->join('jugador j','j.id = ')
+                    ->where('fktorneo',$id)
+                    ->where('ronda',$i)
+                    ->get()->result();
+            
+            foreach ($partidosi as $rondas) {
+                
+                $rondas->rank1 = $this->getrankingfromid($rondas->fkjugador1);
+                $rondas->rank2 = $this->getrankingfromid($rondas->fkjugador2);
+                $rondas->fkjugador1 = $this->getNameFromId($rondas->fkjugador1);
+                $rondas->fkjugador2 = $this->getNameFromId($rondas->fkjugador2);
+                //echo "Jugador1 = ".$rondas->fkjugador1."<br>";
+                //echo "Jugador2 = ".$rondas->fkjugador2."<br>";
+            }
+            
             array_push($arregloRondas, $partidosi);
         }
         
@@ -150,6 +166,17 @@ class Torneomodel extends CI_Model{
     public function getIdFromName($name){
         $last_row=$this->db->select('id')->from('jugador')->where('nombre',$name)->limit(1)->get()->row();
         return $last_row;
+        
+    }
+    
+    public function getNameFromId($id){
+        $last_row=$this->db->select('nombre')->from('jugador')->where('id',$id)->limit(1)->get()->row();
+        return $last_row->nombre;        
+    }
+
+    public function getrankingfromid($id){
+        $last_row=$this->db->select('rank_act')->from('estadisticas_jugador')->where('fkjugador',$id)->limit(1)->get()->row();
+        return $last_row->rank_act;        
         
     }
 }
