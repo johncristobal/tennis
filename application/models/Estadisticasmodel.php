@@ -17,10 +17,9 @@ class Estadisticasmodel extends CI_Model{
         $this->db->where('j.estatus = 1');
 
         //where year = 2017
-        
         $query = $this->db->get();
 
-        if ($query->num_rows() > 0 )
+        if ($query->num_rows() > 0)
         {
             $row = $query->result();
             return $row;

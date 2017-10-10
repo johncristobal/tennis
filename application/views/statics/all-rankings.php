@@ -9,78 +9,43 @@
     $this->load->view("header");
 ?>
 <div class="container">
-        
-            
-            <h3 class="title">TODOS LOS RANKINGS</h3>
-            
-            <div class="row">
-			<table class="table-striped" width="100%">
-                    <thead>
-                      <tr>
-                        <th>Ranking</th>
-                        <th>Movimiento</th>
-                        <th>Jugador</th>
-                        <th>Edad</th>
-                        <th>Puntos</th>
-                        <th>Torneos Jugados</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($datos as $value) {
-                         ?>   
-                      <tr>
-                        <td width="10%"><?=$value->rank_act;?></td>
-                        <td width="10%">+1</td>
-                        <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$value->id;?>"><?=$value->nombre;?></a></td>
-                        <td width="10%"><?=$value->edad;?></td>
-                        <td width="10%"><?=$value->puntos;?></td>
-                        <td width="10%"><?=$value->torneosj;?></td>
-                      </tr>
-                      
-                      <!--tr>
-                          <td width="20%">2</td>
-                          <td width="20%">-1</td>
-						  <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">John Vera</a></td>
-						  <td width="20%">25</td>
-						  <td width="20%">1250</td>
-						  <td width="20%">2</td>
-                      </tr>
-                      <tr>
-                          <td width="20%">3</td>
-                          <td width="20%">-1</td>
-						  <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">Link Torres</a></td>
-						  <td width="20%">25</td>
-						  <td width="20%">1000</td>
-						  <td width="20%">2</td>
-                      </tr>                      <tr>
-                          <td width="20%">4</td>
-                          <td width="20%">-1</td>
-						  <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">Rulo Galván</a></td>
-						  <td width="20%">25</td>
-						  <td width="20%">940</td>
-						  <td width="20%">2</td>
-                      </tr>                      <tr>
-                          <td width="20%">5</td>
-                          <td width="20%">-1</td>
-						  <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador">Virgilio Castillo</a></td>
-						  <td width="20%">25</td>
-						  <td width="20%">820</td>
-						  <td width="20%">2</td>
-                      </tr-->
-                        <?php
-                            }
-                        ?>
+                    
+    <h3 class="title">TODOS LOS RANKINGS</h3>
 
-                    </tbody>
-            </table>
-            </div><!-- End row -->
-            
-            
+    <div class="row">
+    <table class="table-striped" width="100%">
+    <thead>
+      <tr>
+        <th>Ranking</th>
+        <th>Movimiento</th>
+        <th>Jugador</th>
+        <th>Edad</th>
+        <th>Puntos</th>
+        <th>Torneos Jugados</th>
+      </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($datos as $value) {
+         ?>   
+      <tr>
+        <td width="10%"><?=$value->rank_act;?></td>
+        <td width="10%">+1</td>
+        <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$value->id;?>"><?=$value->nombre;?></a></td>
+        <td width="10%"><?=$value->edad;?></td>
+        <td width="10%"><?=$value->puntos;?></td>
+        <td width="10%"><?=$value->torneosj;?></td>
+      </tr>
+        <?php
+            }
+        ?>
 
-            
-        </div><!-- End container -->
-        
-        <?php $this->load->view("footer");?>        
+    </tbody>
+    </table>
+    </div><!-- End row -->
+
+    </div><!-- End container -->
+
+    <?php $this->load->view("footer");?>        
 
  
  <div id="toTop">Back to Top</div>  
