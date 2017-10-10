@@ -122,13 +122,13 @@
                             <span class="heading"><?=$torneodata[0]->lugar;?>
                                 <br>
                                 <strong><?=$torneodata[0]->fecha_inicio;?></strong>
-                                <table width="100%" align="right">
+                                <!--table width="100%" align="right">
                                     <tr>
                                         <td width="100%" align="right">
                                             <button type="button">Ver tabla general</button>
                                         </td>
                                     </tr>
-                                </table>
+                                </table-->
                             </span>
                             
 
@@ -175,16 +175,25 @@
                     <tbody>
                 <?php
                 foreach ($value as $rondas) {
-                ?>
+                if($rondas->fkjugador1 != $rondas->fkjugador2){                        
+                ?>                        
                     <tr>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
                         <td width="20%"><?=$rondas->resultado;?></td>
                     </tr>
                 <?php    
+                } else {
+                ?>
+                    <tr>
+                        <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
+                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                        <td width="20%"><?=$rondas->resultado;?></td>
+                    </tr>
+                <?php
                 }
-
                 $i++;
+                }
                 ?>
                     </tbody>
                     </table>    
@@ -402,7 +411,7 @@
                 </div>
             </div>
             <br>
-            <div class="row second">
+            <!--div class="row second">
                 <div class="col-md-12 infomsg2 alert" style="font-weight: 600; font-size: larger; text-align: center;" id="tabla">
                     Tabla general
                 </div>
@@ -469,10 +478,10 @@
                         <td>July</td>
                         <td>Dooley</td>
                         <td>july@example.com</td>
-                      </tr-->
+                      </tr>
                     </tbody>
                 </table> 
-                </div>
+                </div-->
             </div>
 
             

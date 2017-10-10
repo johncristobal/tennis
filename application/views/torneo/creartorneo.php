@@ -146,7 +146,24 @@
                 <th></th>
                 </thead>
                 <tbody>
-                    
+                    <!--tr>
+                        <td>
+                            
+                            <div class='[ form-group ]'>
+                                        <input type="checkbox" onClick="toggle(this)" autocomplete='off'>
+                                
+                                        <div class='[ btn-group ]'>
+                                            <label for='' class='[ btn btn-primary ]' onclick='toggle(this)'>
+                                                <span class='[ glyphicon glyphicon-ok ]'></span>
+                                                <span>&nbsp;</span>
+                                            </label>
+                                            <label for='' class='[ btn btn-default active ]' style='width:200px;' onclick='toggle(this)'>
+                                                Seleccionar todos
+                                            </label>
+                                        </div>  
+                                    </div>
+                        </td>
+                    </tr-->    
             
                 <?php 
                 if($jugadores){
@@ -266,7 +283,14 @@ function quitarArreglo(id){
 	if (index > -1) {
 		jugadores.splice(index, 1);
 	}	
-} 
+}
+
+function toggle(source) {
+    var checkboxes = document.getElementsByName('jugadores');
+    for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+    }
+}
 /*$("#formulario").submit(function () {
 	var formData = $("#formulario").serialize();
       var destino="<?php echo base_url();?>Torneos/generaRoundRobin";        
