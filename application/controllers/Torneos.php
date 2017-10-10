@@ -17,7 +17,7 @@ class Torneos extends CI_Controller{
         parent::__construct();
 
         $this->load->model('Torneomodel');
-        $this->load->model('Estadisticas');
+        $this->load->model('Estadisticasmodel');
 
     }
     
@@ -43,7 +43,7 @@ class Torneos extends CI_Controller{
         switch ($datatorneoo[0]->tipo) {
             case 1:
                 $partidos = $this->Torneomodel->getGames($i);
-                //$estats = $this->Estadisticas->getDataPlayer($i);
+                //$estats = $this->Estadisticasmodel->getDataPlayer($i);
                 //echo "...".$partidos->ronda;
                 $data['torneodata'] = $datatorneoo;
                 $data['partidos'] = $partidos;
@@ -124,8 +124,8 @@ class Torneos extends CI_Controller{
             //Caso 2.....elimincacion directa.------------------
             else if($data['tipo_torneo'] == "2"){
                 //load model
-                $this->load->model('Estadisticas');
-                $data['datarank']=$this->Estadisticas->getAllRankings();
+                $this->load->model('Estadisticasmodel');
+                $data['datarank']=$this->Estadisticasmodel->getAllRankings();
 
                 //echo count($buscar['datarank']);
                 //vista form registro torneo
