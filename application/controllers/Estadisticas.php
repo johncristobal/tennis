@@ -16,20 +16,20 @@ class Estadisticas extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+        
+        $this->load->model('Estadisticasmodel');
     }
     
     public function rankings(){
-        $this->load->view('statics/rankings');
+        
+        $datosrank['datos'] = $this->Estadisticasmodel->getAllRankings();        
+        $this->load->view('statics/rankings',$datosrank);
     }
     
-    /*
-     * Carlitps
-     * Todos los rankings
-     * 15 08 17
-     */
 	 
-	public function allRankings(){
-        $this->load->view('statics/all-rankings');
+    public function allRankings(){
+        $datosrank['datos'] = $this->Estadisticasmodel->getAllRankings();        
+        $this->load->view('statics/all-rankings',$datosrank);
     }
     //put your code here
 }

@@ -23,28 +23,20 @@
                 <div class="tab-pane active" id="singles">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt=""> CARLOS 
-                            <p class="flex-caption">Ranking No.1</p>
-                            </li>
-                            <li><img src="<?php echo base_url();?>img/slider/slide-2.jpg" alt=""> JOHN 
-                            <p class="flex-caption">Ranking No.2</p>
-                            </li>
-                            <li>
-                            <img src="<?php echo base_url();?>img/slider/slide-3.jpg" alt=""> DANIEL 
-                            <p class="flex-caption">Ranking No.3</p>
-                            </li>
-                            <li>
-                            <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt=""> VIRGILIO 
-                            <p class="flex-caption">Ranking No.4</p>
-                            </li>
-                            <li>
-                            <img src="<?php echo base_url();?>img/slider/slide-5.jpg" alt=""> ANTONIO 
-                            <p class="flex-caption">Ranking No.5</p>
-                            </li>
+                            <?php $i=1; foreach($datos as $filas) { ?>
+                            <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt=""> <?=$filas->nombre;?> 
+                            <p class="flex-caption">Ranking No. <?=$i;?></p>
+                            </li>                            
+                            <?php 
+                                if($i == 5){
+                                    break;
+                                }
+                                $i++;
+                            } ?>
                         </ul>
 					
                     </div><!-- End slider -->
-					<a   href="<?php echo base_url();?>Estadisticas/allRankings"  class=" button_medium">Ver todos los rankings</a>
+                    <a   href="<?php echo base_url();?>Estadisticas/allRankings"  class=" button_medium">Ver todos los rankings</a>
                 </div>
                 <div class="tab-pane" id="dobles">
                        <div class="flexslider">
@@ -95,25 +87,25 @@
   /* ]]> */
 </script> 
 
+<?php 
+    $this->load->view("scriptfoo");
+?> 
+
 
 <!-- MENU JS -->    
-<script src="<?php echo base_url();?>js/hoverIntent.js"></script>
+<!--script src="<?php echo base_url();?>js/hoverIntent.js"></script>
 <script src="<?php echo base_url();?>js/superfish.js"></script>
 <script src="<?php echo base_url();?>js/mobile-menu.js"></script>
 
-<!-- OTHER JS --> 
 <script src="<?php echo base_url();?>js/placeholder.js"></script>
 <script src="<?php echo base_url();?>js/inview.js"></script> 
 <script src="<?php echo base_url();?>js/bootstrap.js"></script>
 <script src="<?php echo base_url();?>assets/validate.js"></script> 
 <script src="<?php echo base_url();?>js/functions.js"></script>
 
-
-
-<!-- FANCYBOX -->
 <script  src="<?php echo base_url();?>js/fancybox/source/jquery.fancybox.pack.js?v=2.1.4" type="text/javascript"></script> 
 <script src="<?php echo base_url();?>js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5" type="text/javascript"></script> 
-<script src="<?php echo base_url();?>js/fancy_func.js" type="text/javascript"></script> 
+<script src="<?php echo base_url();?>js/fancy_func.js" type="text/javascript"></script--> 
 
 
 </body>

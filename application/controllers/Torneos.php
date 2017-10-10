@@ -34,8 +34,8 @@ class Torneos extends CI_Controller{
         $this->load->view('torneo/calendario',$data);                
     }
     
-    public function resultados($i){
-        
+    public function resultados($i)
+    {        
         //id from the tournament...
         //get data from database
         //get games fktorneo
