@@ -13,6 +13,19 @@
  */
 class Torneomodel extends CI_Model{
 
+    //function to update tormeo(
+    public function actualizaTorneo($datos){
+        foreach ($datos as $key=>$value){
+            //echo $key."-".$value;
+            //echo "<br>";            
+            
+            $updateData = array(
+                'resultado'=>$value
+            );
+            $this->db->where('id', $key);
+            $this->db->update('partidos', $updateData);             
+        }
+    }
 
     public function getTorneoData($id){
         $this->db->select('t.id,t.nombre,t.fecha_inicio,lug.lugar,tt.descripcion,t.tipo');
@@ -44,7 +57,7 @@ class Torneomodel extends CI_Model{
         $arregloRondas = array();
         
         for($i=0;$i<=$last_row->ronda;$i++){
-            $partidosi = $this->db->select("resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2")
+            $partidosi = $this->db->select("id,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2")
                     ->from('partidos p')
                     ->where('fktorneo',$id)
                     ->where('ronda',$i)

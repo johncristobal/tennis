@@ -151,6 +151,7 @@
                 </div><!-- End col-md-3 -->
             </div><!-- End row -->
             
+            <form method="post" action="<?php echo base_url()?>torneos/updateTorneo">
             <div class="row">
                 <div class="col-md-12" style="font-size: 15px;">
                     <!--div class="pricing-table-features">
@@ -175,12 +176,13 @@
                     <tbody>
                 <?php
                 foreach ($value as $rondas) {
+                    //Validacion para ronund rpbin impar
                 if($rondas->fkjugador1 != $rondas->fkjugador2){                        
                 ?>                        
                     <tr>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
-                        <td width="20%"><?=$rondas->resultado;?></td>
+                        <td width="20%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
                     </tr>
                 <?php    
                 } else {
@@ -188,12 +190,12 @@
                     <tr>
                         <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
-                        <td width="20%"><?=$rondas->resultado;?></td>
+                        <!--td width="20%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>"></td-->
                     </tr>
                 <?php
                 }
-                $i++;
                 }
+                $i++;
                 ?>
                     </tbody>
                     </table>    
@@ -407,9 +409,39 @@
                       </tr>                      
                     </tbody>
                 </table-->   
-                    
                 </div>
             </div>
+                <br>
+            <div class="row">
+        <!-- Modal -->
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 centered" style="text-align:center;">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#confirmar">Actualizar información</button>
+        
+        <div class="modal fade" id="confirmar" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <!--div class="modal-header">
+              </div-->
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">¿Desea actualizar los datos del torneo?</h4>
+              </div>
+              <div class="modal-footer">
+                  <input type="submit" id="enviar"  class="btn btn-info btn-lg" value="Si">
+                  <!--a href="" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Sí</a-->
+                  <a href="" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        </div>  
+        </form>
             <br>
             <!--div class="row second">
                 <div class="col-md-12 infomsg2 alert" style="font-weight: 600; font-size: larger; text-align: center;" id="tabla">

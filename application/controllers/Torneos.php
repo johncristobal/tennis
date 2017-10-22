@@ -18,7 +18,6 @@ class Torneos extends CI_Controller{
 
         $this->load->model('Torneomodel');
         $this->load->model('Estadisticasmodel');
-
     }
     
     public function calendario(){
@@ -34,12 +33,15 @@ class Torneos extends CI_Controller{
         $this->load->view('torneo/calendario',$data);                
     }
     
-    public function resultados($i)
-    {        
+    public function resultados($i){        
         //id from the tournament...
         //get data from database
         //get games fktorneo
         $datatorneoo = $this->Torneomodel->getTorneoData($i);
+        
+        //save in session this torneo id...
+        $this->session->set_userdata('idtorneo',$i);
+        
         switch ($datatorneoo[0]->tipo) {
             case 1:
                 $partidos = $this->Torneomodel->getGames($i);
@@ -367,5 +369,15 @@ class Torneos extends CI_Controller{
         redirect('/torneos/calendario', 'refresh');
         //echo $calendario;
         //when finish save data---delete session info        
+    }
+    
+    //function to update results
+    public function updateTorneo(){
+        $post_data = $this->input->post();
+        $this->Torneomodel->actualizaTorneo($post_data);
+
+        $id = $this->session->userdata('idtorneo');
+        redirect('torneos/resultados/'.$id);
+        
     }
 }
