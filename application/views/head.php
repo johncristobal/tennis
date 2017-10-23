@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="<?php echo base_url();?>js/fancybox/source/jquery.fancybox.css?v=2.1.4">
 <link href="<?php echo base_url();?>css/animate.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url();?>css/flexslider.css" type="text/css" media="screen">
+<link rel="stylesheet" href="<?php echo base_url();?>css/autocomplete.css" type="text/css" media="screen">
 
 <!-- Google web font -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
@@ -37,7 +38,7 @@
 <![endif]-->
 
 <!-- Jquery -->
-<script src="<?php echo base_url();?>js/jquery.1.7.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <!--script src="<?php echo base_url();?>js/buscar.js"></script-->
 <!-- Support media queries for IE8 -->
 <script src="<?php echo base_url();?>js/respond.min.js"></script>
@@ -45,9 +46,14 @@
 <!-- HTML5 and CSS3-in older browsers-->
 <script src="<?php echo base_url();?>js/modernizr.custom.17475.js"></script>
 
+<script src="<?php echo base_url();?>js/autocomplete.js"></script>
 <!--[if IE 7]>
   <link rel="stylesheet" href="font-awesome/css/font-awesome-ie7.min.css">
 <![endif]-->
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>

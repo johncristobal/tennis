@@ -13,10 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Torneos extends CI_Controller{
     //put your code here
     
+    public $id1headtohead = "";
+    public $id2headtohead = "";
+    
     public function __construct() {
         parent::__construct();
 
         $this->load->model('Torneomodel');
+        $this->load->model('Jugador');
         $this->load->model('Estadisticasmodel');
     }
     
@@ -379,5 +383,38 @@ class Torneos extends CI_Controller{
         $id = $this->session->userdata('idtorneo');
         redirect('torneos/resultados/'.$id);
         
+    }
+    
+    //get dat from head to head
+    public function saveidplayers(){
+        $this->id1headtohead = $this->input->post('id1');
+        $this->id2headtohead = $this->input->post('id2');
+        
+        $this->session->set_userdata('idhead1',$this->id1headtohead);
+        $this->session->set_userdata('idhead2',$this->id2headtohead);
+        //echo "Datos: ".$this->id1headtohead."-".$this->id2headtohead;
+    }
+    
+    public function headtohead(){
+        $id1 = $this->session->userdata('idhead1');
+        $id2 = $this->session->userdata('idhead2');
+        //destroy sesion?
+        //$this->session->sess_destroy();
+
+        //now get data t launch view
+        $data=$this->Estadisticasmodel->getdatah2h($id1,$id2);
+        $this->load->view('torneo/headtohead',$data);
+        
+    }
+    
+    public function getNames(){
+        
+        $var = "";
+        $dat = $this->Jugador->getNombres();
+        foreach ($dat as $value) {
+            $var .= $value->nombre.",";
+        }
+        
+        echo $var;
     }
 }

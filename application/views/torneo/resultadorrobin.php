@@ -5,8 +5,38 @@
 
 <?php   
     $this->load->view("head");
-    $this->load->view("header");
+    $this->load->view("header");    
 ?>            
+
+        <script type="text/javascript">
+        
+        function verheadtohead(id1,id2){
+            //alert(id1);
+            //alert(id2);
+
+            //get id from catch dat from headtohead
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("torneos/saveidplayers"); ?>',
+                data:{'id1':id1,'id2':id2},
+                success:function(data){
+                    
+                    //alert(data);
+                    location.href = "<?php echo base_url();?>torneos/headtohead";
+                }
+            });    
+        }
+        </script>
+        <style>
+            tr{
+                line-height: 25px;  
+                min-height: 25px;  
+                height: 25px;
+            }
+            td{
+                padding: 10px;
+            }
+        </style>
 
         <div class="container">
         
@@ -183,6 +213,7 @@
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
                         <td width="20%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
+                        <td width="20%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
                     </tr>
                 <?php    
                 } else {
@@ -190,7 +221,8 @@
                     <tr>
                         <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
-                        <!--td width="20%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>"></td-->
+                        <td width="20%">&nbsp;</td>
+                        <td width="20%"><a class="button_newsletter" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
                     </tr>
                 <?php
                 }

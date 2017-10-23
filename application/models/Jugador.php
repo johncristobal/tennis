@@ -27,6 +27,18 @@ class Jugador extends CI_Model{
             return FALSE;
         }
     }
+    
+    public function getNombres(){
+        $this->db->select('nombre');
+        $this->db->from('jugador');
+        $results=$this->db->get();
+        if($results->num_rows()>0){
+            return $results->result();
+        }else{
+            return FALSE;
+        }
+   
+    }
 }
 
 ?>
