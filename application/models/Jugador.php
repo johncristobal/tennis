@@ -19,7 +19,7 @@ class Jugador extends CI_Model{
 
         $this->db->select('*');
         $this->db->from('jugador');
-        $this->db->where("MATCH (nombre) AGAINST ('".$nombre."')  limit 10",NULL,FALSE);
+        $this->db->like("Nombre","$nombre");
         $results=$this->db->get();
         if($results->num_rows()>0){
             return $results->result();

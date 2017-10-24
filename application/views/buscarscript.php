@@ -10,7 +10,7 @@ and open the template in the editor.
 
 	$('#jugador').keyup(function(){
 	var nombre=$(this).val();
-	
+	if(nombre.length>2){
 	$.post('<?php echo base_url();?>player/buscarJugador',{ nombre : nombre},function(data){
 		if(data){
 			$("#res_jugadores").html(data);
@@ -18,7 +18,11 @@ and open the template in the editor.
 			$("#res_jugadores").html('');
 		}
 	});	
+	}else{
+	$("#res_jugadores").html('');	
+	}
 	});
+	
 });
  
 </script>
