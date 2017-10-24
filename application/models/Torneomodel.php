@@ -15,15 +15,37 @@ class Torneomodel extends CI_Model{
 
     //function to update tormeo(
     public function actualizaTorneo($datos){
+        
+        $ganador = "";
+        $res = "";
+        $ii = 1;
+        $llave = "";
+        
         foreach ($datos as $key=>$value){
             //echo $key."-".$value;
             //echo "<br>";            
             
+            if(strpos($key, 'radio') !== false){
+                $ganador = $value;
+            }else{
+                $res = $value;
+                $llave = $key;
+            }
+            
+            if($ii%2 != 0){
+                $ii++;
+                continue;
+            }else{
+                $ii++;
+            }
+            
             $updateData = array(
-                'resultado'=>$value
+                'resultado' => $res,
+                'ganador' => $ganador
             );
-            $this->db->where('id', $key);
-            $this->db->update('partidos', $updateData);             
+            
+            $this->db->where('id', $llave);
+            $this->db->update('partidos', $updateData);
         }
     }
 

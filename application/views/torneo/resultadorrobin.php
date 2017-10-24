@@ -181,6 +181,8 @@
                 </div><!-- End col-md-3 -->
             </div><!-- End row -->
             
+            Selecciona el jugador que ganó el encuentro, o en su caso empate.
+            
             <form method="post" action="<?php echo base_url()?>torneos/updateTorneo">
             <div class="row">
                 <div class="col-md-12" style="font-size: 15px;">
@@ -205,15 +207,18 @@
                     </thead>
                     <tbody>
                 <?php
-                foreach ($value as $rondas) {
+                foreach ($value as $rondas) { 
                     //Validacion para ronund rpbin impar
                 if($rondas->fkjugador1 != $rondas->fkjugador2){                        
                 ?>                        
                     <tr>
+                        <td width="5%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>">Ganador</label></div></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                        <td width="5%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>">Ganador</label></div></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
                         <td width="20%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
-                        <td width="20%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
+                        <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0">Empate</label></div></td>
+                        <td width="10%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
                     </tr>
                 <?php    
                 } else {
