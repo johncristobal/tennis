@@ -208,16 +208,18 @@
                     <tbody>
                 <?php
                 foreach ($value as $rondas) { 
+                $flag = 0;
                     //Validacion para ronund rpbin impar
                 if($rondas->fkjugador1 != $rondas->fkjugador2){                        
                 ?>                        
                     <tr>
-                        <td width="5%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>">Ganador</label></div></td>
-                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
-                        <td width="5%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>">Ganador</label></div></td>
-                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
+                        <td width="10%"></td>
+                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>" <?php if($rondas->ganador == $rondas->fkjugador1){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
+                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
+                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
+                        <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div></td>
                         <td width="20%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
-                        <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0">Empate</label></div></td>
                         <td width="10%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
                     </tr>
                 <?php    
@@ -225,9 +227,10 @@
                 ?>
                     <tr>
                         <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
+                        <td width="2%"></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
-                        <td width="20%">&nbsp;</td>
-                        <td width="20%"><a class="button_newsletter" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
+                        <!--td width="20%">&nbsp;</td-->
+                        <!--td width="20%"><a class="button_newsletter" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td-->
                     </tr>
                 <?php
                 }
