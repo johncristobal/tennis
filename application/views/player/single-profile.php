@@ -26,7 +26,64 @@
                 <p class="col-md-6 text-center"><img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive"></p>
                 
                 </div><!-- End row -->
-                
+						<?php if($datos->Drive >=80){
+							$estilo='progress-bar progress-bar-success';
+						}else{
+							$estilo='progress-bar progress-bar-warning';
+						} ?>
+                <div class="showback">
+      					<h4 align="center"><i class="fa fa-angle-right"></i>Habilidades</h4>
+	      				<div class="progress progress-striped active">
+						  <div class="<?= $estilo ?>"  role="progressbar" aria-valuenow="<?= $datos->Drive; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $datos->Drive; ?>%">
+						    Drive <?= $datos->Drive; ?>%<span class="sr-only"><?= $datos->Drive; ?>% Complete</span>
+						  </div>						  
+						</div>
+						<br>
+						<?php if($datos->Reves >=80){
+							$estilo='progress-bar progress-bar-success';
+						}else{
+							$estilo='progress-bar progress-bar-warning';
+						} ?>						
+						<div class="progress progress-striped active">
+						  <div class="<?= $estilo ?>"  role="progressbar" aria-valuenow="<?= $datos->Reves; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $datos->Reves; ?>%">
+						    Revés <?= $datos->Reves; ?>%<span class="sr-only"><?= $datos->Reves; ?>% Complete</span>
+						  </div>
+						</div>
+						<br>
+						<?php if($datos->Servicio >=80){
+							$estilo='progress-bar progress-bar-success';
+						}else{
+							$estilo='progress-bar progress-bar-warning';
+						} ?>	
+						<div class="progress progress-striped active">
+						  <div class="<?= $estilo ?>"  role="progressbar" aria-valuenow="<?= $datos->Servicio; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $datos->Servicio; ?>%">
+						    Servicio <?= $datos->Servicio; ?>%<span class="sr-only"><?= $datos->Servicio; ?>% Complete</span>
+						  </div>
+						</div>	
+						<br>
+						<?php if($datos->Velocidad >=80){
+							$estilo='progress-bar progress-bar-success';
+						}else{
+							$estilo='progress-bar progress-bar-warning';
+						} ?>						
+						<div class="progress progress-striped active">
+						  <div class="<?= $estilo ?>"  role="progressbar" aria-valuenow="<?= $datos->Velocidad; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $datos->Velocidad; ?>%">
+						    Velocidad <?= $datos->Velocidad; ?>%<span class="sr-only"><?= $datos->Velocidad; ?>% Complete</span>
+						  </div>
+						</div>
+						<br>
+						<?php if($datos->Mentalidad >=80){
+							$estilo='progress-bar progress-bar-success';
+						}else{
+							$estilo='progress-bar progress-bar-warning';
+						} ?>							
+						<div class="progress progress-striped active">
+						  <div class="<?= $estilo ?>"  role="progressbar" aria-valuenow="<?= $datos->Mentalidad; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $datos->Mentalidad; ?>%">
+						    Mentalidad <?= $datos->Mentalidad; ?>%<span class="sr-only"><?= $datos->Mentalidad; ?>% Complete</span>
+						  </div>
+						</div>							
+						
+				</div>
                 <div class="row add_top_30">
                 
                 	<div class="col-md-4">

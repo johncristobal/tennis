@@ -15,8 +15,8 @@
                 <div class="col-md-4">
                    
                 <form>
-                    <div class="form-bg-1"><input type="text" id="jugador" class="form-control" placeholder="Buscar Jugador"></div>
-                    <div id="res_jugadores"></div>
+                    <div class="form-bg-1"><input type="text" id="name_1"  class="form-control" placeholder="Buscar Jugador"></div>
+                    
                 </form>
                 <!--form action="/action_page.php" method="get">
                     <input list="browsers" name="browser" class="form-control" placeholder="Buscar jugador...">

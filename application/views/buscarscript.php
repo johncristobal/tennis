@@ -5,24 +5,21 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <script>
-    
-    jQuery(document).ready(function(){
-
-	$('#jugador').keyup(function(){
-	var nombre=$(this).val();
-	if(nombre.length>2){
-	$.post('<?php echo base_url();?>player/buscarJugador',{ nombre : nombre},function(data){
-		if(data){
-			$("#res_jugadores").html(data);
-		}else{
-			$("#res_jugadores").html('');
-		}
-	});	
-	}else{
-	$("#res_jugadores").html('');	
-	}
-	});
-	
-});
+    $( function() {
+        
+        $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("torneos/getNames"); ?>',
+                //data:{'id1':id1,'id2':id2},
+                success:function(data){
+                    //alert(data);
+                    
+                    var sld = data.split(',');                    
+                    $( "#name_1" ).autocomplete({
+                        source: sld
+                    });
+                }
+            });
+			 });
  
 </script>
