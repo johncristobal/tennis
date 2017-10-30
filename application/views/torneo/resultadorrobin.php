@@ -19,12 +19,11 @@
                 type:'POST',
                 url:'<?php echo base_url("torneos/saveidplayers"); ?>',
                 data:{'id1':id1,'id2':id2},
-                success:function(data){
-                    
+                success:function(data){                    
                     //alert(data);
                     location.href = "<?php echo base_url();?>torneos/headtohead";
                 }
-            });    
+            });
         }
         </script>
         <style>
@@ -182,7 +181,7 @@
             </div><!-- End row -->
             
             Selecciona el jugador que ganó el encuentro, o en su caso empate.
-            
+            <br>
             <form method="post" action="<?php echo base_url()?>torneos/updateTorneo">
             <div class="row">
                 <div class="col-md-12" style="font-size: 15px;">
@@ -194,8 +193,7 @@
                     </div-->
                 <?php
                 $i=1;
-                foreach ($partidos as $value){
-                    
+                foreach ($partidos as $value){                    
                 ?>  
                     <table class="table-striped" width="100%">
                     <thead>
@@ -218,8 +216,19 @@
                         <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
                         <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
                         <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
+                                                
+                        <td width="15%">
+                            <label>
+                            <?php 
+
+                            date_default_timezone_set('America/Mexico_City');
+                            $date = new DateTime($rondas->fecha);
+                            echo $date->format('d-m-Y');
+                            ?>
+                            </label>
+                        </td>
                         <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div></td>
-                        <td width="20%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
+                        <td width="10%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
                         <td width="10%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
                     </tr>
                 <?php    

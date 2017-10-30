@@ -285,7 +285,7 @@ class Torneos extends CI_Controller{
         
         //valida tipo torneo de sesion
         //si es 1 => rr+ --- else directa
-        //get last id        
+        //get last id to create a new one       
         $tabla = 'torneo';
         $id = $this->Torneomodel->getLastId($tabla);
         if($id){
@@ -294,6 +294,10 @@ class Torneos extends CI_Controller{
         else{
             $idtorneo = "0";
         }
+
+        //for round 1 its the same, round 2 +1, round 3 plus7, round 4 pluss = (+1+7)        
+        date_default_timezone_set('America/Mexico_City');
+        $fechatoupdate = new DateTime($this->session->userdata('fecha'));
         
         $data = array(
             "id" => $idtorneo,
@@ -305,6 +309,8 @@ class Torneos extends CI_Controller{
         );
         
         $res = $this->Torneomodel->saveTorneo($data);
+        
+        $contador = 0;
         if($res == "-1"){
             echo "error";
         }else{
@@ -315,6 +321,14 @@ class Torneos extends CI_Controller{
                 $calendario=$this->session->userdata('calen_par');
                 for ($i=0;$i<$total-1;$i++){
                     //ronda $i
+                    //get date to save round
+                    if($contador == 2){
+                        $fechatoupdate->modify('+6 day');
+                        $contador = 0;
+                    }
+                    $fechatoupdate->modify('+'.$contador.' day');
+                    $contador += 1;
+                    
                     for($j=0;$j<($total/2);$j++){   
                         $games['resultado'] = "0"; 
 
@@ -324,7 +338,7 @@ class Torneos extends CI_Controller{
                         $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
                         //jugador 2
                         $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1-$j])->id;
-                        $games['fecha'] = $this->session->userdata('fecha');
+                        $games['fecha'] = $fechatoupdate->format('y-m-d');
                         $games['ganador'] = "0";
                         $this->Torneomodel->saveGames($games);
                     }
@@ -334,6 +348,15 @@ class Torneos extends CI_Controller{
                 $calendario=$this->session->userdata('calen_impar');                
                 
                 for ($i=0;$i<=$total-1;$i++){
+                                        
+                    //get date to save round
+                    if($contador == 2){
+                        $fechatoupdate->modify('+6 day');
+                        $contador = 0;
+                    }
+                    $fechatoupdate->modify('+'.$contador.' day');
+                    $contador += 1;
+                    
                     for($j=0;$j<(($total-1)/2);$j++){
                         //jugador 1
                         $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
@@ -344,7 +367,7 @@ class Torneos extends CI_Controller{
                         $games['ganador'] = "0";
                         $games['fktorneo'] = $idtorneo; 
                         $games['ronda'] = $i; 
-                        $games['fecha'] = $this->session->userdata('fecha');
+                        $games['fecha'] = $fechatoupdate->format('y-m-d');
                         $this->Torneomodel->saveGames($games);
                     }
                     //descansa                    
@@ -356,7 +379,7 @@ class Torneos extends CI_Controller{
                     $games['resultado'] = "0"; 
                     $games['fktorneo'] = $idtorneo; 
                     $games['ronda'] = $i; 
-                    $games['fecha'] = $this->session->userdata('fecha');
+                    $games['fecha'] = $fechatoupdate->format('y-m-d');
                     $this->Torneomodel->saveGames($games);
                 }
             }
@@ -416,5 +439,13 @@ class Torneos extends CI_Controller{
         }
         
         echo $var;
+    }
+    
+    public function fechaprueba(){
+    $date = new DateTime($this->session->userdata('fecha'));
+
+    $cont = 6;
+    $date->modify('+'.$cont.' day');
+    echo $date->format('y-m-d') . "\n";
     }
 }
