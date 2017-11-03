@@ -419,6 +419,8 @@ class Torneos extends CI_Controller{
     }
     
     public function headtohead(){
+        //session to save ids to show in H2H
+        //this gonna be useful when get data from landing page
         $id1 = $this->session->userdata('idhead1');
         $id2 = $this->session->userdata('idhead2');
         //destroy sesion?
@@ -440,6 +442,17 @@ class Torneos extends CI_Controller{
         
         echo $var;
     }
+    
+    //edit data to show landing
+    public function editar(){
+        $this->load->view('torneo/editar');
+    }
+    //save data to show landing
+    public function saveeditar(){
+        
+        $this->load->view('torneo/editar');
+    }
+    
     
     public function fechaprueba(){
     $date = new DateTime($this->session->userdata('fecha'));

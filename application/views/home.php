@@ -30,42 +30,32 @@
             
             <div class="row">
             
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                  <div class="box_calculator">
                         <a href="daily-calorie-calculator.html">
                         <img src="<?php echo base_url();?>img/icon-1.png" alt="">
-                        <h3>Daily Calorie Calculator</h3>
-                        <p>Determine your daily calorie needs in a more precise way</p>
+                        <h3>Torneo actual</h3>
+                        <p>Fecha</p>
                         </a>
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
                 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="box_calculator">
                         <a href="calories-burned-heart-rate.html">
                         <img src="<?php echo base_url();?>img/icon-2.png" alt="">
-                        <h3>Calorie Burned by heart/rate</h3>
-                        <p>The connection between the heart rate and the metabolism</p>
+                        <h3>Ranking</h3>
+                        <p>1er Lugar</p>
                         </a>
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
                 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="box_calculator">
                         <a href="calories-burned-calculator.html">
                         <img src="<?php echo base_url();?>img/icon-3.png" alt="">
-                        <h3>Calorie Burned by activities</h3>
-                        <p>Estimate the number of calories burned after exercises</p>
-                        </a>
-                    </div><!-- End box-calculator -->
-                </div><!-- End col-md-3 -->
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="box_calculator">
-                        <a href="bmi-calculator.html">
-                        <img src="<?php echo base_url();?>img/icon-4.png" alt="">
-                        <h3>Bmi Body mass Calculator</h3>
-                        <p>Measure of body fat based on height and weight</p>
+                        <h3>Jugadores</h3>
+                        <p>Datos de los jugadores</p>
                         </a>
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
@@ -75,30 +65,59 @@
             <h3 class="title">HEAD TO HEAD</h3>
             
             <div class="row">
-                <div class="col-md-6">
-                    <h3 class="title-2"><span>Hello</span> / My experience</h3>
-                    <p>Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
-                    </p>
-                    <p>
-                        Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
-                    </p>
-                    <p><a href="#" class="button_small">Read more</a></p>
-                </div>
-                
-                <div class="col-md-6">
-                    <h3 class="title-2"><span>Mission</span> / Love training</h3>
-                    <p>
-                        Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
-                    </p>
-                    <p>
-                        Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri. Sed in eros nobis, te cum invidunt probatus. Mel an aeque efficiendi. Te populo ocurreret reprehendunt usu, sit at purto iudicabit.
-                    </p>
-                    <p><a href="#" class="button_small">Read more</a></p>
-                </div>
-            </div><!-- End row -->
+    
+		<div class="col-md-6">
+
+                <div class="thumbnail">
+                    <div class="img-wrapp">
+                        <div class="img-effect"></div>
+                        <img src="<?php echo base_url(); ?>img/gallery/5_small.jpg" alt="" class="img-responsive">
+                        <div class="img-links"><a href="<?php echo base_url(); ?>img/gallery/5.jpg" class="fancybox" title="Your caption"><i class="icon-search icon-3x"></i></a></div>
+                    </div><!-- End img-wrapp -->
+                </div><!-- End thumbnail -->
+        	
+                    <form>
+                            <div class="form-bg-1"><input type="text" class="form-control" name="Age" placeholder="Nombre" value="Carlos Maya" ></div>
+                            <div class="form-bg-1"><p>Ranking: 1</p></div>
+
+                            <div class="result">
+                            <h2>Ganados</h2>
+                            <div id="your_cal_intake">2</div>
+                            </div>
+                            <input type="hidden" name="calculator" value="daily_calorie"/>
+                    </form>
+		
+		</div><!-- End col-md-6 -->
+        
+		<div class="col-md-6">
+                <div class="thumbnail">
+                    <div class="img-wrapp">
+                        <div class="img-effect"></div>
+                        <img src="<?php echo base_url(); ?>img/gallery/5_small.jpg" alt="" class="img-responsive">
+                        <div class="img-links"><a href="<?php echo base_url(); ?>img/gallery/5.jpg" class="fancybox" title="Your caption"><i class="icon-search icon-3x"></i></a></div>
+                    </div><!-- End img-wrapp -->
+                </div><!-- End thumbnail -->		
+				<div class="form-bg-1"><input type="text" class="form-control" name="Age" placeholder="Nombre" value="Vera Cristobal" ></div>
+				<div class="form-bg-1"><p>Ranking: 2</p></div>
+				<div class="result">
+				<h2>Ganados</h2>
+				<div id="your_cal_intake">2</div>
+				</div>
+            
+		</div><!-- End col-md-5-->
+	</div><!-- End row -->	
+        <div class="row">
+            <div class="col-md-4">                
+            </div>
+            <div class="col-md-4 text-center">                
+                <a class="button_large">Ver detalle H2H</a>
+            </div>
+            <div class="col-md-4">                
+            </div>
+        </div>
             
             
-            <h3 class="title">RANKING SECTION</h3>
+            <!--h3 class="title">RANKING SECTION</h3>
             
             <div class="row">
             

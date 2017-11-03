@@ -97,7 +97,17 @@
 				</div>
             
 		</div><!-- End col-md-5-->
-	</div><!-- End row -->			
+	</div><!-- End row -->	
+                <div class="row">
+            <div class="col-md-4">                
+            </div>
+            <div class="col-md-4 text-center">                
+                <a class="button_large">Ver detalle H2H</a>
+            </div>
+            <div class="col-md-4">                
+            </div>
+        </div>
+
 			
         </div> <!-- End container -->
         
