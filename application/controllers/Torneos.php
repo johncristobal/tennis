@@ -401,7 +401,8 @@ class Torneos extends CI_Controller{
     //function to update results
     public function updateTorneo(){
         $post_data = $this->input->post();
-        $this->Torneomodel->actualizaTorneo($post_data);
+        $extra = $this->input->post('h2hselected');
+        $this->Torneomodel->actualizaTorneo($post_data,$extra);
 
         $id = $this->session->userdata('idtorneo');
         redirect('torneos/resultados/'.$id);

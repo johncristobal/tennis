@@ -14,7 +14,7 @@
 class Torneomodel extends CI_Model{
 
     //function to update tormeo(
-    public function actualizaTorneo($datos){
+    public function actualizaTorneo($datos,$extra){
         
         $ganador = "";
         $res = "";
@@ -25,6 +25,7 @@ class Torneomodel extends CI_Model{
             //echo $key."-".$value;
             //echo "<br>";            
             
+            //Little algorithm to save data
             if(strpos($key, 'radio') !== false){
                 $ganador = $value;
             }else{
@@ -42,11 +43,26 @@ class Torneomodel extends CI_Model{
             $updateData = array(
                 'resultado' => $res,
                 'ganador' => $ganador
-            );
-            
+            );                       
             $this->db->where('id', $llave);
             $this->db->update('partidos', $updateData);
         }
+        
+        //first...set all sesttua in 1 where esttua in 5
+        $upda = array(
+            'estatus' => 1
+        );                       
+        $this->db->where('estatus', 5);
+        $this->db->update('partidos', $upda);     
+        
+        //update H2H semana
+        $updateData = array(
+            'estatus' => 5
+        );
+        $this->db->where('id',$extra);
+        $this->db->update('partidos', $updateData);
+        
+        
     }
 
     public function getTorneoData($id){
@@ -79,7 +95,7 @@ class Torneomodel extends CI_Model{
         $arregloRondas = array();
         
         for($i=0;$i<=$last_row->ronda;$i++){
-            $partidosi = $this->db->select("id,ganador,fecha,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2")
+            $partidosi = $this->db->select("id,ganador,fecha,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2,estatus")
                     ->from('partidos p')
                     ->where('fktorneo',$id)
                     ->where('ronda',$i)
@@ -194,7 +210,18 @@ class Torneomodel extends CI_Model{
 
     public function getrankingfromid($id){
         $last_row=$this->db->select('rank_act')->from('estadisticas_jugador')->where('fkjugador',$id)->limit(1)->get()->row();
-        return $last_row->rank_act;        
-        
+        return $last_row->rank_act;                
     }
+    
+    public function getTorneoActivo(){
+        $last_row=$this->db->select('id,nombre,fecha_inicio')->from('torneo')->where('estatus',1)->limit(1)->get()->row();
+        return $last_row;                        
+    }
+    
+    public function getPartidoSemana(){
+        $last_row=$this->db->select('fkjugador1,fkjugador2')->from('partidos')->where('estatus',5)->limit(1)->get()->row();
+        return $last_row;                        
+    }
+        
+    
 }

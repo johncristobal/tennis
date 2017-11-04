@@ -37,7 +37,11 @@ class Jugador extends CI_Model{
         }else{
             return FALSE;
         }
-   
+    }
+    
+    public function getJugadorSemana(){
+        $last_row=$this->db->select('id,nombre,edad')->from('jugador')->where('estatus',4)->limit(1)->get()->row();
+        return $last_row;                        
     }
 }
 

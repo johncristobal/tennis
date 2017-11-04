@@ -16,16 +16,27 @@ class Player extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
+        $this->load->model("Jugador");
+        $this->load->model("Torneomodel");
+        $this->load->model("Estadisticasmodel");
     }
     
     public function jugador($id){
-        $this->load->model("Jugador");
         $result=$this->Jugador->getInfo($id);
         $data['datos']=$result;
         $this->load->view('player/single-profile',$data);
     }
-    public function perfil(){		
-        $this->load->view('player/profile');
+    public function perfil(){	
+        //het player wher eetatus = 4
+        $data['datos']=$this->Jugador->getJugadorSemana();
+        $temp=$this->Torneomodel->getPartidoSemana();
+        $datah2h = $this->Estadisticasmodel->getdatah2h($temp->fkjugador1,$temp->fkjugador2);            
+        $data['primer'] =$this->Estadisticasmodel->getFirstPlace();
+        $data['ganados1'] = $datah2h['ganados1'];
+        $data['ganados2'] = $datah2h['ganados2'];
+        $data['datos1'] = $datah2h['datos1'];
+        $data['datos2'] = $datah2h['datos2'];
+        $this->load->view('player/profile',$data);
     }
 
     public function buscarJugador(){

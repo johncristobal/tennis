@@ -1,4 +1,22 @@
- <div class="container">
+<script type="text/javascript">
+        
+        function verheadtohead(id1,id2){
+            //alert(id1);
+            //alert(id2);
+
+            //get id from catch dat from headtohead
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("torneos/saveidplayers"); ?>',
+                data:{'id1':id1,'id2':id2},
+                success:function(data){                    
+                    //alert(data);
+                    location.href = "<?php echo base_url();?>torneos/headtohead";
+                }
+            });
+        }
+        </script>
+<div class="container">
             <div class="row">
                 <div class="col-md-12">
                 
@@ -32,27 +50,27 @@
             
                 <div class="col-md-4 col-sm-6">
                  <div class="box_calculator">
-                        <a href="daily-calorie-calculator.html">
+                        <a href="<?php echo base_url();?>torneos/resultados/<?=$torneo->id;?>">
                         <img src="<?php echo base_url();?>img/icon-1.png" alt="">
                         <h3>Torneo actual</h3>
-                        <p>Fecha</p>
+                        <p><?=$torneo->nombre;?></p>
                         </a>
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
                 
                 <div class="col-md-4 col-sm-6">
                     <div class="box_calculator">
-                        <a href="calories-burned-heart-rate.html">
+                        <a href="<?php echo base_url();?>Player/jugador/<?=$primer->id;?>">
                         <img src="<?php echo base_url();?>img/icon-2.png" alt="">
                         <h3>Ranking</h3>
-                        <p>1er Lugar</p>
+                        <p>1er: <?=$primer->nombre;?></p>
                         </a>
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
                 
                 <div class="col-md-4 col-sm-6">
                     <div class="box_calculator">
-                        <a href="calories-burned-calculator.html">
+                        <a href="<?php echo base_url();?>Player/perfil">
                         <img src="<?php echo base_url();?>img/icon-3.png" alt="">
                         <h3>Jugadores</h3>
                         <p>Datos de los jugadores</p>
@@ -77,12 +95,12 @@
                 </div><!-- End thumbnail -->
         	
                     <form>
-                            <div class="form-bg-1"><input type="text" class="form-control" name="Age" placeholder="Nombre" value="Carlos Maya" ></div>
-                            <div class="form-bg-1"><p>Ranking: 1</p></div>
+                        <div class="form-bg-1"><input type="text" class="form-control" name="Age" value="<?=$datos1->nombre;?>" readonly="true"></div>
+                            <div class="form-bg-1"><p>Ranking: <?=$datos1->rank_act;?></p></div>
 
                             <div class="result">
                             <h2>Ganados</h2>
-                            <div id="your_cal_intake">2</div>
+                            <div id="your_cal_intake"><?=$ganados1;?></div>
                             </div>
                             <input type="hidden" name="calculator" value="daily_calorie"/>
                     </form>
@@ -97,11 +115,11 @@
                         <div class="img-links"><a href="<?php echo base_url(); ?>img/gallery/5.jpg" class="fancybox" title="Your caption"><i class="icon-search icon-3x"></i></a></div>
                     </div><!-- End img-wrapp -->
                 </div><!-- End thumbnail -->		
-				<div class="form-bg-1"><input type="text" class="form-control" name="Age" placeholder="Nombre" value="Vera Cristobal" ></div>
-				<div class="form-bg-1"><p>Ranking: 2</p></div>
+                <div class="form-bg-1"><input type="text" class="form-control" name="Age" value="<?=$datos2->nombre;?>" readonly="true"></div>
+				<div class="form-bg-1"><p>Ranking: <?=$datos2->rank_act;?></p></div>
 				<div class="result">
 				<h2>Ganados</h2>
-				<div id="your_cal_intake">2</div>
+				<div id="your_cal_intake"><?=$ganados2;?></div>
 				</div>
             
 		</div><!-- End col-md-5-->
@@ -110,7 +128,7 @@
             <div class="col-md-4">                
             </div>
             <div class="col-md-4 text-center">                
-                <a class="button_large">Ver detalle H2H</a>
+                <a class="button_large" onclick="verheadtohead(<?=$datos1->id?>,<?=$datos2->id?>);">Ver detalle H2H</a>
             </div>
             <div class="col-md-4">                
             </div>

@@ -6,7 +6,24 @@
 		$this->load->view("head");
 		$this->load->view("header");
 ?>
+<script type="text/javascript">
         
+        function verheadtohead(id1,id2){
+            //alert(id1);
+            //alert(id2);
+
+            //get id from catch dat from headtohead
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("torneos/saveidplayers"); ?>',
+                data:{'id1':id1,'id2':id2},
+                success:function(data){                    
+                    //alert(data);
+                    location.href = "<?php echo base_url();?>torneos/headtohead";
+                }
+            });
+        }
+        </script>        
         <div class="container">
 
             <div class="row">
@@ -42,13 +59,13 @@
 
 			<p class="col-md-4 text-center"><img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive"></p>
 				<br>
-                                <p>Vera Cristobal</p>
+                                <p><?=$datos->nombre;?></p>
 				<br>
-				<p>Ranking: 2</p>
+				<p>Edad: <?=$datos->edad;?></p>
 				<br>
-				<p>Campeón del primer torneo de Singles</p>
+				<!--p>Campeón del primer torneo de Singles</p-->
 				<br>
-				<p><a href="<?php echo base_url(); ?>Player/jugador/3">Ver perfil</a></p>
+				<p><a href="<?php echo base_url(); ?>Player/jugador/<?=$datos->id;?>">Ver perfil</a></p>
             </div>
 			
             </div><!-- End sub-head -->
@@ -68,16 +85,16 @@
                     </div><!-- End img-wrapp -->
                 </div><!-- End thumbnail -->
         	
-			<form>
-				<div class="form-bg-1"><input type="text" class="form-control" name="Age" placeholder="Nombre" value="Carlos Maya" ></div>
-				<div class="form-bg-1"><p>Ranking: 1</p></div>
-				
-				<div class="result">
-				<h2>Ganados</h2>
-				<div id="your_cal_intake">2</div>
-				</div>
-				<input type="hidden" name="calculator" value="daily_calorie"/>
-			</form>
+                    <form>
+                        <div class="form-bg-1"><input type="text" class="form-control" name="Age" value="<?=$datos1->nombre;?>" readonly="true"></div>
+                            <div class="form-bg-1"><p>Ranking: <?=$datos1->rank_act;?></p></div>
+
+                            <div class="result">
+                            <h2>Ganados</h2>
+                            <div id="your_cal_intake"><?=$ganados1;?></div>
+                            </div>
+                            <input type="hidden" name="calculator" value="daily_calorie"/>
+                    </form>
 		
 		</div><!-- End col-md-6 -->
         
@@ -89,20 +106,20 @@
                         <div class="img-links"><a href="<?php echo base_url(); ?>img/gallery/5.jpg" class="fancybox" title="Your caption"><i class="icon-search icon-3x"></i></a></div>
                     </div><!-- End img-wrapp -->
                 </div><!-- End thumbnail -->		
-				<div class="form-bg-1"><input type="text" class="form-control" name="Age" placeholder="Nombre" value="Vera Cristobal" ></div>
-				<div class="form-bg-1"><p>Ranking: 2</p></div>
+                <div class="form-bg-1"><input type="text" class="form-control" name="Age" value="<?=$datos2->nombre;?>" readonly="true"></div>
+				<div class="form-bg-1"><p>Ranking: <?=$datos2->rank_act;?></p></div>
 				<div class="result">
 				<h2>Ganados</h2>
-				<div id="your_cal_intake">2</div>
+				<div id="your_cal_intake"><?=$ganados2;?></div>
 				</div>
             
 		</div><!-- End col-md-5-->
 	</div><!-- End row -->	
-                <div class="row">
+        <div class="row">
             <div class="col-md-4">                
             </div>
             <div class="col-md-4 text-center">                
-                <a class="button_large">Ver detalle H2H</a>
+                <a class="button_large" onclick="verheadtohead(<?=$datos1->id?>,<?=$datos2->id?>);">Ver detalle H2H</a>
             </div>
             <div class="col-md-4">                
             </div>
