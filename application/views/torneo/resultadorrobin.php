@@ -11,15 +11,12 @@
         <script type="text/javascript">
         
         function verheadtohead(id1,id2){
-            //alert(id1);
-            //alert(id2);
-
             //get id from catch dat from headtohead
             $.ajax({
                 type:'POST',
                 url:'<?php echo base_url("torneos/saveidplayers"); ?>',
                 data:{'id1':id1,'id2':id2},
-                success:function(data){                    
+                success:function(data){
                     //alert(data);
                     location.href = "<?php echo base_url();?>torneos/headtohead";
                 }
