@@ -33,5 +33,7 @@
                 </div>
             </div>
         </div>
-        <div id="copy">© 2017 - Nowosc México</div>
+        <div id="copy">
+            <img src="<?php echo base_url();?>img/footer.png" alt="footer" style="width: 100%; height: fit-content;">
+        </div>
         </footer><!-- End footer -->
