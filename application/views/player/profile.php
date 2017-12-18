@@ -57,7 +57,7 @@
             <div class="flyIn">
 			<h2>Jugador de la semana</h2>
 
-			<p class="col-md-4 text-center"><img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive"></p>
+			<p class="col-md-4 text-center"><img src="<?php echo base_url();?>img/jugadores/<?=$datos->id?>/perfil.jpg" alt="" class="img-circle style img-responsive"></p>
 				<br>
                                 <p><?=$datos->nombre;?></p>
 				<br>
