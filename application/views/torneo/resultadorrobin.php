@@ -11,15 +11,12 @@
         <script type="text/javascript">
         
         function verheadtohead(id1,id2){
-            //alert(id1);
-            //alert(id2);
-
             //get id from catch dat from headtohead
             $.ajax({
                 type:'POST',
                 url:'<?php echo base_url("torneos/saveidplayers"); ?>',
                 data:{'id1':id1,'id2':id2},
-                success:function(data){                    
+                success:function(data){
                     //alert(data);
                     location.href = "<?php echo base_url();?>torneos/headtohead";
                 }
@@ -180,7 +177,6 @@
                 </div><!-- End col-md-3 -->
             </div><!-- End row -->
             
-            Selecciona el jugador que ganó el encuentro, o en su caso empate.
             <br><br>
             <form method="post" action="<?php echo base_url()?>torneos/updateTorneo">
             <div class="row">
@@ -212,12 +208,10 @@
                 ?>                        
                     <tr>
                         <td width="10%"></td>
-                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>" <?php if($rondas->ganador == $rondas->fkjugador1){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
-                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
-                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
-                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
+                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
                                                 
-                        <td width="15%">
+                        <td width="20%">
                             <label>
                             <?php 
 
@@ -227,11 +221,9 @@
                             ?>
                             </label>
                         </td>
-                        <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div></td>
-                        <td width="10%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
+                        <td width="15%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false" readonly="true" style="background-color:#ECF0F1"></td>
                         
-                <td width="5%"><div class="radio"><label><input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>H2H Semana</label></div></td>
-                        <td width="5%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
+                        <td width="15%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
                     </tr>
                 <?php    
                 } else {
@@ -468,7 +460,7 @@
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
         <div class="col-sm-4 centered" style="text-align:center;">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#confirmar">Actualizar información</button>
+        <!--button type="button" class="btn btn-info" data-toggle="modal" data-target="#confirmar">Actualizar información</button-->
         
         <div class="modal fade" id="confirmar" role="dialog">
           <div class="modal-dialog">

@@ -52,4 +52,16 @@ class Player extends CI_Controller{
             }   
         }
     }
+    
+    public function getIdfromName(){
+    
+        $name1 = $this->input->post('nombre1');
+    
+        if($name1 == ""){
+            echo "0";
+        }else{
+            $id1 = $this->Torneomodel->getIdFromName($name1)->id;        
+            echo $id1;
+        }        
+    }
 }

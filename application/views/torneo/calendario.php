@@ -90,19 +90,6 @@
           </div>
            <?php            
                 }  
-            ?>
-            <div class="container">
-            <div class="modal-header">
-                <!--h4 class="modal-title">No se encontraron registros de torneos</h4-->
-            </div>
-            <div class="modal-body">
-                <h5>¿Desea crear un nuevo torneo?</h5>
-            </div>
-            <div class="modal-footer centered">
-                <a href="<?php echo base_url();?>torneos/registrotorneo" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Clic aquí</a>                
-            </div>
-            </div>
-            <?php
             }
            ?>
 		              

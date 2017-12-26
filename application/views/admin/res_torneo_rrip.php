@@ -6,7 +6,7 @@
 
 <?php   
     $this->load->view("head");
-    $this->load->view("header");
+    $this->load->view("headeradmin");
 ?>            
 
   
@@ -57,36 +57,35 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                <!--<form name="creaRound" method="post" action="<?php echo base_url();?>torneos/creartorneo">  -->                  
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="no_jugadores" disabled="true" value="Número de jugadores: <?=$total;?>" placeholder="Número de Jugadores" style="background-color: #fff; border: 1px solid #00aeef;">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" onclick="location.reload();">
-                          <i class="glyphicon glyphicon-repeat"></i>
-                          Volver a generar
-                        </button>
-                      </div>
-                    </div>
-                <!--</form>-->
+                <!--form name="creaRound" method="post" action="<?php echo base_url();?>torneos/creartorneo"-->                    
+                      <div class="input-group">
+                          <input type="text" class="form-control" name="no_jugadores" disabled="true" value="Número de jugadores: <?=$total;?>" placeholder="Número de Jugadores" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" onclick="location.reload();">
+                            <i class="glyphicon glyphicon-repeat"></i>
+                            Volver a generar
+                          </button>
+                        </div>
+                      </div>                    
+                <!--/form-->
             </div>
             </div>
 
             <div class="col-md-4"></div>
         </div>               
     </div>
-
-    <form method="post" action="<?php echo base_url();?>torneos/savetorneo">
+    
+    <form method="post" action="<?php echo base_url();?>admin/savetorneo">    
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <br>
-                <h3>Partidos generados:</h3>
+                <h4>Partidos generados:</h4>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <br>
-
                 <table class="table-condensed centered" width="100%">
                     <thead>
                         <tr style="text-align: center;">
@@ -97,7 +96,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            for ($i=0;$i<$total-1;$i++){
+                            for ($i=0;$i<=$total-1;$i++){
                         ?>
                                 <tr class="success" style="background-color: #00aeef; color: #fff;">
                                     <td width="30%"><h6>Ronda <?=$i+1;?></h6></td>
@@ -105,31 +104,37 @@
                                     <td width="30%">&nbsp;</td>
                                 </tr>
                         <?php
-                                for($j=0;$j<($total/2);$j++){                            
+                                for($j=0;$j<(($total-1)/2);$j++){                            
                         ?>
                                     <tr>
                                         <td width="30%"><?=$calendario[$i][$j];?></td>
                                         <td width="15%" style="text-align: center;"></td>
-                                        <td width="30%"><?=$calendario[$i][$total-1-$j];?></td>
+                                        <td width="30%"><?=$calendario[$i][$total-2-$j];?></td>
                                     </tr>
                         <?php
                                 }
+                                
                         ?>
-                                    <tr><td><br></td></tr>    
+                                <tr>
+                                    <td width="30%"><label style="font-style: italic;">Descansa</label></td>
+                                    <td width="30%">-</td>
+                                    <td width="30%"><?=$calendario[$i][$total-1];?></td>
+                                </tr>
                         <?php
+                                
                             }
                         ?>
                     </tbody>
-                </table>
+                </table>   
             </div>
         </div>
     </div>
-    
+
     <!--Modal -->
     <div class="container">
         <!-- Modal -->
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8 centered" style="text-align:center;">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 centered" style="text-align:center;">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#confirmar">Crear torneo</button>
         
         <div class="modal fade" id="confirmar" role="dialog">
@@ -152,16 +157,16 @@
           </div>
         </div>
         </div>
-        <div class="col-sm-2"></div>
-
+        <div class="col-sm-4"></div>
     </div>
-    </form>
-        <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
+    </form>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 <?php 
 //$this->load->view("footer");
 ?>        

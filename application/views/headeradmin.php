@@ -2,26 +2,21 @@
 		<header>
            <div class="container">
             <div class="row">
-        	<div class="col-md-4 col-xs-3"><h1 id="logo"><a href="<?php echo base_url();?>" title="LTI - Liga de Tennis Izcalli">LTI - Liga de Tennis Izcalli</a></h1></div>
+        	<div class="col-md-4 col-xs-3"><h1 id="logo"><a href="<?php echo base_url();?>" title="Planar - Personal Trainer">Tenis - Sportway</a></h1></div>
             <nav class="col-md-8 col-xs-9">
             	<ul id="main-nav" class="sf-menu" >
-                <li><a href="<?php echo base_url();?>Player/perfil">Jugadores</a></li>
+                <!--li><a href="<?php echo base_url();?>Player/perfil">Jugadores</a></li-->
                     <!--li><a href="profile.html"></a></li-->
-                <li><a href="#">Estadísticas</a>
-                	<ul>
-                        <li><a href="services.html">Singles</a></li>
-                        <li><a href="training-programs.html">Dobles</a></li>
-                  	</ul>
-                </li>
-                <li><a href="<?php echo base_url();?>Estadisticas/rankings">Rankings</a>
-                </li>				
-                <li><a href="<?php echo base_url();?>torneos/calendario">Torneos</a>
+                				
+                <li><a href="<?php echo base_url();?>admin/inicio">Torneos</a>
                 <!--ul>
                     <li><a href="<?php echo base_url();?>torneos/calendario">Calendario</a></li>
                         <li><a href="calories-burned-heart-rate.html">Partidos</a></li>
                         <li><a href="calories-burned-calculator.html">Resultados</a></li>
                   	</ul-->
                 </li>
+                <li><a href="<?php echo base_url();?>admin/cerrar">Cerrar sesión</a>
+                </li>				
                <!-- <li><a href="#">Pages</a>
                 	<ul>
                     	<li><a href="pricing.html">Pricing</a></li>

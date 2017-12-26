@@ -23,6 +23,24 @@
                 }
             });
         }
+        
+        function verjugador(){
+        
+            //recuperamos nombre como antes
+            //llamamos ajax para recupera id
+            //wn windoos.hred mandamoas a llarlo con id ahora :) 
+            var nombre1 = $("#name_1").val();
+            $.ajax({
+            type:'POST',
+            url:'<?php echo base_url();?>player/getIdfromName',
+            data:{'nombre1':nombre1},
+            success:function(data){
+
+                location.href = "<?php echo base_url();?>Player/jugador/"+data;
+            }
+        });
+
+        }
         </script>        
         <div class="container">
 
@@ -31,10 +49,16 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                    
-                <form>
-                    <div class="form-bg-1"><input type="text" id="name_1"  class="form-control" placeholder="Buscar Jugador"></div>
+                    <div class="input-group">
+                        <input type="text" id="name_1"  class="form-control" placeholder="Buscar Jugador">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button" onclick="verjugador();">Buscar...</button>
+                    </span>
+                    </div>
                     
-                </form>
+                <!--form>
+                    <div class="form-bg-1"></div>                    
+                </form-->
                 <!--form action="/action_page.php" method="get">
                     <input list="browsers" name="browser" class="form-control" placeholder="Buscar jugador...">
                 <datalist id="browsers">

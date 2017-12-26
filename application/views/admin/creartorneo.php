@@ -6,7 +6,7 @@
 
 <?php   
     $this->load->view("head");
-    $this->load->view("header");
+    $this->load->view("headeradmin");
 ?>            
 <script>
     var jugadores = [];
@@ -61,7 +61,7 @@
     	
     </div><!--  End col-md-6 --> 
         
-    <form method="post" name="formulario" action="<?php echo base_url();?>torneos/creartorneo"> 
+    <form method="post" name="formulario" action="<?php echo base_url();?>admin/creartorneo"> 
     <input name="array" type="hidden" name="array" value="">
     <div class="container">
 
