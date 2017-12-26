@@ -230,9 +230,10 @@ header {
 
 h1#logo a{
 	text-indent:-99999px;
-	background: url(../img/logo.png) no-repeat 0 0;
-	display:block;
-	height:35px;
+	background: url(../img/logotipo2.png) no-repeat 0 0;
+        background-size: 240px 100px;
+        display:block;
+	height:100px;
 	width:240px;
 }
 
@@ -1395,7 +1396,8 @@ header, footer {max-width:100%;}
 }
 .why-desc { padding-top:0;}
 h1#logo a{
-	background: url(../img/logo-mobile.png) no-repeat 0 0;
+	background: url(../img/logotipo2.png) no-repeat 0 0;
+        background-size: 240px 100px;
 	width:auto;
 }
 #map {
