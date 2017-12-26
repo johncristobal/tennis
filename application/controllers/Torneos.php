@@ -419,6 +419,30 @@ class Torneos extends CI_Controller{
         //echo "Datos: ".$this->id1headtohead."-".$this->id2headtohead;
     }
     
+    public function saveidplayersfromname(){
+        $name1 = $this->input->post('nombre1');
+        $name2 = $this->input->post('nombre2');
+    
+        //get ids from names...
+        $id1 = "";
+        $id2 = "";
+        
+        //echo $name1."...".$name2;
+        if($name1 == ""){
+            $id1 = $this->session->userdata('idhead1');
+        }else{
+            $id1 = $this->Torneomodel->getIdFromName($name1)->id;        
+        }
+        if($name2 == ""){
+           $id2 = $this->session->userdata('idhead2');
+        }else{
+            $id2 = $this->Torneomodel->getIdFromName($name2)->id;
+        }
+        $this->session->set_userdata('idhead1',$id1);
+        $this->session->set_userdata('idhead2',$id2);
+        //echo "Datos: ".$this->id1headtohead."-".$this->id2headtohead;        
+    }
+    
     public function headtohead(){
         //session to save ids to show in H2H
         //this gonna be useful when get data from landing page

@@ -13,7 +13,32 @@
         text-align: center;
 }
 </style>
+<script type="text/javascript">
+        
+        function verheadtohead(id1,id2){
+            //alert(id1);
+            //alert(id2);
 
+            //get id from catch dat from headtohead
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("torneos/saveidplayers"); ?>',
+                data:{'id1':id1,'id2':id2},
+                success:function(data){                    
+                    //alert(data);
+                    location.href = "<?php echo base_url();?>torneos/headtohead";
+                }
+            });
+        }
+        
+        function saveNames(){
+            //get names 
+            //load ajax with names - here catch id and get data h2h
+            var name1 = document.getElementById("name_1").text();
+            var name2 = document.getElementById("name_2").text();
+            
+        }
+        </script>
     <div class="container">
         
     <!--div id="sub-head">
@@ -27,7 +52,20 @@
     <section class="row">
     <div class="col-md-12">
      <!--h4>Accordion</h4-->
-    
+    <?php
+        $imagen1 = base_url()."img/jugadores/".$datos1->id."/perfil.jpg";
+        $imagen2 = base_url()."img/jugadores/".$datos2->id."/perfil.jpg";
+
+        try{
+            if(!file_exists("img/jugadores/".$datos1->id."/perfil.jpg")){
+                $imagen1 = base_url()."img/jugadores/back1.png";
+            }
+            if(!file_exists("img/jugadores/".$datos2->id."/perfil.jpg")){
+                $imagen2 = base_url()."img/jugadores/back2.png";
+            }
+        }catch(Exception $e){
+        }
+    ?>
 
     <h3 class="title">Head to Head</h3>
     
@@ -42,13 +80,13 @@
             <div class="form-bg-1"><input type="text" id="name_2" class="form-control" placeholder="<?=$datos2->nombre;?>"></div>
         </div>
         <div class="col-md-3 col-centered">
-            <a class="button_medium">Mostrar H2H</a>
+            <a class="button_medium" onclick="saveNames();">Mostrar H2H</a>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-md-3">
-            <p class="text-center"><img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive"></p>
+            <p class="text-center"><img src="<?=$imagen1?>" alt="" class="img-circle style img-responsive" style="height:250px"></p>
             <div class="col-centered">
                 <h5><a href="<?php echo base_url()?>player/jugador/<?=$datos1->id;?>"><?=$datos1->nombre;?></a></h5>
                 Rank: <?=$datos1->rank_act?>
@@ -66,7 +104,7 @@
             wins
         </div>
         <div class="col-md-3">
-            <p class="text-center"><img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive"></p>
+            <p class="text-center"><img src="<?=$imagen2?>" alt="" class="img-circle style img-responsive" style="height:250px"></p>
             <div class="col-centered">
                 <h5><a href="<?php echo base_url()?>player/jugador/<?=$datos2->id;?>"><?=$datos2->nombre;?></a></h5>
                 Rank: <?=$datos2->rank_act?>
