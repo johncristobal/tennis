@@ -75,13 +75,25 @@
             
             <br>            
 
+            <?php
+                        
+                $imagenperfil = "";
+                
+                try{
+                    if(!file_exists("img/jugadores/".$datos1->id."/perfil.jpg")){
+                        $imagenperfil = base_url()."img/jugadores/nofoto.png";
+                    }
+                }catch(Exception $e){
+                }
+
+            ?>
 			
             <div id="sub-head">
 
             <div class="flyIn">
 			<h2>Jugador de la semana</h2>
 
-			<p class="col-md-4 text-center"><img src="<?php echo base_url();?>img/jugadores/<?=$datos->id?>/perfil.jpg" alt="" class="img-circle style img-responsive"></p>
+			<p class="col-md-4 text-center"><img src="<?=$imagenperfil?>" alt="" class="img-circle style img-responsive"></p>
 				<br>
                                 <p><?=$datos->nombre;?></p>
 				<br>
@@ -96,7 +108,23 @@
 				
             <h3 class="title">HEAD TO HEAD</h3>
     
-	
+	<?php
+            
+            
+                $imagen1 = base_url()."img/jugadores/".$datos1->id."/h2h.png";
+                $imagen2 = base_url()."img/jugadores/".$datos2->id."/h2h.png";
+                
+                try{
+                    if(!file_exists("img/jugadores/".$datos1->id."/h2h.png")){
+                        $imagen1 = base_url()."img/jugadores/back1.png";
+                    }
+                    if(!file_exists("img/jugadores/".$datos2->id."/h2h.png")){
+                        $imagen2 = base_url()."img/jugadores/back2.png";
+                    }
+                }catch(Exception $e){
+                }
+
+            ?>
             <div class="row">
     
 		<div class="col-md-6">
@@ -104,8 +132,7 @@
                 <div class="thumbnail">
                     <div class="img-wrapp">
                         <div class="img-effect"></div>
-                        <img src="<?php echo base_url(); ?>img/gallery/5_small.jpg" alt="" class="img-responsive">
-                        <div class="img-links"><a href="<?php echo base_url(); ?>img/gallery/5.jpg" class="fancybox" title="Your caption"><i class="icon-search icon-3x"></i></a></div>
+                        <img src="<?=$imagen1;?>" alt="" class="img-responsive" style="height: 300px;">
                     </div><!-- End img-wrapp -->
                 </div><!-- End thumbnail -->
         	
@@ -126,8 +153,7 @@
                 <div class="thumbnail">
                     <div class="img-wrapp">
                         <div class="img-effect"></div>
-                        <img src="<?php echo base_url(); ?>img/gallery/5_small.jpg" alt="" class="img-responsive">
-                        <div class="img-links"><a href="<?php echo base_url(); ?>img/gallery/5.jpg" class="fancybox" title="Your caption"><i class="icon-search icon-3x"></i></a></div>
+                        <img src="<?=$imagen2;?>" alt="" class="img-responsive" style="height: 300px;">
                     </div><!-- End img-wrapp -->
                 </div><!-- End thumbnail -->		
                 <div class="form-bg-1"><input type="text" class="form-control" name="Age" value="<?=$datos2->nombre;?>" readonly="true"></div>

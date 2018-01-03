@@ -4,9 +4,9 @@
 <!-- Basic Page Needs -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PLANAR | Personal trainer site template</title>
-<meta name="description" content="Only 16$ - PLANAR Personal trainer site template with calories calculators">
-<meta name="author" content="Ansonika">
+<title>Liga de tenis | Madrugaytors</title>
+<meta name="description" content="Liga de tenis en el deportivo Izcalli">
+<meta name="author" content="nowosc mexico">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

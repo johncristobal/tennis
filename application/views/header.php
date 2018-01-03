@@ -13,12 +13,12 @@
             	<ul id="main-nav" class="sf-menu" >
                 <li><a href="<?php echo base_url();?>Player/perfil">Jugadores</a></li>
                     <!--li><a href="profile.html"></a></li-->
-                <li><a href="#">Estadísticas</a>
+                <!--li><a href="#">Estadísticas</a>
                 	<ul>
                         <li><a href="services.html">Singles</a></li>
                         <li><a href="training-programs.html">Dobles</a></li>
                   	</ul>
-                </li>
+                </li-->
                 <li><a href="<?php echo base_url();?>Estadisticas/rankings">Rankings</a>
                 </li>				
                 <li><a href="<?php echo base_url();?>torneos/calendario">Torneos</a>

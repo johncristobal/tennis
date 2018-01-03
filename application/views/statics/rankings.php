@@ -15,30 +15,38 @@
 			    <h4>RANKING SPORTWAY IZCALLI</h4>
                 <ul class="nav nav-tabs">
                 <li class="active"><a href="#singles" data-toggle="tab">Singles</a></li>
-                <li><a href="#dobles" data-toggle="tab">Dobles</a></li>
-				</ul>
+                <!--li><a href="#dobles" data-toggle="tab">Dobles</a></li-->
+                </ul>
             
-				<div class="tab-content">
+                <div class="tab-content">
 			
                 <div class="tab-pane active" id="singles">
                     <div class="flexslider">
                         <ul class="slides">
-                            <?php $i=1; foreach($datos as $filas) { ?>
-                            <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt=""> <?=$filas->nombre;?> 
-                            <p class="flex-caption">Ranking No. <?=$i;?></p>
-                            </li>                            
                             <?php 
-                                if($i == 5){
-                                    break;
-                                }
-                                $i++;
-                            } ?>
+                                $i=1;
+                                foreach($datos as $filas) 
+                                {
+                                   //misma logica que con las otras...
+                                   //si no existe imagen, tomo otra default
+                                   //hay que crear nuevas imagenes???
+                            ?>
+                                <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt=""> <?=$filas->nombre;?> 
+                                <p class="flex-caption">Ranking No. <?=$i;?></p>
+                                </li>                            
+                            <?php 
+                                    if($i == 5){
+                                        break;
+                                    }
+                                    $i++;
+                                } 
+                            ?>
                         </ul>
 					
                     </div><!-- End slider -->
                     <a   href="<?php echo base_url();?>Estadisticas/allRankings"  class=" button_medium">Ver todos los rankings</a>
                 </div>
-                <div class="tab-pane" id="dobles">
+                <!--div class="tab-pane" id="dobles">
                        <div class="flexslider">
                         <ul class="slides">
                             <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt=""> CARLOS MAYA
@@ -60,9 +68,9 @@
                             <p class="flex-caption">Ranking No.5</p>
                             </li>
                         </ul>
-                    </div><!-- End slider -->
+                    </div>
                     <a  href="<?php echo base_url();?>Estadisticas/allRankings" class=" button_medium">Ver todos los rankings</a>
-                </div>
+                </div-->
             </div>
 
                     

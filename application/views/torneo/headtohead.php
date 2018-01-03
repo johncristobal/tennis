@@ -78,10 +78,10 @@
 
         try{
             if(!file_exists("img/jugadores/".$datos1->id."/perfil.jpg")){
-                $imagen1 = base_url()."img/jugadores/back1.png";
+                $imagen1 = base_url()."img/jugadores/nofoto.png";
             }
             if(!file_exists("img/jugadores/".$datos2->id."/perfil.jpg")){
-                $imagen2 = base_url()."img/jugadores/back2.png";
+                $imagen2 = base_url()."img/jugadores/nofoto.png";
             }
         }catch(Exception $e){
         }
