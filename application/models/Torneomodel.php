@@ -21,9 +21,15 @@ class Torneomodel extends CI_Model{
         $ii = 1;
         $llave = "";
         
+        //echo $datos;
+        
         foreach ($datos as $key=>$value){
             //echo $key."-".$value;
             //echo "<br>";            
+            
+            if(strpos($key, 'h2hselected') !== false){
+                continue;
+            }
             
             //Little algorithm to save data
             if(strpos($key, 'radio') !== false){
@@ -43,7 +49,7 @@ class Torneomodel extends CI_Model{
             $updateData = array(
                 'resultado' => $res,
                 'ganador' => $ganador
-            );                       
+            );
             $this->db->where('id', $llave);
             $this->db->update('partidos', $updateData);
         }
