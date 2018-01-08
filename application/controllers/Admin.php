@@ -264,7 +264,8 @@ class admin extends CI_Controller{
             'tipo' => $this->session->userdata('tipo'),
             'fecha_inicio' => $this->session->userdata('fecha'),
             'fecha_fin' => "0000/00/00",
-            'lugar' => $this->session->userdata('lugar')
+            'lugar' => $this->session->userdata('lugar'),
+						'estatus'=>1
         );
         
         $res = $this->Torneomodel->saveTorneo($data);
@@ -404,12 +405,45 @@ class admin extends CI_Controller{
         $post_data = $this->input->post();
         $extra = $this->input->post('h2hselected');
         $this->Torneomodel->actualizaTorneo($post_data,$extra);
-
+				$this->updateStatistics();
         $id = $this->session->userdata('idtorneo');
         redirect('admin/resultados/'.$id);
         
-    }
+    }	
+		//function to update estadisticas_jugador
+		public function updateStatistics(){
+			 
+			$totalJ=$this->Estadisticasmodel->getTotalPlayed();
+			$totalG=$this->Estadisticasmodel->getTotalWon();
+			if($totalJ){
+				foreach ($totalJ as $fila){
+					if($totalG){
+						foreach ($totalG as $fila2){
+							if($fila->fkjugador==$fila2->fkjugador){
+								$perdidos=$fila->total_jugados - $fila2->ganados;
+								$ganados=$fila2->ganados;
+								break;
+							}else{
+								$perdidos=$fila->total_jugados;
+								$ganados=0;
+							}
+							
+						}
+					$array=array(
+					'jganados'=>$ganados,
+					'jperdidos'=>$perdidos,
+					'Puntos'=>0,
+					'torneosj'=>0,
+					);
+					$this->Estadisticasmodel->updateStatistics($fila->fkjugador,$array);
+					}						
+					}
 
+			}
+			
+
+			
+		}
     public function cerrar(){
         $this->session->sess_destroy();
         redirect('/');

@@ -84,7 +84,7 @@
 						</div>							
 						
 				</div>
-                <div class="row add_top_30">
+               <!-- <div class="row add_top_30">
                 
                 	<div class="col-md-4">
                     	<h4><i class="icon-trophy" style="color:#a3d39c;"></i> Títulos/Finales</h4>
@@ -102,7 +102,7 @@
                     	<h4><i class="icon-star" style="color:#a3d39c;"></i> Actividad</h4>
                         <p>Qui at commune signiferumque. In mel labores moderatius, tantas saperet facilisi quo ut. Vero wisi civibus ea vim. An tota nostro sit, mel ei utinam ancillae, mutat dolores mea et. Homero iriure imperdiet eu mel. Ei enim viderer pri.</p>
                         <p><a href="#" class="button_small add_bottom_15">Ver más</a></p>
-                    </div>
+                    </div> -->
                     
                 </div><!-- End row -->
         </div> <!-- End container -->

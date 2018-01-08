@@ -89,6 +89,30 @@ class Estadisticasmodel extends CI_Model{
 
         return $data;
     }
+	public function getTotalPlayed(){
+		//getting the total matches played
+		$sql="SELECT t2.fkjugador,COUNT(t2.fkjugador) as total_jugados fROM `partidos` t1 INNER JOIN estadisticas_jugador t2 WHERE (t2.fkjugador=t1.`fkjugador1` OR t2.fkjugador=t1.`fkjugador2`) AND t1.`ganador`!=0 GROUP BY t2.fkjugador HAVING COUNT(t2.fkjugador)";
+		$results=$this->db->query($sql);
+        if($results->num_rows()>0){
+            return $results->result();
+        }				
+		
+		
+	}
+		public function getTotalWon(){
+		//getting the matches won
+		$sql="SELECT t2.fkjugador,COUNT(t2.fkjugador) as ganados fROM `partidos` t1 INNER JOIN estadisticas_jugador t2 WHERE (t2.fkjugador=t1.ganador ) GROUP BY t2.fkjugador HAVING COUNT(t2.fkjugador)";
+		$results=$this->db->query($sql);
+        if($results->num_rows()>0){
+            return $results->result();
+        }				
+	}
+		public function updateStatistics($id,$data){
+		
+			$this->db->where('fkjugador',$id);
+			return $this->db->update('estadisticas_jugador',$data);
+	}
 }
+
 
 ?>
