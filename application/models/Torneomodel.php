@@ -221,13 +221,17 @@ class Torneomodel extends CI_Model{
     
     public function getTorneoActivo(){
         $last_row=$this->db->select('id,nombre,fecha_inicio')->from('torneo')->where('estatus',1)->limit(1)->get()->row();
-        return $last_row;                        
+        if(isset($last_row))
+            return $last_row;   
+        else
+            return "0";
     }
     
     public function getPartidoSemana(){
         $last_row=$this->db->select('fkjugador1,fkjugador2')->from('partidos')->where('estatus',5)->limit(1)->get()->row();
-        return $last_row;                        
-    }
-        
-    
+        if(isset($last_row))
+            return $last_row;   
+        else
+            return "0";
+    }           
 }

@@ -77,14 +77,13 @@
 
             <?php
                         
-                $imagenperfil = "";
-                
+                $imagenperfil = base_url()."img/jugadores/".$datos->id."/perfil.jpg";
                 try{
-                    if(!file_exists("img/jugadores/".$datos1->id."/perfil.jpg")){
+                    if(!file_exists("img/jugadores/".$datos->id."/perfil.jpg")){
                         $imagenperfil = base_url()."img/jugadores/nofoto.png";
                     }
                 }catch(Exception $e){
-                }
+                }                
 
             ?>
 			
@@ -106,27 +105,34 @@
 			
             </div><!-- End sub-head -->
 				
-            <h3 class="title">HEAD TO HEAD</h3>
     
 	<?php
             
-            
-                $imagen1 = base_url()."img/jugadores/".$datos1->id."/h2h.png";
-                $imagen2 = base_url()."img/jugadores/".$datos2->id."/h2h.png";
-                
-                try{
-                    if(!file_exists("img/jugadores/".$datos1->id."/h2h.png")){
-                        $imagen1 = base_url()."img/jugadores/back1.png";
-                    }
-                    if(!file_exists("img/jugadores/".$datos2->id."/h2h.png")){
-                        $imagen2 = base_url()."img/jugadores/back2.png";
-                    }
-                }catch(Exception $e){
+            if($datos1 != "0")
+            {
+            $imagen1 = base_url()."img/jugadores/".$datos1->id."/h2h.png";
+            $imagen2 = base_url()."img/jugadores/".$datos2->id."/h2h.png";
+
+            try{
+                if(!file_exists("img/jugadores/".$datos1->id."/h2h.png")){
+                    $imagen1 = base_url()."img/jugadores/back1.png";
                 }
+                if(!file_exists("img/jugadores/".$datos2->id."/h2h.png")){
+                    $imagen2 = base_url()."img/jugadores/back2.png";
+                }
+            }catch(Exception $e){
+            }
+            }else{
+                $imagen1 = base_url()."img/jugadores/back1.png";
+                $imagen2 = base_url()."img/jugadores/back2.png";
+            }
 
             ?>
+            <div class="clase" <?php if($datos1 == "0"){echo "style='display:none;'";}?>>
+
             <div class="row">
-    
+                <h3 class="title">HEAD TO HEAD</h3>
+
 		<div class="col-md-6">
 
                 <div class="thumbnail">
@@ -164,7 +170,10 @@
 				</div>
             
 		</div><!-- End col-md-5-->
-	</div><!-- End row -->	
+	</div><!-- End row -->
+            </div>
+            <div class="clase" <?php if($datos1 == "0"){echo "style='display:none;'";}?>>
+
         <div class="row">
             <div class="col-md-4">                
             </div>
@@ -174,6 +183,7 @@
             <div class="col-md-4">                
             </div>
         </div>
+            </div>
 
 			
         </div> <!-- End container -->

@@ -45,11 +45,11 @@
                     
                 </div><!-- End row -->
             </div><!-- End col-md-12 -->
-            
-            <div class="row">
-            
-                <div class="col-md-4 col-sm-6">
-                 <div class="box_calculator">
+                       
+            <div class="clase" <?php if($torneo == "0"){echo "style='display:none;'";}?>> 
+            <div class="row">            
+                <div class="col-md-4 col-sm-6" <?php if($torneo == "0"){echo "style='display:none;'";}?>>
+                    <div class="box_calculator">
                         <a href="<?php echo base_url();?>torneos/resultados/<?=$torneo->id;?>">
                         <img src="<?php echo base_url();?>img/icon-1.png" alt="">
                         <h3>Torneo actual</h3>
@@ -58,7 +58,7 @@
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
                 
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6" <?php if($torneo == "0"){echo "style='display:none;'";}?>>
                     <div class="box_calculator">
                         <a href="<?php echo base_url();?>Player/jugador/<?=$primer->id;?>">
                         <img src="<?php echo base_url();?>img/icon-2.png" alt="">
@@ -68,7 +68,7 @@
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
                 
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6" <?php if($torneo == "0"){echo "style='display:none;'";}?>>
                     <div class="box_calculator">
                         <a href="<?php echo base_url();?>Player/perfil">
                         <img src="<?php echo base_url();?>img/icon-3.png" alt="">
@@ -76,14 +76,14 @@
                         <p>Datos de los jugadores</p>
                         </a>
                     </div><!-- End box-calculator -->
-                </div><!-- End col-md-3 -->
-                
+                </div><!-- End col-md-3 -->                
             </div><!-- End row -->
+            </div>
             
-            <h3 class="title">HEAD TO HEAD</h3>
             <?php
             
-            
+                if($datos1 != "0")
+                {
                 $imagen1 = base_url()."img/jugadores/".$datos1->id."/h2h.png";
                 $imagen2 = base_url()."img/jugadores/".$datos2->id."/h2h.png";
                 
@@ -96,8 +96,14 @@
                     }
                 }catch(Exception $e){
                 }
+                }else{
+                    $imagen1 = base_url()."img/jugadores/back1.png";
+                    $imagen2 = base_url()."img/jugadores/back2.png";
+                }
 
             ?>
+            <div class="clase" <?php if($datos1 == "0"){echo "style='display:none;'";}?>>
+            <h3 class="title">HEAD TO HEAD</h3>
             <div class="row">
     
 		<div class="col-md-6">
@@ -138,6 +144,8 @@
                     </div>            
 		</div><!-- End col-md-5-->
 	</div><!-- End row -->	
+        </div>
+        <div class="clase" <?php if($datos1 == "0"){echo "style='display:none;'";}?>>
         <div class="row">
             <div class="col-md-4">                
             </div>
@@ -147,6 +155,8 @@
             <div class="col-md-4">                
             </div>
         </div>
+        </div>
+        
             
             
             <!--h3 class="title">RANKING SECTION</h3>
