@@ -651,7 +651,7 @@ input.form-control:focus, select.form-control:focus, textarea.form-control:focus
 /*============================================================================================*/
 
 /* Mobile menu*/
-select#mobileMenu_main-nav  { float:right; margin-top:4px;}
+select#mobileMenu_main-nav  { float:right; margin-top:60px;}
 
 /* Page head*/
 #sub-head { text-align:center; height:340px; background: #8dc63f url(../img/bg-sub-head.png) no-repeat center top; color:#fff; display: table;  position: relative; overflow: hidden; width:100%; padding: 20px; margin-bottom:30px; }

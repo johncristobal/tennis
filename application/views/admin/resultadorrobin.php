@@ -183,7 +183,7 @@
             Selecciona el jugador que ganó el encuentro, o en su caso empate.
             <br><br>
             <form method="post" action="<?php echo base_url()?>admin/updateTorneo">
-            <div class="row">
+                <div class="row hidden-xs">
                 <div class="col-md-12" style="font-size: 15px;">
                     <!--div class="pricing-table-features">
                             <p><strong>Six month</strong> valid</p>
@@ -462,6 +462,75 @@
                 </table-->   
                 </div>
             </div>
+                
+                <div class="row visible-xs">
+                   <div class="col-xs-12" style="font-size: 15px;">
+                    <!--div class="pricing-table-features">
+                            <p><strong>Six month</strong> valid</p>
+                            <p><strong> Saving </strong> 30%</p>
+                            <p><strong>Saving price</strong> 80$</p>
+                            <p><strong>Gym + Home </strong>training</p>
+                    </div-->
+                <?php
+                    $i=1;
+                    foreach ($partidos as $value){                    
+                ?>                      
+                    <div class="row">
+                        <div class="col-xs-8">
+                            Semana <?=$i?>
+                        </div>
+                    </div>
+                <?php
+                    foreach ($value as $rondas) { 
+                    $flag = 0;
+                        //Validacion para ronund rpbin impar
+                    if($rondas->fkjugador1 != $rondas->fkjugador2){                        
+                ?>                 
+                    <div class="row">
+                        <div class="col-xs-12">
+                        <label>
+                            <?php 
+
+                            date_default_timezone_set('America/Mexico_City');
+                            $date = new DateTime($rondas->fecha);
+                            echo $date->format('d-m-Y');
+                            ?>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <td width="10%"></td>
+                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>" <?php if($rondas->ganador == $rondas->fkjugador1){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
+                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
+                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
+                                                
+                        <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div></td>
+                        <td width="10%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
+                        
+                        <td width="5%"><div class="radio"><label><input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>H2H Semana</label></div></td>
+                        <!--td width="5%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td-->
+                    </div>
+                <?php    
+                } else {
+                ?>
+                    <div class="row">
+                        <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
+                        <td width="2%"></td>
+                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                        <!--td width="20%">&nbsp;</td-->
+                        <!--td width="20%"><a class="button_newsletter" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td-->
+                    </div>
+                <?php
+                }
+                }
+                $i++;
+                ?>
+                    
+                <?php
+                }
+                ?> 
+                </div>
                 <br>
             <div class="row">
         <!-- Modal -->

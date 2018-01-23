@@ -2,8 +2,8 @@
 		<header>
            <div class="container">
             <div class="row">
-        	<div class="col-md-4 col-xs-3"><h1 id="logo"><a href="<?php echo base_url();?>" title="Planar - Personal Trainer">Tenis - Sportway</a></h1></div>
-            <nav class="col-md-8 col-xs-9">
+        	<div class="col-md-4 col-xs-9"><h1 id="logo"><a href="<?php echo base_url();?>" title="Planar - Personal Trainer">Tenis - Sportway</a></h1></div>
+            <nav class="col-md-8 col-xs-3">
             	<ul id="main-nav" class="sf-menu" >
                 <!--li><a href="<?php echo base_url();?>Player/perfil">Jugadores</a></li-->
                     <!--li><a href="profile.html"></a></li-->

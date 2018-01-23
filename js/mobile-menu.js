@@ -13,7 +13,7 @@ MOBILE SELECT MENU
     //plugin's default options
     var settings = {
       switchWidth: 769,
-      topOptionText: 'Select a page',
+      topOptionText: 'Páginas >',
       indentString: '&nbsp;&nbsp;&nbsp; - '
     };
     
