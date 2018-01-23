@@ -58,7 +58,7 @@
                     </div><!-- End box-calculator -->
                 </div><!-- End col-md-3 -->
                 
-                <div class="col-md-4 col-sm-6" <?php if($torneo == "0"){echo "style='display:none;'";}?>>
+                <div class="col-md-4 col-sm-6" <?php if($primer == "0"){echo "style='display:none;'";}?>>
                     <div class="box_calculator">
                         <a href="<?php echo base_url();?>Player/jugador/<?=$primer->id;?>">
                         <img src="<?php echo base_url();?>img/icon-2.png" alt="">

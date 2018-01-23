@@ -23,17 +23,16 @@ class Welcome extends CI_Controller {
          */
 
         $data['torneo']=$this->Torneomodel->getTorneoActivo();
+        $data['primer'] =$this->Estadisticasmodel->getFirstPlace();
 
         $temp=$this->Torneomodel->getPartidoSemana();
         if($temp == "0"){
-            $data['primer'] = "0";
             $data['ganados1'] = "0";
             $data['ganados2'] = "0";
             $data['datos1'] = "0";
             $data['datos2'] = "0";
         }else{
             $datah2h = $this->Estadisticasmodel->getdatah2h($temp->fkjugador1,$temp->fkjugador2);
-            $data['primer'] =$this->Estadisticasmodel->getFirstPlace();
             $data['ganados1'] = $datah2h['ganados1'];
             $data['ganados2'] = $datah2h['ganados2'];
             $data['datos1'] = $datah2h['datos1'];

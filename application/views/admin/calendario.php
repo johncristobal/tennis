@@ -74,7 +74,6 @@
                 <div class="col-md-3">
                     <h4>&nbsp;</h4>
                     <strong><?=$row->descripcion;?></strong>
-                    <p>&nbsp;</p>
                 </div>
                     
                 <!--div class="col-md-3">

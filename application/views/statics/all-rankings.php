@@ -8,39 +8,103 @@
     $this->load->view("head");
     $this->load->view("header");
 ?>
-<div class="container">
-                    
-    <h3 class="title">TODOS LOS RANKINGS</h3>
 
+<div class="row">
+        <h3 class="title">RANKING</h3>
+</div>
+<div class="container hidden-xs">
+                    
     <div class="row">
-    <table class="table-striped" width="100%">
-    <thead>
-      <tr>
-        <th>Ranking</th>
-        <th>Movimiento</th>
-        <th>Jugador</th>
-        <th>Edad</th>
-        <th>Puntos</th>
-        <th>Torneos Jugados</th>
-      </tr>
-    </thead>
-    <tbody>
+        <div class="col-sm-2 text-center">
+            Ranking
+        </div>
+        <div class="col-sm-3 text-left">
+            Jugador
+        </div>
+        <div class="col-sm-2 text-center">
+            Edad
+        </div>
+        <div class="col-sm-2 text-center">
+            Puntos
+        </div>
+        <div class="col-sm-3 text-center">
+            Torneos jugados
+        </div>
+    </div>
+    <?php foreach ($datos as $value) {
+    ?>   
+        <div class="row">
+            <div class="col-sm-2 text-center">
+                <strong>
+                    <?=$value->rank_act;?>
+                </strong>
+            </div>
+            <div class="col-sm-3 text-left">
+                <span>
+                    <a href="<?php echo base_url();?>player/jugador/<?=$value->id;?>"><?=$value->nombre;?></a>
+                </span>
+            </div>
+            <div class="col-sm-2 text-center">
+                <span>
+                    <?=$value->edad;?>
+                </span>
+            </div>
+            <div class="col-sm-2 text-center">
+                <span>
+                    <?=$value->puntos;?>
+                </span>
+            </div>
+            <div class="col-sm-3 text-center">
+                <span>
+                    <?=$value->torneosj;?>
+                </span>
+            </div>
+      </div>
+    <?php
+        }
+    ?>
+    
+    </div><!-- End container -->
+    
+    <div class="container visible-xs">
+                    
         <?php foreach ($datos as $value) {
          ?>   
-      <tr>
-        <td width="10%"><?=$value->rank_act;?></td>
-        <td width="10%">+1</td>
-        <td width="30%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$value->id;?>"><?=$value->nombre;?></a></td>
-        <td width="10%"><?=$value->edad;?></td>
-        <td width="10%"><?=$value->puntos;?></td>
-        <td width="10%"><?=$value->torneosj;?></td>
-      </tr>
-        <?php
-            }
-        ?>
 
-    </tbody>
-    </table>
+        <div class="row">
+            <div class="col-xs-4">                
+                <strong>
+                    Ranking: <?=$value->rank_act;?>
+                </strong>
+            </div>
+            <div class="col-xs-5">
+                <span>
+                    <a href="<?php echo base_url();?>player/jugador/<?=$value->id;?>"><?=$value->nombre;?></a>
+                </span>
+            </div>
+            <div class="col-xs-3">            
+                <span>
+                    Edad: <?=$value->edad;?>
+                </span>
+            </div>
+        </div>
+        <div class="row">            
+            <div class="col-xs-12">
+                <strong>Puntos: </strong><span><?=$value->puntos;?></span>
+            </div>
+        </div>
+        <div class="row">            
+            <div class="col-xs-12">
+                <strong>Torneos jugados: </strong><span><?=$value->torneosj;?></span>
+            </div>
+        </div>
+        <div class="row">            
+            <hr>
+        </div>
+        
+        <?php
+        }
+        ?>
     </div><!-- End row -->
 
     </div><!-- End container -->

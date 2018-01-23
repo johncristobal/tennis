@@ -98,49 +98,6 @@
             
             <!--h3 class="title">Style Two</h3-->
             <div class="row">
-                <!--div class="col-md-3">
-                
-                    <div class="pricing-table blue rounded">
-                        <div class="pricing-table-header">
-                            <span class="heading">Single session</span>
-                            <span class="price-value"><span>30</span><span class="mo">$</span></span>
-                        </div>
-                        <div class="pricing-table-space "></div>
-                        <div class="pricing-table-features">
-                            <p><strong>One month</strong> valid</p>
-                            <p><strong> Saving</strong> %</p>
-                            <p><strong>Saving price</strong> 0$</p>
-                            <p><strong>Gym training</strong> only</p>
-                        </div>
-                        
-                        <div class="pricing-table-sign-up">
-                            <a href="javascript:void(0)" class="btn btn-large btn-block btn-primary">BUY NOW!</a>
-                        </div>
-    
-                    </div>
-                </div><!-- End col-md-3 -->
-                
-                <!--div class="col-md-3">
-                    <div class="pricing-table blue">
-                        <div class="pricing-table-header">
-                            <span class="heading">12 Sessions</span>
-                            <span class="price-value"><span>280</span><span class="mo">$</span></span>
-                        </div>
-                        <div class="pricing-table-space "></div>
-                        <div class="pricing-table-features">
-                            <p><strong>Three month</strong> valid</p>
-                            <p><strong> Saving </strong> 20%</p>
-                            <p><strong>Saving price</strong> 40$</p>
-                            <p><strong>Gym + Home </strong>training</p>
-                        </div>
-                        
-                        <div class="pricing-table-sign-up">
-                            <a href="javascript:void(0)" class="btn btn-block btn-primary">BUY NOW!</a>
-                        </div>
-                        
-                    </div>
-                </div><!-- End col-md-3 -->
-                
                 <div class="col-md-12">
                     <div class="pricing-table green">
                         
@@ -183,7 +140,7 @@
             Selecciona el jugador que ganó el encuentro, o en su caso empate.
             <br><br>
             <form method="post" action="<?php echo base_url()?>admin/updateTorneo">
-                <div class="row hidden-xs">
+                <div class="container hidden-xs">
                 <div class="col-md-12" style="font-size: 15px;">
                     <!--div class="pricing-table-features">
                             <p><strong>Six month</strong> valid</p>
@@ -461,10 +418,9 @@
                     </tbody>
                 </table-->   
                 </div>
-            </div>
+                </div>
                 
-                <div class="row visible-xs">
-                   <div class="col-xs-12" style="font-size: 15px;">
+                <div class="container visible-xs">
                     <!--div class="pricing-table-features">
                             <p><strong>Six month</strong> valid</p>
                             <p><strong> Saving </strong> 30%</p>
@@ -476,7 +432,7 @@
                     foreach ($partidos as $value){                    
                 ?>                      
                     <div class="row">
-                        <div class="col-xs-8">
+                        <div class="col-xs-6">
                             Semana <?=$i?>
                         </div>
                     </div>
@@ -488,17 +444,50 @@
                 ?>                 
                     <div class="row">
                         <div class="col-xs-12">
-                        <label>
+                        <span>
                             <?php 
 
                             date_default_timezone_set('America/Mexico_City');
                             $date = new DateTime($rondas->fecha);
-                            echo $date->format('d-m-Y');
+                            echo "Fecha: ".$date->format('d-m-Y');
                             ?>
-                        </label>
+                        </span>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-1">
+                            <input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>" <?php if($rondas->ganador == $rondas->fkjugador1){echo "checked"; $flag=1;}?>>&nbsp;                            
+                        </div>                        
+                        <div class="col-xs-5">
+                            <span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a>                            
+                        </div>
+                        <div class="col-xs-1">                            
+                            <input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;
+                        </div>
+                        <div class="col-xs-5">
+                            <span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-xs-12">
+                        <div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-xs-12">
+                            Resultado: <input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="radio"><label><input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>H2H Semana</label></div>
+                        </div>
+                    </div>
+                    
+                    
+                    <!--div class="row">
                         <td width="10%"></td>
                         <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>" <?php if($rondas->ganador == $rondas->fkjugador1){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
                         <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
@@ -509,20 +498,27 @@
                         <td width="10%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
                         
                         <td width="5%"><div class="radio"><label><input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>H2H Semana</label></div></td>
-                        <!--td width="5%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td-->
-                    </div>
+                    </div-->
                 <?php    
-                } else {
+                    } else {
                 ?>
                     <div class="row">
-                        <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
-                        <td width="2%"></td>
-                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                        <div class="col-xs-12">
+                            <span style="font-size: 12px;">Descansa: (<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></span> 
+                        </div>
                         <!--td width="20%">&nbsp;</td-->
                         <!--td width="20%"><a class="button_newsletter" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td-->
                     </div>
+                    
+                    <!--div class="row">
+                        <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
+                        <td width="2%"></td>
+                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
+                    </div-->
                 <?php
                 }
+                ?>
+                <?php
                 }
                 $i++;
                 ?>
@@ -530,9 +526,10 @@
                 <?php
                 }
                 ?> 
-                </div>
                 <br>
             <div class="row">
+                
+                
         <!-- Modal -->
         <div class="col-sm-4"></div>
         <div class="col-sm-4"></div>
@@ -561,7 +558,6 @@
         </div>
 
         </div>  
-        </form>
             <br>
             <!--div class="row second">
                 <div class="col-md-12 infomsg2 alert" style="font-weight: 600; font-size: larger; text-align: center;" id="tabla">
@@ -635,8 +631,8 @@
                 </table> 
                 </div-->
             </div>
+            </form>
 
-            
         </div><!-- End container -->
         
         <?php $this->load->view("footer");?>        
