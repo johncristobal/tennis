@@ -34,6 +34,6 @@
             </div>
         </div>
         <div id="copy">
-            <img src="<?php echo base_url();?>img/footer.png" alt="footer" style="width: 100%; height: fit-content;">
+            <img src="<?php echo base_url();?>img/footer.png" alt="footer" style="width: 100%; height: 75px;">
         </div>
         </footer><!-- End footer -->
