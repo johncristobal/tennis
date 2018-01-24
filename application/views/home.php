@@ -16,7 +16,7 @@
             });
         }
         </script>
-<div class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-md-12">
                 
@@ -205,6 +205,14 @@
                 
             </div><!-- End row -->
 
+            <div class="row">
+                <div class="col-md-12">
+                
+                    
+                    
+                </div><!-- End row -->
+            </div><!-- End col-md-12 -->
+            
         </div><!-- End container -->
         
         <?php $this->load->view("footer");?>        
