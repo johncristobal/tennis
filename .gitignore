@@ -31,3 +31,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 application/config/config.php
 js/buscar.js
 !/application/controllers/Users.php
+!/application/views/users/login.php
+!/application/views/users/success.php
+!/application/models/Usuarionuevo.php
