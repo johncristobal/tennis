@@ -410,40 +410,41 @@ class admin extends CI_Controller{
         redirect('admin/resultados/'.$id);
         
     }	
-		//function to update estadisticas_jugador
-		public function updateStatistics(){
-			 
-			$totalJ=$this->Estadisticasmodel->getTotalPlayed();
-			$totalG=$this->Estadisticasmodel->getTotalWon();
-			if($totalJ){
-				foreach ($totalJ as $fila){
-					if($totalG){
-						foreach ($totalG as $fila2){
-							if($fila->fkjugador==$fila2->fkjugador){
-								$perdidos=$fila->total_jugados - $fila2->ganados;
-								$ganados=$fila2->ganados;
-								break;
-							}else{
-								$perdidos=$fila->total_jugados;
-								$ganados=0;
-							}
-							
-						}
-					$array=array(
-					'jganados'=>$ganados,
-					'jperdidos'=>$perdidos,
-					'Puntos'=>0,
-					'torneosj'=>0,
-					);
-					$this->Estadisticasmodel->updateStatistics($fila->fkjugador,$array);
-					}						
-					}
+    //function to update estadisticas_jugador
+    public function updateStatistics(){
 
-			}
-			
+            $totalJ=$this->Estadisticasmodel->getTotalPlayed();
+            $totalG=$this->Estadisticasmodel->getTotalWon();
+            if($totalJ){
+                    foreach ($totalJ as $fila){
+                            if($totalG){
+                                    foreach ($totalG as $fila2){
+                                            if($fila->fkjugador==$fila2->fkjugador){
+                                                    $perdidos=$fila->total_jugados - $fila2->ganados;
+                                                    $ganados=$fila2->ganados;
+                                                    break;
+                                            }else{
+                                                    $perdidos=$fila->total_jugados;
+                                                    $ganados=0;
+                                            }
 
-			
-		}
+                                    }
+                            $array=array(
+                            'jganados'=>$ganados,
+                            'jperdidos'=>$perdidos,
+                            'Puntos'=>0,
+                            'torneosj'=>0,
+                            );
+                            $this->Estadisticasmodel->updateStatistics($fila->fkjugador,$array);
+                            }						
+                            }
+
+            }
+
+
+
+    }
+
     public function cerrar(){
         $this->session->sess_destroy();
         redirect('/');
