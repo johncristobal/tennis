@@ -22,24 +22,28 @@
                 
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="<?php echo base_url();?>img/slider/slide-1.jpg" alt="">
-                            <p class="flex-caption">I will help you to achieve your goal</p>
+                            <li><img src="<?php echo base_url();?>img/banners/vista1.png" alt="">
+                            <p class="flex-caption">Torneo de tenis - Madrugaytors</p>
                             </li>
-                            <li><img src="<?php echo base_url();?>img/slider/slide-2.jpg" alt="">
-                            <p class="flex-caption">Your exercises will be carried out to perfection</p>
-                            </li>
-                            <li>
-                            <img src="<?php echo base_url();?>img/slider/slide-3.jpg" alt="">
-                            <p class="flex-caption">Lose weight in a short time</p>
+                            <li><img src="<?php echo base_url();?>img/banners/vista2.png" alt="">
+                            <p class="flex-caption">Conócenos</p>
                             </li>
                             <li>
+                            <img src="<?php echo base_url();?>img/banners/vista3.png" alt="">
+                            <p class="flex-caption">Inscribete a nuestro próximo torneo</p>
+                            </li>
+                            <li>
+                            <img src="<?php echo base_url();?>img/banners/vista4.png" alt="">
+                            <p class="flex-caption">Las mejores canchas para entrenar</p>
+                            </li>
+                            <!--li>
                             <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt="">
                             <p class="flex-caption">The pleasure of outdoor recreation</p>
                             </li>
                             <li>
                             <img src="<?php echo base_url();?>img/slider/slide-5.jpg" alt="">
                             <p class="flex-caption">Proper training will make you feel better</p>
-                            </li>
+                            </li-->
                         </ul>
                     </div><!-- End slider -->
                     
