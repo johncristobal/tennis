@@ -13,9 +13,41 @@
  */
 class users extends CI_Controller{
     //put your code here
+    
+    public $config;
+    
     public function __construct(){
         parent::__construct();
         $this->load->library('form_validation');
+                $this->load->library("email");
+
+    }
+    
+    public function loadConfigSendMail($correo,$nombre){
+        
+        $configmail['protocol']    = 'pop3'; 				
+        $configmail['smtp_host']    = 'p3plcpnl0857.prod.phx3.secureserver.net'; 
+        $configmail['smtp_port']    = 995; 
+        $configmail['smtp_timeout'] = '20'; 
+        $configmail['smtp_user']    = 'hola@madrugaytors.com'; 
+        $configmail['smtp_pass']    = 'emporiowhite'; 
+        $configmail['charset']    = 'utf-8'; 
+        $configmail['newline']    = "\r\n"; 
+        $configmail['mailtype'] = 'html'; 
+        $configmail['validation'] = TRUE;      
+        $this->email->initialize($configmail);
+        
+        $data = array(
+             'Nombre'=>$nombre,
+        );	
+        
+        $datos=$this->load->view("emailTemplate3",$data,TRUE);					
+        $this->email->from('hola@madrugaytors.com', 'Tennis');
+        $this->email->to($correo);
+        $this->email->cc('nowoscmexico@gmail.com');
+        $this->email->subject('Gracias por inscribirte -'.$nombre);          
+        $this->email->message($datos);	
+        $this->email->send();
     }
     
     public function index(){
@@ -62,6 +94,8 @@ class users extends CI_Controller{
                 $id2 = $this->usuarionuevo->updateData($id,$dataupd);
                 //echo $id2;
             }
+            
+            $this->loadConfigSendMail($this->input->post('correo'),$this->input->post('nombre'));
             
             //launch view success
             $this->load->view('users/success');

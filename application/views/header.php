@@ -28,6 +28,9 @@
                         <li><a href="calories-burned-calculator.html">Resultados</a></li>
                   	</ul-->
                 </li>
+                    <li><a href="<?php echo base_url();?>users">Inscríbete</a>
+                </li>				
+
                <!-- <li><a href="#">Pages</a>
                 	<ul>
                     	<li><a href="pricing.html">Pricing</a></li>

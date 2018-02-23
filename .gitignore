@@ -34,3 +34,7 @@ js/buscar.js
 !/application/views/users/login.php
 !/application/views/users/success.php
 !/application/models/Usuarionuevo.php
+!/application/controllers/Correo.php
+!/application/views/emailTemplate.php
+!/application/views/emailTemplate2.php
+!/application/views/emailTemplate3.php

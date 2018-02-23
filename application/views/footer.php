@@ -22,11 +22,11 @@
                 <div class="col-md-6">
                     <h5 class="add_bottom_15">¿Tienes una duda o sugerencia? Envíanos un correo</h5>
                     <div id="message-friend"></div>
-                    <form method="post" action="<?php echo base_url();?>assets/send_to_friend.php" id="contactfriend">
-                        <div class="form-bg-1"><input type="text" id="name_footer" class="form-control" placeholder="Nombre*"></div>
+                    <form method="post" action="<?php echo base_url();?>Correo/Enviar_correo">
+                        <div class="form-bg-1"><input type="text" name="name_footer" id="name_footer" class="form-control" placeholder="Nombre*"></div>
                         <!--div class="form-bg-2"><input type="text" id="friendname_footer" class="form-control" placeholder="Your friend name*"></div-->
-                        <div class="form-bg-2"><input type="email" id="friendemail_footer" class="form-control" placeholder="Correo*"></div>
-                        <div class="form-bg-1"><textarea rows="3" id="message_footer" class="form-control" placeholder="Mensaje*"></textarea></div>
+                        <div class="form-bg-2"><input type="email" name="correo" id="friendemail_footer" class="form-control" placeholder="Correo*"></div>
+                        <div class="form-bg-1"><textarea rows="3" name="message_footer" id="message_footer" class="form-control" placeholder="Mensaje*"></textarea></div>
                         <!--div class="form-bg-1"><input type="text" id="verify_footer" class="form-control" placeholder="Are you human? 3 + 1 ="></div-->
                         <input type="submit" id="submit-friend" value="Enviar" class=" button_medium add_top_30">
                     </form>
@@ -34,6 +34,6 @@
             </div>
         </div>
         <div id="copy">
-            <img src="<?php echo base_url();?>img/footer.png" alt="footer" style="width: 100%; height: 75px;">
+            <img src="<?php echo base_url();?>img/footer.png" alt="footer" style="width: 100%; height: fit-content;">
         </div>
         </footer><!-- End footer -->

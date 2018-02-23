@@ -219,6 +219,37 @@
                 ?>
                  
                 </div>
+<div class="row">
+                
+                
+        <!-- Modal -->
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 centered" style="text-align:center;">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#confirmar">Actualizar información</button>
+        
+        <div class="modal fade" id="confirmar" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <!--div class="modal-header">
+              </div-->
+              <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">¿Desea actualizar los datos del torneo?</h4>
+              </div>
+              <div class="modal-footer">
+                  <input type="submit" id="enviar"  class="btn btn-info btn-lg" value="Si">
+                  <!--a href="" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Sí</a-->
+                  <a href="" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        </div>                      
                 </div>
                 
                 <div class="container visible-xs">

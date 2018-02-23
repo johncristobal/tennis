@@ -30,11 +30,11 @@
                             </li>
                             <li>
                             <img src="<?php echo base_url();?>img/banners/vista3.png" alt="">
-                            <p class="flex-caption">Inscribete a nuestro próximo torneo</p>
+                            <p class="flex-caption">Inscríbete a nuestro próximo torneo</p>
                             </li>
                             <li>
                             <img src="<?php echo base_url();?>img/banners/vista4.png" alt="">
-                            <p class="flex-caption">Las mejores canchas para entrenar</p>
+                            <p class="flex-caption">Excelentes canchas para practicar</p>
                             </li>
                             <!--li>
                             <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt="">
