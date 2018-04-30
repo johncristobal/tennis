@@ -112,6 +112,17 @@ class Estadisticasmodel extends CI_Model{
 			$this->db->where('fkjugador',$id);
 			return $this->db->update('estadisticas_jugador',$data);
 	}
+		public function getinfoTorneo($idTorneo){
+			//getting mathced won by tournament SELECT t1.id, (SELECT COUNT(*) FROM partidos t2 WHERE t1.id=t2.ganador) as Ganados,(SELECT COUNT(*) FROM partidos t2 WHERE (t1.id=t2.fkjugador1 OR t1.id=t2.fkjugador2) AND t2.resultado!=0) as Jugados  FROM `jugador` t1 GROUP BY t1.id
+			$sql="SELECT t1.id,t1.nombre ,(SELECT COUNT(*) FROM partidos t2 WHERE t1.id=t2.ganador AND t2.fktorneo=$idTorneo ) as Ganados,(SELECT COUNT(*) FROM partidos t2 WHERE (t1.id=t2.fkjugador1 OR t1.id=t2.fkjugador2) AND t2.resultado!=0 AND t2.fktorneo=$idTorneo ) as Jugados , ((SELECT COUNT(*) FROM partidos t2 WHERE t1.id=t2.ganador AND t2.fktorneo=$idTorneo )*3) as Puntos,(SELECT COUNT(*) FROM partidos t2 WHERE (t1.id=t2.fkjugador1 OR t1.id=t2.fkjugador2) AND t2.resultado!=0 AND t2.fktorneo=0 ) -(SELECT COUNT(*) FROM partidos t2 WHERE t1.id=t2.ganador AND t2.fktorneo=0 )as Perdidos FROM `jugador`t1 INNER JOIN partidos t3 ON (t1.id= t3.fkjugador1  OR t1.id= t3.fkjugador2  ) WHERE (t1.estatus=1 OR t1.estatus=4) AND t3.fktorneo=$idTorneo
+			GROUP BY t1.id  ORDER BY `Puntos`  DESC";
+			$results=$this->db->query($sql);
+        if($results->num_rows()>0){
+            return $results->result();
+        }	
+	}	
+
+	
 }
 
 
