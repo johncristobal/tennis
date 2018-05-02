@@ -151,16 +151,20 @@
                             <span class="price-value">
                                 <span><?=$torneodata[0]->nombre;?></span>
                                 <!--span class="mo">$</span--></span>
-                            <span class="heading"><?=$torneodata[0]->lugar;?>
+                                <span class="heading"><?=$torneodata[0]->lugar;?>
                                 <br>
                                 <strong><?=$torneodata[0]->fecha_inicio;?></strong>
-                                <!--table width="100%" align="right">
+                                <table width="100%" align="right">
                                     <tr>
-                                        <td width="100%" align="right">
-                                            <button type="button">Ver tabla general</button>
+                                        <td width="20%" align="right">&nbsp;</td>
+                                        <td width="20%" align="right">&nbsp;</td>
+                                        <td width="20%" align="right">&nbsp;</td>
+                                        <td width="20%" align="right">&nbsp;</td>
+                                        <td width="20%" align="center" style="background-color:#00aeef;border-radius: 15px;">
+                                            <a href="<?= base_url()?>Estadisticas/tablaGeneral/<?=$torneodata[0]->id;?>" style="color:white;">Ver Tabla General</a>
                                         </td>
                                     </tr>
-                                </table-->
+                                </table>
                             </span>
                             
 
@@ -186,7 +190,8 @@
             <br><br>
             <form method="post" action="<?php echo base_url()?>torneos/updateTorneo">
             <div class="container hidden-xs">
-						<a href="<?= base_url()?>Estadisticas/tablaGeneral/<?=$torneodata[0]->id;?>" >Ver Tabla General</a>
+						
+                <!--a href="<?= base_url()?>Estadisticas/tablaGeneral/<?=$torneodata[0]->id;?>" >Ver Tabla General</a-->
                 <div class="col-md-12" style="font-size: 15px;">
                     <!--div class="pricing-table-features">
                             <p><strong>Six month</strong> valid</p>
