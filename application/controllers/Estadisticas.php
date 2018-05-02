@@ -23,7 +23,7 @@ class Estadisticas extends CI_Controller{
     public function rankings(){
         
         $datosrank['datos'] = $this->Estadisticasmodel->getAllRankings();        
-        $this->load->view('statics/rankings',$datosrank);
+        $this->load->view('statics/all-rankings',$datosrank);
     }
     
 	 
@@ -31,5 +31,13 @@ class Estadisticas extends CI_Controller{
         $datosrank['datos'] = $this->Estadisticasmodel->getAllRankings();        
         $this->load->view('statics/all-rankings',$datosrank);
     }
+    
+    		public function tablaGeneral($torneo){
+			
+			 $data['datos'] = $this->Estadisticasmodel->getinfoTorneo($torneo); 
+			 $data['infoTorneo'] = $this->Torneomodel->getTorneoData($torneo);
+			 
+			 $this->load->view('statics/tablaGeneral',$data);
+		}
     //put your code here
 }

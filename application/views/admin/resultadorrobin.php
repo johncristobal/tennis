@@ -184,10 +184,9 @@
                         <td width="15%">
                             <label>
                             <?php 
-
-                            date_default_timezone_set('America/Mexico_City');
-                            $date = new DateTime($rondas->fecha);
-                            echo $date->format('d-m-Y');
+                                date_default_timezone_set('America/Mexico_City');
+                                $date = new DateTime($rondas->fecha);
+                                echo $date->format('d-m-Y');
                             ?>
                             </label>
                         </td>
@@ -219,7 +218,7 @@
                 ?>
                  
                 </div>
-<div class="row">
+        <div class="row">
                 
                 
         <!-- Modal -->
@@ -252,225 +251,7 @@
         </div>                      
                 </div>
                 
-                <div class="container visible-xs">
-                    <!--div class="pricing-table-features">
-                            <p><strong>Six month</strong> valid</p>
-                            <p><strong> Saving </strong> 30%</p>
-                            <p><strong>Saving price</strong> 80$</p>
-                            <p><strong>Gym + Home </strong>training</p>
-                    </div-->
-                <?php
-                    $i=1;$k=0;
-                    foreach ($partidos as $value){  
-                        $k=0;
-                ?>                      
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <strong>Semana <?=$i?></strong>
-                        </div>
-                    </div>
-                <?php
-                    foreach ($value as $rondas) { 
-                    $flag = 0;
-                        //Validacion para ronund rpbin impar
-                    if($rondas->fkjugador1 != $rondas->fkjugador2){                        
-                        if($k == 0){
-                ?>                 
-                        <div class="row">
-                            <div class="col-xs-12">
-                            <span>
-                                <?php 
-
-                                date_default_timezone_set('America/Mexico_City');
-                                $date = new DateTime($rondas->fecha);
-                                echo "Fecha: ".$date->format('d-m-Y')."<br>";
-                                ?>
-                            </span>
-                            </div>
-                        </div>
-                        <div class="row"><br></div>
-                <?php } ?>                    
-                    <div class="row">
-                        <div class="col-xs-1 no-padding line1">
-                            <input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>" <?php if($rondas->ganador == $rondas->fkjugador1){echo "checked"; $flag=1;}?>>&nbsp;                            
-                        </div>                        
-                        <div class="col-xs-5 no-padding">
-                            <span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a>                            
-                        </div>
-                        <div class="col-xs-1 no-padding line1">                            
-                            <input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;
-                        </div>
-                        <div class="col-xs-5 no-padding">
-                            <span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 no-padding">
-                        <div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-xs-12 no-padding">
-                            Resultado: <input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false">
-                        </div>
-                    </div>
-                        <div class="row" style="margin-top:5px; margin-bottom: 5px;">
-                        <div class="col-xs-10 no-padding text-right">
-                            <label>H2H Semana</label>
-                        </div>
-                        <div class="col-xs-1">
-                            <input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>
-                        </div>
-                    </div>                    
-                    
-                    <!--div class="row">
-                        <td width="10%"></td>
-                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador1;?>" <?php if($rondas->ganador == $rondas->fkjugador1){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
-                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
-                        <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
-                        <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
-                                                
-                        <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div></td>
-                        <td width="10%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
-                        
-                        <td width="5%"><div class="radio"><label><input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>H2H Semana</label></div></td>
-                    </div-->
-                <?php    
-                    } else {
-                ?>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <span style="font-size: 12px;">Descansa: (<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></span> 
-                        </div>
-                        <!--td width="20%">&nbsp;</td-->
-                        <!--td width="20%"><a class="button_newsletter" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td-->
-                    </div>
-                    
-                    <!--div class="row">
-                        <td width="20%"><span style="font-size: 12px;">Descansa</span></td>
-                        <td width="2%"></td>
-                        <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
-                    </div-->
-                <?php
-                }
-                ?>
-                <?php
-                $k++;
-                }
-                $i++;
-                ?>
-                    <div class="row">
-                        <hr>
-                    </div>
-                <?php
-                }
-                ?> 
-                <br>
-            <div class="row">
                 
-                
-        <!-- Modal -->
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4 centered" style="text-align:center;">
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#confirmar">Actualizar información</button>
-        
-        <div class="modal fade" id="confirmar" role="dialog">
-          <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-              <!--div class="modal-header">
-              </div-->
-              <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">¿Desea actualizar los datos del torneo?</h4>
-              </div>
-              <div class="modal-footer">
-                  <input type="submit" id="enviar"  class="btn btn-info btn-lg" value="Si">
-                  <!--a href="" type="button" class="btn btn-info btn-lg" data-dismiss="modal">Sí</a-->
-                  <a href="" type="button" class="btn btn-default btn-lg" data-dismiss="modal">No</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-
-        </div>  
-            <br>
-            <!--div class="row second">
-                <div class="col-md-12 infomsg2 alert" style="font-weight: 600; font-size: larger; text-align: center;" id="tabla">
-                    Tabla general
-                </div>
-                <div class="col-md-12">
-                    <table class="table" width="100%">
-                    <thead>
-                      <tr>
-                        <th>Posición</th>
-                        <th>Nombre</th>
-                        <th>Edad</th>
-                        <th>Puntos</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <tr>
-                          <td width="20%" align="center">1. </td>
-                          <td width="40%" align="center"><a href="<?php echo base_url();?>player/jugador">John Cristobal</a></td>
-                          <td width="20%" align="center">30</td>
-                          <td width="20%" align="center">30</td>
-                      </tr>
-                      <!--tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                      </tr>
-                    </tbody>
-                </table> 
-                </div-->
-            </div>
             </form>
 
         </div><!-- End container -->
