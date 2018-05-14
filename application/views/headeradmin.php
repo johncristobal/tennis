@@ -9,6 +9,7 @@
                     <!--li><a href="profile.html"></a></li-->
                 				
                 <li><a href="<?php echo base_url();?>admin/inicio">Torneos</a>
+                <li><a href="<?php echo base_url();?>admin/rememberMail">Recordatorios</a>
                 <!--ul>
                     <li><a href="<?php echo base_url();?>torneos/calendario">Calendario</a></li>
                         <li><a href="calories-burned-heart-rate.html">Partidos</a></li>

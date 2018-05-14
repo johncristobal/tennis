@@ -41,7 +41,7 @@ class users extends CI_Controller{
              'Nombre'=>$nombre,
         );	
         
-        $datos=$this->load->view("emailTemplate3",$data,TRUE);					
+        $datos=$this->load->view("correos/inscripcion",$data,TRUE);					
         $this->email->from('hola@madrugaytors.com', 'Tennis');
         $this->email->to($correo);
         $this->email->cc('nowoscmexico@gmail.com');

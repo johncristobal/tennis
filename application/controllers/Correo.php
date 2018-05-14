@@ -65,7 +65,7 @@ class Correo extends CI_Controller{
          'Nombre'=>$nombre,
             );		
 
-        $datos2=$this->load->view("emailTemplate2",$data,TRUE);						
+        $datos2=$this->load->view("correos/contacto",$data,TRUE);						
         $this->email->from('hola@madrugaytors.com', 'Tennis');
         $this->email->to($correo);
         $this->email->subject('Gracias por su contacto');          
@@ -78,6 +78,11 @@ class Correo extends CI_Controller{
     }        
 
     public function vercorreo(){
-        $this->load->view('emailTemplate3');
+        $data['nombre'] = "John";
+        $data['fecha'] = "14-05-2018";
+        $data['rival'] = "rival";
+        $data['deportivo'] = "Izcalli";
+        //player and games - send correo
+        $this->load->view('correos/recordatorio_juego',$data);
     }        
 }

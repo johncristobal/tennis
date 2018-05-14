@@ -214,6 +214,11 @@ class Torneomodel extends CI_Model{
         return $last_row->nombre;        
     }
 
+        public function getNameFromIdEstatus($id){
+        $last_row=$this->db->select('descripcion')->from('estatus')->where('id',$id)->limit(1)->get()->row();
+        return $last_row->descripcion;        
+    }
+
     public function getrankingfromid($id){
         $last_row=$this->db->select('rank_act')->from('estadisticas_jugador')->where('fkjugador',$id)->limit(1)->get()->row();
         return $last_row->rank_act;                
@@ -226,6 +231,16 @@ class Torneomodel extends CI_Model{
         else
             return "0";
     }
+
+    public function getPartidoFromId($id){
+        $last_row=$this->db->select('*')->from('partidos')->where('id',$id)->get()->row();
+        if(isset($last_row)){
+            return $last_row;   
+        }
+        else {
+            return "0";
+        }
+    }
     
     public function getPartidoSemana(){
         $last_row=$this->db->select('fkjugador1,fkjugador2')->from('partidos')->where('estatus',5)->limit(1)->get()->row();
@@ -234,4 +249,164 @@ class Torneomodel extends CI_Model{
         else
             return "0";
     }           
+    
+    public function getFechasPartidos(){
+        $query="SELECT DISTINCT fecha FROM `partidos`";
+        $results=$this->db->query($query);
+        if($results->num_rows()>0){
+            return $results->result_array();
+        }else{
+            return "0";
+        }
+    }
+    
+    public function getProximosPartidosFromFecha($fechaProxima){
+        
+        $data = array();
+        
+        $partidosi = $this->db->select("p.id,p.fkjugador1,p.fkjugador2,p.fecha,p.confirmafk1,p.confirmafk2")
+            ->from('partidos p')
+            //->where('fecha',$fechaProxima)
+            //->join('jugador j','j.id = '.$id)
+            ->where("(fecha='".$fechaProxima."')")// and (fkjugador1=".$id." or fkjugador2=".$id.")")
+            //->where("p.fkjugador1=".$id.' or p.fkjugador2='.$id)
+            ->get()->result_array();
+        
+        if(count($partidosi)>0){
+            
+            $partidosfinal = array();
+            foreach ($partidosi as $partido){
+
+                $partidosfinaltemp = array();
+                $partidosfinaltemp['id'] = $partido['id'];
+                $partidosfinaltemp['nombre1'] = $this->getNameFromId($partido['fkjugador1']);
+                $partidosfinaltemp['nombre2'] = $this->getNameFromId($partido['fkjugador2']);
+                $partidosfinaltemp['fecha'] = $partido['fecha'];
+                $partidosfinaltemp['estatus1'] = $this->getNameFromIdEstatus($partido['confirmafk1']);
+                $partidosfinaltemp['estatus2'] = $this->getNameFromIdEstatus($partido['confirmafk2']);
+                
+                array_push($partidosfinal, $partidosfinaltemp);
+            }
+            
+            return $partidosfinal;
+            //iteramos los partidos...
+            //en un arreglo guardamos la fecha y el nombre del rival
+            //decimos que si fkjugador1 = id, entonces fkjugador2
+            //viceversa si fkjugador2 = id, entonces fkjugador1
+            
+            /*foreach ($partidosi as $partido) {
+                $datos = array();
+                /*if($id == $partido['fkjugador1']){
+                    $datos['idrival'] = $partido['fkjugador2'];
+                }else{
+                    $datos['idrival'] = $partido['fkjugador1'];                    
+                }*//*
+                $datos['idrival1'] = $partido['fkjugador1'];
+                $datos['idrival2'] = $partido['fkjugador2'];
+                $datos['estatusconfirma1'] = $partido['confirmafk1'];
+                $datos['estatusconfirma2'] = $partido['confirmafk2'];
+                $datos['fecha'] = $partido['fecha'];
+                $datos['idusuario'] = $id;
+                
+                $data[$partido['id']] = $datos;
+            } 
+                 *            return $data;
+                 */
+            
+            
+        }else{
+            return "";            
+        }        
+    }
+    
+    public function getProximosPartidos($fechaProxima,$fechaProxima2,$id){
+        
+        $data = array();
+        
+        $partidosi = $this->db->select("p.id,p.fkjugador1,p.fkjugador2,p.fecha,p.confirmafk1,p.confirmafk2")
+            ->from('partidos p')
+            //->where('fecha',$fechaProxima)
+            //->join('jugador j','j.id = '.$id)
+            ->where("(fecha='".$fechaProxima."' or fecha='".$fechaProxima2."')")// and (fkjugador1=".$id." or fkjugador2=".$id.")")
+            //->where("p.fkjugador1=".$id.' or p.fkjugador2='.$id)
+            ->get()->result_array();
+        
+        if(count($partidosi)>0){
+            
+            $partidosfinal = array();
+            foreach ($partidosi as $partido){
+
+                $partidosfinaltemp = array();
+                $partidosfinaltemp['id'] = $partido['id'];
+                $partidosfinaltemp['nombre1'] = $this->getNameFromId($partido['fkjugador1']);
+                $partidosfinaltemp['nombre2'] = $this->getNameFromId($partido['fkjugador2']);
+                $partidosfinaltemp['fecha'] = $partido['fecha'];
+                $partidosfinaltemp['estatus1'] = $this->getNameFromIdEstatus($partido['confirmafk1']);
+                $partidosfinaltemp['estatus2'] = $this->getNameFromIdEstatus($partido['confirmafk2']);
+                
+                array_push($partidosfinal, $partidosfinaltemp);
+            }
+            
+            return $partidosfinal;
+            //iteramos los partidos...
+            //en un arreglo guardamos la fecha y el nombre del rival
+            //decimos que si fkjugador1 = id, entonces fkjugador2
+            //viceversa si fkjugador2 = id, entonces fkjugador1
+            
+            /*foreach ($partidosi as $partido) {
+                $datos = array();
+                /*if($id == $partido['fkjugador1']){
+                    $datos['idrival'] = $partido['fkjugador2'];
+                }else{
+                    $datos['idrival'] = $partido['fkjugador1'];                    
+                }*//*
+                $datos['idrival1'] = $partido['fkjugador1'];
+                $datos['idrival2'] = $partido['fkjugador2'];
+                $datos['estatusconfirma1'] = $partido['confirmafk1'];
+                $datos['estatusconfirma2'] = $partido['confirmafk2'];
+                $datos['fecha'] = $partido['fecha'];
+                $datos['idusuario'] = $id;
+                
+                $data[$partido['id']] = $datos;
+            } 
+                 *            return $data;
+                 */
+            
+            
+        }else{
+            return "";            
+        }        
+    }
+    
+    //actualiza estatus partido segun usario fkjugador
+    public function updateEstatusPartido($idjugador,$idpartido,$estatus){
+        
+        $last_row=$this->db->select('*')->from('partidos')->where('id',$idpartido)->get()->row();
+        if(isset($last_row)){
+            
+            if($last_row->fkjugador1 == $idjugador){
+                $updateData = array(
+                    'confirmafk1' => $estatus
+                );
+
+            }else if($last_row->fkjugador2 == $idjugador){
+                $updateData = array(
+                    'confirmafk2' => $estatus
+                );
+
+            }else{
+                //raro pero podria pasar
+                return "0";
+            }
+            
+            $this->db->where('id', $idpartido);
+            $this->db->update('partidos', $updateData);
+            
+            $insert_id = $this->db->insert_id();
+            return  $insert_id;
+        }
+        else {
+            return "0";
+        }
+    }
 }

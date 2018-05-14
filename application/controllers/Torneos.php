@@ -159,4 +159,47 @@ class Torneos extends CI_Controller{
         $date->modify('+'.$cont.' day');
         echo $date->format('y-m-d') . "\n";
     }
+    
+    public function confirmarPartido($idjugador,$idpartido,$estatus){
+     
+        //update partido from estatus
+        //check estatus
+        //redirect
+        $this->Torneomodel->updateEstatusPartido($idjugador,$idpartido,$estatus);
+        
+        //confirma
+        if($estatus == 7){
+            redirect('torneos/gracias');
+            
+        }else if($estatus == 8){
+            //rechaza
+            redirect('torneos/rechaza');
+        }
+        
+    }
+    
+    public function gracias(){
+        /*echo "Gracias";
+        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+         $string = '';
+        $max = strlen($characters) - 1;
+        for ($i = 0; $i < 10; $i++) {
+             $string .= $characters[mt_rand(0, $max)];
+        }
+        echo $string;*/
+        $this->load->view('torneo/confirmausuario');     
+    }
+    
+    public function rechaza(){
+        /*echo "Gracias";
+        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+         $string = '';
+        $max = strlen($characters) - 1;
+        for ($i = 0; $i < 10; $i++) {
+             $string .= $characters[mt_rand(0, $max)];
+        }
+        echo $string;*/
+        $this->load->view('torneo/rechazausuario');     
+    }
+
 }

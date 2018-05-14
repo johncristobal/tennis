@@ -8,7 +8,7 @@
                     </p>
                     <ul>
                         <!--li><i class="icon-user"></i> Personal trainer Name</li-->
-                        <li><i class="icon-phone"></i> Telefono: 55 0000-0000 </li>
+                        <li><i class="icon-phone"></i> Telefono: 55 8614-0593 </li>
                         <li><i class="icon-envelope"></i> Email: <a href="mailto:nowoscmexico@gmail.com">nowoscmexico@gmail.com</a></li>
                         <!--li><i class="icon-skype"></i> Skype name: Planar</li-->
                     </ul>

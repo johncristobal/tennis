@@ -21,6 +21,8 @@ class admin extends CI_Controller{
         $this->load->model('Jugador');
         $this->load->model('Estadisticasmodel');
 
+        $this->load->library("email");
+
     }
     //put your code here
     
@@ -240,6 +242,7 @@ class admin extends CI_Controller{
             echo "0";
     }
 
+    //save torneo
     public function saveTorneo(){
         
         //valida tipo torneo de sesion
@@ -410,6 +413,7 @@ class admin extends CI_Controller{
         redirect('admin/resultados/'.$id);
         
     }	
+    
     //function to update estadisticas_jugador
     public function updateStatistics(){
 
@@ -445,8 +449,157 @@ class admin extends CI_Controller{
 
     }
 
+    //send mails with data
+    public function sendMailsRememberGames(){
+        
+        $checks = $this->input->post();
+        
+        $jugadores = $this->Torneomodel->getJugadores();
+        foreach ($jugadores as $jugador) {
+            
+            //de cada jugador, obtenogo sus rivales para mandar un solo correo
+            $partidosjugadortemp = array();
+            $partidorivales = array();
+            foreach ($checks as $value) {
+                //if value has data, then check selected, get values from partido with id 
+                if($value != ""){
+                    $partido = $this->Torneomodel->getPartidoFromId($value);    //obtengo partido
+                    $partidorivales['idpartido'] = $value;                      //guardo id partido
+                    if($jugador->id == $partido->fkjugador1){                   //if else para guardar rival
+                        $partidorivales['idrival'] = $this->Torneomodel->getNameFromId($partido->fkjugador2);
+                    }else if($jugador->id == $partido->fkjugador2){
+                        $partidorivales['idrival'] = $this->Torneomodel->getNameFromId($partido->fkjugador1);                      
+                    }else{
+                        continue;
+                    }
+                    
+                    $partidorivales['fecha'] = $partido->fecha;                 //guardo fecha
+
+                    array_push($partidosjugadortemp, $partidorivales);
+                }                         
+            }
+            
+            if(count($partidosjugadortemp)>0)
+            {                                                                   //tengo partidos, mando correos
+                $data['nombre'] = $jugador->nombre;
+                $data['idjugador'] = $jugador->id;
+                $data["datos"] = $partidosjugadortemp;
+                // en $partidosjugadortemp tengo los rivales del jugador en foreach
+                //en vezz de cargar vista, se envia correo a los jugadores...1
+
+                // enviar correo
+                $correo = $jugador->correo;
+                $this->sendMailRememberGame($correo, $data);
+                
+                //mostrar info en vista unicamente
+                //$this->load->view('correos/recordatorio_juego',$data);
+                //break;
+            }
+        }
+        
+        //when finish, load...
+        redirect('admin/inicio');
+    }
+
+    public function saveTemporalFecha(){
+        $fecha = $this->input->post('fecha');        
+        $this->session->set_userdata('fecha', $fecha);
+        echo "si";
+    }
+    
+    public function rememberMailFecha(){
+        
+        $fecha = $this->session->userdata('fecha');    
+        $date = new DateTime($fecha);    //chenage to datetime
+        
+        $partidos_fin_semana_from_jugador = $this->Torneomodel->getProximosPartidosFromFecha($fecha,"","");  //get partidos del sabado
+        $fechas = $this->Torneomodel->getFechasPartidos();
+
+        /*$jugadores = $this->Torneomodel->getJugadores();
+        foreach ($jugadores as $jugador) {
+            $partidos_fin_semana_from_jugador = $this->Torneomodel->getProximosPartidos($fechasabado->format('Y-m-d'),$fechadomingo->format('Y-m-d'),$jugador->id);  //get partidos del sabado
+            
+            if ($partidos_fin_semana_from_jugador != ""){
+                //$data['nombre'] = $jugador->nombre;
+                $data[$jugador->id] = $partidos_fin_semana_from_jugador;
+            }
+            //player and games - send correo
+            //$this->load->view('correos/recordatorio_juego',$data);            
+        }*/
+        $data["datos"] = $partidos_fin_semana_from_jugador;
+        $data["fechas"] = $fechas;
+        $this->load->view('admin/recordatorio',$data);                
+    }
+    
+    //funtion to show next games
+    public function rememberMail(){
+        //get players actives
+        //recupero los partidos cuyas fechas sean el proximo fin de semana con base a la fecha actual
+        //se enviaran los jueves/viernes
+        //si es jueves/viernes, recupero los juegos de sabado y domingo proximos
+        //si es otro dia, mandamos leyenda que no hay juegos proximos :)
+                
+        //si hay partidos, mostramos lista de partidos con un check de aquien le mandaremos recordatorio
+        //check jugador a vs jugador b
+        //los que tengan check, mandamos correo:
+        /*
+         * from jugador get all games and send mail with all games
+         */
+        
+        //get list of dates
+        $fechas = $this->Torneomodel->getFechasPartidos();
+        
+        $fechahoy = date("Y-m-d");          //get date       
+        $date = new DateTime($fechahoy);    //chenage to datetime
+        $fechahoytemp = date("Y-m-d");      //get date       
+        $datetemp = new DateTime($fechahoytemp);    //chenage to datetime
+        $fechasabado = $date->modify('+3 day');    //fecha sabado en teoria
+        $fechadomingo = $datetemp->modify('+2 day');    //fecha sabado en teoria
+        
+        $partidos_fin_semana_from_jugador = $this->Torneomodel->getProximosPartidos($fechasabado->format('Y-m-d'),$fechadomingo->format('Y-m-d'),"");  //get partidos del sabado
+            
+        /*$jugadores = $this->Torneomodel->getJugadores();
+        foreach ($jugadores as $jugador) {
+            $partidos_fin_semana_from_jugador = $this->Torneomodel->getProximosPartidos($fechasabado->format('Y-m-d'),$fechadomingo->format('Y-m-d'),$jugador->id);  //get partidos del sabado
+            
+            if ($partidos_fin_semana_from_jugador != ""){
+                //$data['nombre'] = $jugador->nombre;
+                $data[$jugador->id] = $partidos_fin_semana_from_jugador;
+            }
+            //player and games - send correo
+            //$this->load->view('correos/recordatorio_juego',$data);            
+        }*/
+        $data["datos"] = $partidos_fin_semana_from_jugador;
+        $data["fechas"] = $fechas;
+        $this->load->view('admin/recordatorio',$data);
+    }
+    
+    public function sendMailRememberGame($correo,$data){
+        
+        $configmail['protocol']    = 'pop3'; 				
+        $configmail['smtp_host']    = 'p3plcpnl0857.prod.phx3.secureserver.net'; 
+        $configmail['smtp_port']    = 995; 
+        $configmail['smtp_timeout'] = '20'; 
+        $configmail['smtp_user']    = 'hola@madrugaytors.com'; 
+        $configmail['smtp_pass']    = 'emporiowhite'; 
+        $configmail['charset']    = 'utf-8'; 
+        $configmail['newline']    = "\r\n"; 
+        $configmail['mailtype'] = 'html'; 
+        $configmail['validation'] = TRUE;      
+        $this->email->initialize($configmail);
+                
+        $datos=$this->load->view("correos/recordatorio_juego",$data,TRUE);					
+        $this->email->from('hola@madrugaytors.com', 'Tennis');
+        $this->email->to($correo);
+        $this->email->cc('nowoscmexico@gmail.com');
+        $this->email->subject('Recordatorio partido...');          
+        $this->email->message($datos);	
+        $this->email->send();
+    }
+    
     public function cerrar(){
         $this->session->sess_destroy();
         redirect('/');
     }
+    
 }

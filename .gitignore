@@ -38,3 +38,9 @@ js/buscar.js
 !/application/views/emailTemplate.php
 !/application/views/emailTemplate2.php
 !/application/views/emailTemplate3.php
+!/application/views/correos/inscripcion.php
+!/application/views/correos/contacto.php
+!/application/views/correos/recordatorio_juego.php
+!/application/views/torneo/rechazausuario.php
+!/application/views/admin/recordatorio.php
+!/application/views/torneo/confirmausuario.php

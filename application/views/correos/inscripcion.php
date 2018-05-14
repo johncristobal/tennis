@@ -25,16 +25,15 @@
             </td>
         </tr>
         <tr>         
-            <td dir="ltr" valign="top" style="font-size: 18px; line-height: 20px; color: #555555; padding: 40px; text-align: left;">
-                <h1><span style="color:#2f3033;text-align:left; font-weight:600; font-size: 25px; text-transform:initial;">Hola,</span>  <span style="color:#2f3033;text-align:left; font-size: 25px; text-transform: initial; font-weight:100;"><?= $Nombre ?></span></h1>                                                           
-                <p>Muchas gracias por inscribirte a <span style="font-weight: bold;">Madrugaytors</span></p>    
-                <p>Espera pronto noticias de nosotros acerca de los torneos que se acercan...</p>
+            <td dir="ltr" valign="top" style="font-size: 18px; line-height: 20px; color: #555555; padding: 30px; text-align: left;">
+                <h1><span style="color:#2f3033;text-align:left; font-weight:600; font-size: 25px; text-transform:initial; color: #00aeef;">Hola,</span>  <span style="color:#2f3033;text-align:left; font-size: 25px; text-transform: initial; font-weight:100;"><?= $Nombre;?></span></h1>                                                           
+                <p style="font-family: Helvetica Neue;">Muchas gracias por inscribirte a <span style="font-weight: bold;">Madrugaytors</span></p>    
+                <p style="font-family: Helvetica Neue;">Espera pronto noticias de nosotros acerca de los torneos que se acercan...</p>
             </td>    
         </tr>
         <tr>
-            <td style="padding: 40px;text-align: center;background-color: rgba(141,195,63,1);
-    border-radius: 20px;">
-                <a href="http://www.madrugaytors.com"><span style="font-size: 25px; color: #00aeef; text-decoration: none;">www.madrugaytors.com</span></a>
+            <td style="padding: 40px;text-align: center;    border-radius: 20px;">
+                <a href="http://www.madrugaytors.com" style="text-decoration: none;"><span style="font-size: 25px; color: #00aeef;">www.madrugaytors.com</span></a>
             </td>
         </tr>
     </table>
