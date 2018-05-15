@@ -210,7 +210,7 @@ class Torneomodel extends CI_Model{
     }
 
     public function getFechaFromId($id){
-        $last_row=$this->db->select('fecha')->from('partido')->where('id',$id)->limit(1)->get()->row();
+        $last_row=$this->db->select('fecha')->from('partidos')->where('id',$id)->limit(1)->get()->row();
         return $last_row->fecha;        
     }
     

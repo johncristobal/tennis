@@ -22,6 +22,8 @@ class Torneos extends CI_Controller{
         $this->load->model('Torneomodel');
         $this->load->model('Jugador');
         $this->load->model('Estadisticasmodel');
+        $this->load->library("email");
+
     }
     
     public function calendario(){
