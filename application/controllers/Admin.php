@@ -467,8 +467,10 @@ class admin extends CI_Controller{
                     $partidorivales['idpartido'] = $value;                      //guardo id partido
                     if($jugador->id == $partido->fkjugador1){                   //if else para guardar rival
                         $partidorivales['idrival'] = $this->Torneomodel->getNameFromId($partido->fkjugador2);
+                        $partidorivales['id_rival'] = $partido->fkjugador2;
                     }else if($jugador->id == $partido->fkjugador2){
                         $partidorivales['idrival'] = $this->Torneomodel->getNameFromId($partido->fkjugador1);                      
+                        $partidorivales['id_rival'] = $partido->fkjugador1;
                     }else{
                         continue;
                     }
@@ -476,7 +478,7 @@ class admin extends CI_Controller{
                     $partidorivales['fecha'] = $partido->fecha;                 //guardo fecha
 
                     array_push($partidosjugadortemp, $partidorivales);
-                }                         
+                }
             }
             
             if(count($partidosjugadortemp)>0)

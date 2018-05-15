@@ -44,3 +44,5 @@ js/buscar.js
 !/application/views/torneo/rechazausuario.php
 !/application/views/admin/recordatorio.php
 !/application/views/torneo/confirmausuario.php
+!/application/views/correos/confirma.php
+!/application/views/correos/rechaza.php

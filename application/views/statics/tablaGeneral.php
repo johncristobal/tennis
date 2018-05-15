@@ -8,9 +8,9 @@
 				<h2 align="center"><?=$infoTorneo[0]->nombre;?></h2>
 </div>
 <br>
-<div class="container hidden-xs">
+<div class="container">
                     
-    <div class="row">
+    <div class="row hidden-xs">
         <div class="col-sm-2 text-center">
             Posición
         </div>
@@ -35,8 +35,8 @@
 		foreach ($datos as $fila ) {
 			
 		?>
-			<div class="row">
-            <div class="col-sm-2 text-center">
+            <div class="row">
+            <div class="col-sm-2">
                 <strong>
                     <?= $cont ?>
                 </strong>
@@ -46,26 +46,54 @@
                     <a href="<?php echo base_url();?>player/jugador/"><?= $fila->nombre?></a>
                 </span>
             </div>
-            <div class="col-sm-2 text-center">
+            <div class="col-sm-2 hidden-xs text-center">
                 <span>
                 <?= $fila->Jugados ?>
                 </span>
             </div>						
-            <div class="col-sm-2 text-center">
+            <div class="col-xs-12 hidden-md hidden-lg hidden-sm">
+                <span>
+                Partidos jugados: <?= $fila->Jugados ?>
+                </span>
+            </div>						
+                            
+            <div class="col-sm-2 hidden-xs text-center">
                 <span>
                  <?= $fila->Ganados ?>
                 </span>
             </div>
-            <div class="col-sm-2 text-center">
+            <div class="col-xs-6 hidden-md hidden-lg hidden-sm">
+                <span>
+                 Partidos ganados: <?= $fila->Ganados ?>
+                </span>
+            </div>  
+                
+            <div class="col-sm-2 hidden-xs text-center">
                 <span>
                <?= $fila->Perdidos ?>
                 </span>
             </div>
-            <div class="col-sm-2 text-center">
+            <div class="col-xs-6 hidden-md hidden-lg hidden-sm">
+                <span>
+               Partidos perdidos: <?= $fila->Perdidos ?>
+                </span>
+            </div>
+                
+            <div class="col-sm-2 hidden-xs text-center">
                 <span>
                <b> <?= $fila->Puntos ?></b>
                 </span>
-            </div>						
+            </div>
+            <div class="col-xs-12 hidden-md hidden-lg hidden-sm">
+                <span>
+               <b>Puntos: <?= $fila->Puntos ?></b>
+                </span>
+                <br>
+            </div>
+
+                <div class="col-xs-12 hidden-md hidden-lg hidden-sm">
+                    <br>
+                </div>
       </div>
 		<?php
 		$cont++;

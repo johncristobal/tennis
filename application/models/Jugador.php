@@ -6,6 +6,11 @@ class Jugador extends CI_Model{
             $this->load->database();
     }
     
+    public function getCorreoFromId($id){
+        $last_row=$this->db->select('correo')->from('jugador')->where('id',$id)->limit(1)->get()->row();
+        return $last_row->correo;        
+    }
+    
     public function getInfo($id){
         $query="SELECT t1.*, t2.rank_act FROM `jugador` t1 INNER JOIN estadisticas_jugador t2 on t2.fkjugador=$id WHERE t1.id=$id";
 

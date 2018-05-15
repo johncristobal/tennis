@@ -160,22 +160,35 @@ class Torneos extends CI_Controller{
         echo $date->format('y-m-d') . "\n";
     }
     
-    public function confirmarPartido($idjugador,$idpartido,$estatus){
+    public function confirmarPartido($idjugador,$idpartido,$idrival,$estatus){
      
         //update partido from estatus
         //check estatus
         //redirect
         $this->Torneomodel->updateEstatusPartido($idjugador,$idpartido,$estatus);
+        $correo = $this->Jugador->getCorreoFromId($idrival);
+        $fecha = $this->Torneomodel->getFechaFromId($idpartido);
+        
+        $nombrerival = $this->Torneomodel->getNameFromId($idrival);
+        $nombre = $this->Torneomodel->getNameFromId($idjugador);
+        
+        $data = array(
+            "nombre" => $nombrerival,
+            "nombre_rival" => $nombre,
+            "fecha" => $fecha
+        );
         
         //confirma
         if($estatus == 7){
+            //e nviar correo a rival diciendole que su rival asistira
+            //get correo from idrival
+            $this->sendMailConfirma($correo,$data);
             redirect('torneos/gracias');
-            
         }else if($estatus == 8){
-            //rechaza
+            //e nviar correo a rival diciendole que su rival no estara
+            $this->sendMailRechaza($correo,$data);            
             redirect('torneos/rechaza');
         }
-        
     }
     
     public function gracias(){
@@ -202,4 +215,54 @@ class Torneos extends CI_Controller{
         $this->load->view('torneo/rechazausuario');     
     }
 
+    public function sendMailConfirma($correo,$data){
+        
+        $configmail['protocol']    = 'pop3'; 				
+        $configmail['smtp_host']    = 'p3plcpnl0857.prod.phx3.secureserver.net'; 
+        $configmail['smtp_port']    = 995; 
+        $configmail['smtp_timeout'] = '20'; 
+        $configmail['smtp_user']    = 'hola@madrugaytors.com'; 
+        $configmail['smtp_pass']    = 'emporiowhite'; 
+        $configmail['charset']    = 'utf-8'; 
+        $configmail['newline']    = "\r\n"; 
+        $configmail['mailtype'] = 'html'; 
+        $configmail['validation'] = TRUE;      
+        $this->email->initialize($configmail);
+                
+        $datos=$this->load->view("correos/confirma",$data,TRUE);					
+        $this->email->from('hola@madrugaytors.com', 'Tennis');
+        $this->email->to($correo);
+        $this->email->cc('nowoscmexico@gmail.com');
+        $this->email->subject('Recordatorio partido...');          
+        $this->email->message($datos);	
+        $this->email->send();
+    }
+    
+    public function sendMailRechaza($correo,$data){
+        
+        $configmail['protocol']    = 'pop3'; 				
+        $configmail['smtp_host']    = 'p3plcpnl0857.prod.phx3.secureserver.net'; 
+        $configmail['smtp_port']    = 995; 
+        $configmail['smtp_timeout'] = '20'; 
+        $configmail['smtp_user']    = 'hola@madrugaytors.com'; 
+        $configmail['smtp_pass']    = 'emporiowhite'; 
+        $configmail['charset']    = 'utf-8'; 
+        $configmail['newline']    = "\r\n"; 
+        $configmail['mailtype'] = 'html'; 
+        $configmail['validation'] = TRUE;      
+        $this->email->initialize($configmail);
+                
+        $datos=$this->load->view("correos/rechaza",$data,TRUE);					
+        $this->email->from('hola@madrugaytors.com', 'Tennis');
+        $this->email->to($correo);
+        $this->email->cc('nowoscmexico@gmail.com');
+        $this->email->subject('Recordatorio partido...');          
+        $this->email->message($datos);	
+        $this->email->send();
+    }
+    
+    public function verCorreo($data){
+
+        $this->load->view("correos/rechaza",$data);					
+    }
 }
