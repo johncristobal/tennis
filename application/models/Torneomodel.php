@@ -72,7 +72,7 @@ class Torneomodel extends CI_Model{
     }
 
     public function getTorneoData($id){
-        $this->db->select('t.id,t.nombre,t.fecha_inicio,lug.lugar,tt.descripcion,t.tipo');
+        $this->db->select('t.id,t.nombre,DATE_FORMAT(t.fecha_inicio, "%d/%m/%Y") as fecha_inicio,lug.lugar,tt.descripcion,t.tipo');
         //$this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
         //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
 
@@ -101,7 +101,7 @@ class Torneomodel extends CI_Model{
         $arregloRondas = array();
         
         for($i=0;$i<=$last_row->ronda;$i++){
-            $partidosi = $this->db->select("id,ganador,fecha,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2,estatus")
+            $partidosi = $this->db->select("id,ganador, fecha,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2,estatus")
                     ->from('partidos p')
                     ->where('fktorneo',$id)
                     ->where('ronda',$i)
@@ -123,9 +123,9 @@ class Torneomodel extends CI_Model{
     
     public function gettorneos(){
         //$this->db->select('*');
-        $this->db->select('t.id,t.nombre,t.fecha_inicio,lug.lugar,tt.descripcion');
+        $this->db->select('t.id,t.nombre,DATE_FORMAT(t.fecha_inicio, "%d/%m/%Y") as fecha_inicio,lug.lugar,tt.descripcion');
         //$this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
-        //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
+        //$this->db->select("DATE_FORMAT( t.fecha_inicio, '%d/%m/%Y')",      FALSE );
 
         $this->db->from('torneo t');
         $this->db->join('lugar lug', 'lug.id = t.lugar');
@@ -210,7 +210,7 @@ class Torneomodel extends CI_Model{
     }
 
     public function getFechaFromId($id){
-        $last_row=$this->db->select('fecha')->from('partidos')->where('id',$id)->limit(1)->get()->row();
+        $last_row=$this->db->select("DATE_FORMAT(fecha, '%d/%m/%Y') as fecha")->from('partidos')->where('id',$id)->limit(1)->get()->row();
         return $last_row->fecha;        
     }
     
@@ -238,7 +238,7 @@ class Torneomodel extends CI_Model{
     }
 
     public function getPartidoFromId($id){
-        $last_row=$this->db->select('*')->from('partidos')->where('id',$id)->get()->row();
+        $last_row=$this->db->select('id,resultado,ganador,DATE_FORMAT(fecha, "%d/%m/%Y") as fecha,fktorneo,fkjugador1,fkjugador2,ronda,estatus,confirmafk1,confirmafk2')->from('partidos')->where('id',$id)->get()->row();
         if(isset($last_row)){
             return $last_row;   
         }
@@ -328,7 +328,7 @@ class Torneomodel extends CI_Model{
         
         $data = array();
         
-        $partidosi = $this->db->select("p.id,p.fkjugador1,p.fkjugador2,p.fecha,p.confirmafk1,p.confirmafk2")
+        $partidosi = $this->db->select("p.id,p.fkjugador1,p.fkjugador2,DATE_FORMAT(p.fecha, '%d/%m/%Y') as fecha,p.confirmafk1,p.confirmafk2")
             ->from('partidos p')
             //->where('fecha',$fechaProxima)
             //->join('jugador j','j.id = '.$id)

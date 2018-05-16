@@ -55,7 +55,7 @@ class Estadisticasmodel extends CI_Model{
         $data['ganados1'] = $ganados1->ganador;
         $data['ganados2'] = $ganados2->ganador;
                         
-        $this->db->select("j.id,j.edad,j.nombre,j.fecha_nac,j.plays,j.altura,ej.rank_act,ej.jganados,ej.jperdidos,ej.torneosj");
+        $this->db->select("j.id,j.edad,j.nombre,DATE_FORMAT(j.fecha_nac, '%d/%m/%Y') as fecha_nac,j.plays,j.altura,ej.rank_act,ej.jganados,ej.jperdidos,ej.torneosj");
         $this->db->from('estadisticas_jugador ej');
         $this->db->join('jugador j', 'j.id = ej.fkjugador');
         $this->db->order_by('ej.fkjugador','asc');
@@ -71,7 +71,7 @@ class Estadisticasmodel extends CI_Model{
             $data['datos1'] = "0";            
         }
         
-        $this->db->select("j.id,j.edad,j.nombre,j.fecha_nac,j.altura,j.plays,ej.rank_act,ej.jganados,ej.jperdidos,ej.torneosj");
+        $this->db->select("j.id,j.edad,j.nombre,DATE_FORMAT(j.fecha_nac, '%d/%m/%Y') as fecha_nac,j.altura,j.plays,ej.rank_act,ej.jganados,ej.jperdidos,ej.torneosj");
         $this->db->from('estadisticas_jugador ej');
         $this->db->join('jugador j', 'j.id = ej.fkjugador');
         $this->db->order_by('ej.fkjugador','asc');
