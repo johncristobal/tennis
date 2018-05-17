@@ -17,7 +17,7 @@
                 </div>
             </div-->
             
-            <h3 class="title-green">Resultados</h3>
+            <h1 class="title-green">Torneo</h3>
             
             <!--div class="row text-center plans">
             

@@ -23,18 +23,18 @@
                     <div class="flexslider">
                         <ul class="slides">
                             <li><img src="<?php echo base_url();?>img/banners/vista1.png" alt="">
-                            <p class="flex-caption">Torneo de tenis - Madrugaytors</p>
+                                <h1 class="flex-caption">Torneo de tenis - Madrugaytors</h1>
                             </li>
                             <li><img src="<?php echo base_url();?>img/banners/vista2.png" alt="">
-                            <p class="flex-caption">Conócenos</p>
+                            <h1 class="flex-caption">Conócenos</h1>
                             </li>
                             <li>
                             <img src="<?php echo base_url();?>img/banners/vista3.png" alt="">
-                            <p class="flex-caption">Inscríbete a nuestro próximo torneo</p>
+                            <h1 class="flex-caption">Inscríbete a nuestro próximo torneo</h1>
                             </li>
                             <li>
                             <img src="<?php echo base_url();?>img/banners/vista4.png" alt="">
-                            <p class="flex-caption">Excelentes canchas para practicar</p>
+                            <h1 class="flex-caption">Excelentes canchas para practicar</h1>
                             </li>
                             <!--li>
                             <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt="">
