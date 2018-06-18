@@ -8,6 +8,7 @@
                 <!--li><a href="<?php echo base_url();?>Player/perfil">Jugadores</a></li-->
                     <!--li><a href="profile.html"></a></li-->
                 				
+                <li><a href="<?php echo base_url();?>admin/jugadores">Jugadores</a>
                 <li><a href="<?php echo base_url();?>admin/inicio">Torneos</a>
                 <li><a href="<?php echo base_url();?>admin/rememberMail">Recordatorios</a>
                 <!--ul>

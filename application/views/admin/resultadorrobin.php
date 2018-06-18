@@ -157,19 +157,30 @@
                     </div-->
                 <?php
                 $i=1;
-                foreach ($partidos as $value){                    
+                foreach ($partidos as $value){                   
                 ?>  
                     <table class="table-striped" width="100%">
                     <thead>
                         <tr>
                             <th>
-                                Semana <?=$i?>
+                                <?php 
+                                    date_default_timezone_set('America/Mexico_City');
+                                    $date = new DateTime($value[0]->fecha);
+                                    $fechasemanal = $date->format('d-m-Y');
+                                ?>
+                                <span>Semana <?=$i?></span>
+                            </th>
+                            <th class="centered">
+                                <span>&nbsp;</span>
+                            </th>
+                            <th>
+                                <span><?=$fechasemanal?></span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                 <?php
-                foreach ($value as $rondas) { 
+                foreach ($value as $rondas) {
                 $flag = 0;
                     //Validacion para ronund rpbin impar
                 if($rondas->fkjugador1 != $rondas->fkjugador2){                        
@@ -181,7 +192,7 @@
                         <td width="2%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="<?=$rondas->fkjugador2;?>" <?php if($rondas->ganador == $rondas->fkjugador2){echo "checked"; $flag=1;}?>>&nbsp;</label></div></td>
                         <td width="23%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
                                                 
-                        <td width="15%">
+                        <!--td width="15%">
                             <label>
                             <?php 
                                 date_default_timezone_set('America/Mexico_City');
@@ -189,11 +200,11 @@
                                 echo $date->format('d-m-Y');
                             ?>
                             </label>
-                        </td>
+                        </td-->
                         <td width="10%"><div class="radio"><label><input type="radio" name="radio<?=$rondas->id?>" style="display:block;" value="0" <?php if($flag == 0){echo "checked";}?>>Empate</label></div></td>
                         <td width="10%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false"></td>
                         
-                        <td width="5%"><div class="radio"><label><input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>H2H Semana</label></div></td>
+                        <td width="15%"><div class="radio"><label><input type="radio" name="h2hselected" style="display:block;" value="<?=$rondas->id?>" <?php if($rondas->estatus==5){echo "checked";}?>>H2H Semana</label></div></td>
                         <!--td width="5%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td-->
                     </tr>
                 <?php    

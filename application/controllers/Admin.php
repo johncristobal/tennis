@@ -599,6 +599,36 @@ class admin extends CI_Controller{
         $this->email->send();
     }
     
+    //--------------------get info de los jugadores-----------------------------
+    public function jugadores(){
+        /*
+         * get info from jugadores
+         * show everything that you can change...
+         * - 
+         * 
+         */
+        $jugadores = $this->Torneomodel->getJugadores();
+        foreach ($jugadores as $jugador) {
+            
+            //player and games - send correo
+            //$this->load->view('correos/recordatorio_juego',$data);            
+        }
+        $data["datos"] = $jugadores;
+        //$data["fechas"] = $fechas;
+        $this->load->view('admin/jugadores',$data);
+    }
+    
+    //--------------------edit specifi player-----------------------------
+    public function editar_jugaador($id){
+        /*
+         * get info from jugadores
+         * show everything that you can change...
+         * - 
+         * 
+         */
+        echo $id;
+    }
+    
     public function cerrar(){
         $this->session->sess_destroy();
         redirect('/');

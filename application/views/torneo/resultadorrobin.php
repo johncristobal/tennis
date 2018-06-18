@@ -207,7 +207,15 @@
                     <thead>
                         <tr>
                             <th>
-                                Semana <?=$i?>
+                                <?php 
+                                    date_default_timezone_set('America/Mexico_City');
+                                    $date = new DateTime($value[0]->fecha);
+                                    $fechasemanal = $date->format('d-m-Y');
+                                ?>
+                                <span>Semana <?=$i?></span>
+                            </th>
+                            <th>
+                                <span><?=$fechasemanal?></span>
                             </th>
                         </tr>
                     </thead>
@@ -223,7 +231,7 @@
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></td>
                         <td width="20%"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></td>
                                                 
-                        <td width="20%">
+                        <!--td width="20%">
                             <label>
                             <?php 
 
@@ -232,10 +240,10 @@
                             echo $date->format('d-m-Y');
                             ?>
                             </label>
-                        </td>
+                        </td-->
                         <td width="15%"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false" readonly="true" style="background-color:#ECF0F1"></td>
                         
-                        <td width="15%"><a class="button_small" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
+                        <td width="15%" align="center"><a class="button_small" style="border-radius: 10px; padding: 3px 30px;" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></td>
                     </tr>
                 <?php    
                 } else {

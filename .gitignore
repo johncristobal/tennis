@@ -46,3 +46,4 @@ js/buscar.js
 !/application/views/torneo/confirmausuario.php
 !/application/views/correos/confirma.php
 !/application/views/correos/rechaza.php
+!/application/views/admin/jugadores.php

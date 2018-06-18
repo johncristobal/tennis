@@ -107,7 +107,7 @@ class Torneomodel extends CI_Model{
                     ->where('ronda',$i)
                     ->get()->result();
             
-            foreach ($partidosi as $rondas) {                
+            foreach ($partidosi as $rondas) {      
                 $rondas->rank1 = $this->getrankingfromid($rondas->fkjugador1);
                 $rondas->rank2 = $this->getrankingfromid($rondas->fkjugador2);
                 $rondas->nombre1 = $this->getNameFromId($rondas->fkjugador1);
