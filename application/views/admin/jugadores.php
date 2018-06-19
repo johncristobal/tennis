@@ -50,16 +50,19 @@
             ?>
             <div class="row">
 
-                <div class="col-md-2">
+                <div class="col-md-1">
                     Id
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     Nombre
                 </div>
                 <div class="col-md-3">
+                    Estatus
+                </div>
+                <div class="col-md-1">
                     Editar
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-1">
                     Eliminar
                 </div>
 
@@ -72,17 +75,20 @@
             <div class="container">
                 <div class="row">
                     
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <?=$row->id?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                     <?=$row->nombre?>
                     </div>
                     <div class="col-md-3">
-                        <button onclick="editPlayer(<?=$row->id?>)"> </button>
+                    <?=$row->descripcion?>
                     </div>
-                    <div class="col-md-3">
-                        Eliminar
+                    <div class="col-md-1">
+                        <img src="<?php echo base_url()?>img/baseline_build_black_18dp.png" onclick="editPlayer(<?=$row->id?>)">
+                    </div>
+                    <div class="col-md-1">
+                        <img src="<?php echo base_url()?>img/baseline_delete_black_18dp.png" onclick="deletePlayer(<?=$row->id?>)">
                     </div>
                 </div><!-- End row -->
             </div> <!-- End container -->
@@ -116,10 +122,19 @@
  <script type="text/javascript">
      
      function editPlayer(id){
-         alert(id);
+         //alert(id);
          window.location.href = "<?php base_url()?>editar_jugaador/"+id;
      }
-     
+
+     function deletePlayer(id){
+        var a = alert("¿Seguro que deshabilitar al jugador?");
+        if(a){
+            //eliminar - solo poner estatus en 3
+        }else{
+            //no hago nada :) 
+        }
+     }
+
  </script>
 <?php 
     $this->load->view("scriptfoo");

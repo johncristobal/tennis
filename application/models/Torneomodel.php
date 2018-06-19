@@ -143,6 +143,27 @@ class Torneomodel extends CI_Model{
             return $row;
         }
     }
+    
+    public function getJugadoresAdmin(){
+                $this->db->select('j.id,j.nombre,es.descripcion');
+        //$this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
+        //$this->db->select("DATE_FORMAT( date, '%H:%i') as time_human",      FALSE );
+
+        $this->db->from('jugador j');
+        $this->db->join('estatus es', 'es.id = j.estatus');
+        //$this->db->join('tipo_torneo tt', 'tt.id = t.tipo');
+        //$this->db->where('t.id', $id );
+
+        //where year = 2017
+        
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0 )
+        {
+            $row = $query->result();
+            return $row;
+        }
+    }
 	
     public function getJugadores(){
 		$query="SELECT * FROM jugador";

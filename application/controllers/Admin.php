@@ -607,12 +607,7 @@ class admin extends CI_Controller{
          * - 
          * 
          */
-        $jugadores = $this->Torneomodel->getJugadores();
-        foreach ($jugadores as $jugador) {
-            
-            //player and games - send correo
-            //$this->load->view('correos/recordatorio_juego',$data);            
-        }
+        $jugadores = $this->Torneomodel->getJugadoresAdmin();
         $data["datos"] = $jugadores;
         //$data["fechas"] = $fechas;
         $this->load->view('admin/jugadores',$data);
@@ -626,8 +621,12 @@ class admin extends CI_Controller{
          * - 
          * 
          */
-        echo $id;
+        $result=$this->Jugador->getInfo($id);
+        $data['datos']=$result;
+        $this->load->view('admin/editprofile',$data);
+
     }
+
     
     public function cerrar(){
         $this->session->sess_destroy();
