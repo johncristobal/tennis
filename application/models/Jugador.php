@@ -51,6 +51,32 @@ class Jugador extends CI_Model{
         else
             return "0";
     }
+    
+    public function updatePlayer($datos,$id){
+        $this->db->where('id', $id);
+        $this->db->update('jugador', $datos);
+        
+        return $this->db->affected_rows();
+    }
+    
+    public function insertPlayer($datos){
+        $this->db->insert('jugador', $datos);
+        $id = $this->db->insert_id();
+        $estadistcias = array(
+            'jganados' => 0,
+            'jperdidos' => 0,
+            'puntos' => 0,
+            'torneosj' => 0,
+            'puntos_perdidos' => 0,
+            'rank_ant' => 0,
+            'rank_act' => 0,
+            'fkjugador' => $id
+        );
+        $this->db->insert('estadisticas_jugador', $estadistcias);        
+        
+        return $this->db->affected_rows();
+    }
+
 }
 
 ?>

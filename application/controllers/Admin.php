@@ -598,6 +598,18 @@ class admin extends CI_Controller{
         $this->email->message($datos);	
         $this->email->send();
     }
+
+    //--------------------get info de los jugadores-----------------------------
+    public function registro_jugador(){
+        /*
+         * get info from jugadores
+         * show everything that you can change...
+         * - 
+         * 
+         */
+        $this->load->view('admin/editprofile_empty');
+
+    }
     
     //--------------------get info de los jugadores-----------------------------
     public function jugadores(){
@@ -624,9 +636,42 @@ class admin extends CI_Controller{
         $result=$this->Jugador->getInfo($id);
         $data['datos']=$result;
         $this->load->view('admin/editprofile',$data);
-
     }
 
+    //--------------------edit specifi player-----------------------------
+    public function update_player(){
+        /*
+         * get info from jugadores
+         * show everything that you can change...
+         * - 
+         * 
+         */
+        $datos = $this->input->post();
+        $id = $this->input->post('id');
+        $result=$this->Jugador->updatePlayer($datos,$id);
+
+        if($result == "0"){
+            
+        }else{
+            
+        }
+        
+        redirect('/admin/jugadores');
+    }
+    
+    public function insert_player(){
+        $datos = $this->input->post();
+
+        $result=$this->Jugador->insertPlayer($datos);
+
+        if($result == "0"){
+            
+        }else{
+            
+        }
+        
+        redirect('/admin/jugadores');
+    }
     
     public function cerrar(){
         $this->session->sess_destroy();

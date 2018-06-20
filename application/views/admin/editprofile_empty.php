@@ -7,41 +7,41 @@
 		$this->load->view("headeradmin");
 ?>
         
-    <form method="post" action="<?php echo base_url()?>admin/update_player">
+    <form method="post" action="<?php echo base_url()?>admin/insert_player">
         <div class="container">
                     
-            <h3>Actualizar información</h3>
-            <input type="hidden" name="id" value="<?=$datos->id?>">
+            <h3>Insertar información</h3>
+            <input type="hidden" name="estatus" value="1">
              <div class="row">
                 <div class="col-md-6">
                    <p>
                         <div class="form-group">
                         <label>Nombre completo:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $datos->nombre;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                    </p>
                     <p>
                         <div class="form-group">
                         <label>Edad:</label>
-                        <input type="text" class="form-control" id="edad" name="edad" value="<?php echo $datos->edad;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="edad" name="edad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
                         <label>Altura:</label>
-                        <input type="text" class="form-control" id="altura" name="altura" value="<?php echo $datos->altura;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="altura" name="altura" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
                         <label>Fecha de nacimiento:</label>
-                        <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="<?php echo $datos->fecha_nac;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
                         <label>Plays:</label>
-                        <input type="text" class="form-control" id="plays" name="plays" value="<?php echo $datos->plays;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="plays" name="plays" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                 </div>
@@ -49,31 +49,31 @@
                     <p>
                         <div class="form-group">
                         <label>Drive:</label>
-                        <input type="text" class="form-control" id="Drive" name="Drive" value="<?php echo $datos->Drive;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="Drive" name="Drive" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
                         <label>Reves:</label>
-                        <input type="text" class="form-control" id="Reves" name="Reves" value="<?php echo $datos->Reves;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="Reves" name="Reves" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
                         <label>Servicio:</label>
-                        <input type="text" class="form-control" id="Servicio" name="Servicio" value="<?php echo $datos->Servicio;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="Servicio" name="Servicio" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
                         <label>Velocidad:</label>
-                        <input type="text" class="form-control" id="Velocidad" name="Velocidad" value="<?php echo $datos->Velocidad;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="Velocidad" name="Velocidad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
                         <label>Mentalidad:</label>
-                        <input type="text" class="form-control" id="Mentalidad" name="Mentalidad" value="<?php echo $datos->Mentalidad;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <input type="text" class="form-control" id="Mentalidad" name="Mentalidad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                 </div>
@@ -83,27 +83,12 @@
                 <div class="row">                    
                     <h4 align="center"><i class="fa fa-angle-right"></i>Imagenes</h4>
                     <br>
-                    <?php
-                        if($datos->foto == "1"){
-                    ?>
-                    <p class="col-md-6 text-center">                       
-                        <img src="<?php echo base_url();?>img/jugadores/<?=$datos->id?>/perfil.jpg" alt="" class="img-circle style img-responsive" style="">
-                    </p>
-                    <p class="col-md-6 text-center">
-                        <img src="<?php echo base_url();?>img/jugadores/<?=$datos->id?>/h2h.png" alt="" class="style img-responsive" style="box-shadow: 0px 0px 0px 10px #e8e8e8;">
-                    </p>
-                    <?php
-                        }else{
-                    ?>
                     <p class="col-md-6 text-center">
                         <img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive">
                     </p>
                     <p class="col-md-6 text-center">                       
                         <img src="<?php echo base_url();?>img/blog-1.jpg" alt="" class="style img-responsive" style="box-shadow: 0px 0px 0px 10px #e8e8e8;">
                     </p>    
-                    <?php
-                        }
-                    ?>                    
                 </div>
                                 
                <!-- <div class="row add_top_30">
