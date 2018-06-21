@@ -662,7 +662,7 @@ class admin extends CI_Controller{
     public function insert_player(){
         $datos = $this->input->post();
 
-        $result=$this->Jugador->insertPlayer($datos);
+        /*$result=$this->Jugador->insertPlayer($datos);
 
         if($result == "0"){
             
@@ -670,7 +670,13 @@ class admin extends CI_Controller{
             
         }
         
-        redirect('/admin/jugadores');
+        redirect('/admin/jugadores');*/
+        //remember  chmod -R 777 .
+        $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+        $targetPath = "img/".$_FILES['file']['name']; // Target path where file is to be stored
+        move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+
+        echo "Si";
     }
     
     public function cerrar(){

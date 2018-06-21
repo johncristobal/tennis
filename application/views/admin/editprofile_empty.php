@@ -7,7 +7,7 @@
 		$this->load->view("headeradmin");
 ?>
         
-    <form method="post" action="<?php echo base_url()?>admin/insert_player">
+    <form method="post" action="" id="uploadimage" enctype="multipart/form-data">
         <div class="container">
                     
             <h3>Insertar información</h3>
@@ -84,7 +84,7 @@
                     <h4 align="center"><i class="fa fa-angle-right"></i>Imagenes</h4>
                     <br>
                     <p class="col-md-6 text-center">
-                        <img src="<?php echo base_url();?>img/profile.jpg" alt="" class="img-circle style img-responsive">
+                        <img src="<?php echo base_url();?>img/profile.jpg" id="previewing" alt="" class="img-circle style img-responsive">
                     </p>
                     <p class="col-md-6 text-center">                       
                         <img src="<?php echo base_url();?>img/blog-1.jpg" alt="" class="style img-responsive" style="box-shadow: 0px 0px 0px 10px #e8e8e8;">
@@ -112,12 +112,27 @@
                     </div> -->
                     
                 </div><!-- End row -->
-                <img id="imgFileUpload" alt="Select File" title="Select File" src="orange.png" style="cursor: pointer" />
-<br />
-<span id="spnFilePath"></span>
-<input type="file" id="FileUpload1" style="display: none" />
+                <div class="container">
+                    <br />
+                    <input type="file" name="file" id="file"/>
+                </div>
+                <!--Submit para actualizar informacion-->
+                <div class="container">
+                    <div class="modal-footer centered">
+                        <input type="submit" class="btn btn-info btn-lg" data-dismiss="modal" value="Actualizar información"/>                
+                    </div>
+                </div>
+                
+            </form>
+
+            <div class="container">
+                <h4 id='loading' style="display: none;">loading..</h4>
+                <div id="message"></div>
+            </div>
+        <!-- End container -->
+		
 <script type="text/javascript">
-    window.onload = function () {
+    /*window.onload = function () {
         var fileupload = document.getElementById("FileUpload1");
         var filePath = document.getElementById("spnFilePath");
         var image = document.getElementById("imgFileUpload");
@@ -128,18 +143,58 @@
             var fileName = fileupload.value.split('\\')[fileupload.value.split('\\').length - 1];
             filePath.innerHTML = "<b>Selected File: </b>" + fileName;
         };
-    };
-</script>
-            <div class="container">
-            <div class="modal-footer centered">
-                <input type="submit" class="btn btn-info btn-lg" data-dismiss="modal" value="Actualizar información"/>                
-            </div>
-            </div>
-                
-                </form>
-        <!-- End container -->
-		
-        
+    };*/
+    
+    $(document).ready(function (e) {
+        $("#uploadimage").on('submit',(function(e) {
+            e.preventDefault();
+            $("#message").empty();
+            $('#loading').show();
+            $.ajax({
+                url: "<?php echo base_url()?>admin/insert_player", // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                contentType: false,       // The content type used when sending data to the server.
+                cache: false,             // To unable request pages to be cached
+                processData:false,        // To send DOMDocument or non processed data file it is set to false
+                success: function(data)   // A function to be called if request succeeds
+                {
+                    $('#loading').hide();
+                    $("#message").html(data);
+                }
+            });
+        }));
+
+        // Function to preview image after validation
+        $(function() {
+            $("#file").change(function() {
+                $("#message").empty(); // To remove the previous error message
+                var file = this.files[0];
+                var imagefile = file.type;
+                var match= ["image/jpeg","image/png","image/jpg"];
+                if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+                {
+                    $('#previewing').attr('src','<?php echo base_url();?>img/profile.jpg');
+                    $("#message").html("<p id='error'>Please Select A valid Image File</p>"+"<h4>Note</h4>"+"<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
+                    return false;
+                }
+                else
+                {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+        function imageIsLoaded(e) {
+            $("#file").css("color","green");
+            $('#image_preview').css("display", "none");
+            $('#previewing').attr('src', e.target.result);
+            //$('#previewing').attr('width', '250px');
+            //$('#previewing').attr('height', '230px');
+        };
+    });
+</script>        
 <?php $this->load->view("footer");?>        
  
  <div id="toTop">Back to Top</div>  
