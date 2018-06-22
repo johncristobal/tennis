@@ -7,7 +7,7 @@
 		$this->load->view("headeradmin");
 ?>
         
-    <form method="post" action="" id="uploadimage" enctype="multipart/form-data">
+    <form method="post" action="<?php echo base_url()?>admin/insert_player" id="uploadimage" enctype="multipart/form-data">
         <div class="container">
                     
             <h3>Insertar información</h3>
@@ -16,64 +16,64 @@
                 <div class="col-md-6">
                    <p>
                         <div class="form-group">
-                        <label>Nombre completo:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                            <label>Nombre completo</label> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('nombre'); ?>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="" style="background-color: #fff; border: 1px solid #00aeef;">                        
                         </div>
                    </p>
                     <p>
                         <div class="form-group">
-                        <label>Edad:</label>
-                        <input type="text" class="form-control" id="edad" name="edad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <label>Edad:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('edad'); ?>
+                        <input type="number" class="form-control" id="edad" name="edad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Altura:</label>
+                        <label>Altura:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('altura'); ?>
                         <input type="text" class="form-control" id="altura" name="altura" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Fecha de nacimiento:</label>
+                        <label>Fecha de nacimiento:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('fecha_nac'); ?>
                         <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Plays:</label>
-                        <input type="text" class="form-control" id="plays" name="plays" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <label>Plays:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('plays'); ?>
+                        <input type="number" class="form-control" id="plays" name="plays" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                 </div>
                  <div class="col-md-6">                    
                     <p>
                         <div class="form-group">
-                        <label>Drive:</label>
-                        <input type="text" class="form-control" id="Drive" name="Drive" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <label>Drive:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Drive'); ?>
+                        <input type="number" class="form-control" id="Drive" name="Drive" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Reves:</label>
-                        <input type="text" class="form-control" id="Reves" name="Reves" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <label>Reves:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Reves'); ?>
+                        <input type="number" class="form-control" id="Reves" name="Reves" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Servicio:</label>
-                        <input type="text" class="form-control" id="Servicio" name="Servicio" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <label>Servicio:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Servicio'); ?>
+                        <input type="number" class="form-control" id="Servicio" name="Servicio" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Velocidad:</label>
-                        <input type="text" class="form-control" id="Velocidad" name="Velocidad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <label>Velocidad:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Velocidad'); ?>
+                        <input type="number" class="form-control" id="Velocidad" name="Velocidad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Mentalidad:</label>
-                        <input type="text" class="form-control" id="Mentalidad" name="Mentalidad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
+                        <label>Mentalidad:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Mentalidad'); ?>
+                        <input type="number" class="form-control" id="Mentalidad" name="Mentalidad" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                 </div>
@@ -148,7 +148,8 @@
     };*/
     
     $(document).ready(function (e) {
-        $("#uploadimage").on('submit',(function(e) {
+               
+        /*$("#uploadimage").on('submit',(function(e) {
             e.preventDefault();
             $("#message").empty();
             $('#loading').show();
@@ -166,7 +167,7 @@
                     window.location.href = "<?php echo base_url();?>admin/jugadores";                    
                 }
             });
-        }));
+        }));*/
         
         $(function() {
             $("#filerank").change(function() {

@@ -16,6 +16,7 @@ class admin extends CI_Controller{
     public function __construct() {
         parent::__construct();
 
+        $this->load->helper(array('form', 'url'));
         //load model
         $this->load->model('Torneomodel');
         $this->load->model('Jugador');
@@ -646,8 +647,34 @@ class admin extends CI_Controller{
          * - 
          * 
          */
+        
         $datos = $this->input->post();
         $id = $this->input->post('id');
+        //VALIDATE DATA
+        $this->load->library('form_validation');
+        $this->form_validation->set_message('required', 'Favor de completar este campo');
+        $this->form_validation->set_error_delimiters('<label style="color:#f5c6cb">', '</label>'); 
+
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+        $this->form_validation->set_rules('edad', 'Edad', 'required');
+        $this->form_validation->set_rules('fecha_nac', 'Fecha_nac', 'required');
+        $this->form_validation->set_rules('altura', 'Altura', 'required');
+        $this->form_validation->set_rules('plays', 'Plays', 'required');
+        $this->form_validation->set_rules('Drive', 'Drive', 'required');
+        $this->form_validation->set_rules('Reves', 'Reves', 'required');
+        $this->form_validation->set_rules('Servicio', 'Servicio', 'required');
+        $this->form_validation->set_rules('Velocidad', 'Velocidad', 'required');
+        $this->form_validation->set_rules('Mentalidad', 'Mentalidad', 'required');
+        
+        if ($this->form_validation->run() == FALSE)
+        {
+            //redirect('admin/editar_jugaador/'.$id);
+            $result=$this->Jugador->getInfo($id);
+            $data['datos']=$result;
+            $this->load->view('admin/editprofile',$data);
+        }
+        else
+        {
         $result=$this->Jugador->updatePlayer($datos,$id);
 
         if($result == -1){
@@ -690,10 +717,34 @@ class admin extends CI_Controller{
         }
         
         echo "si";
+        }
     }
     
     public function insert_player(){
         $datos = $this->input->post();
+        
+        //VALIDATE DATA
+        $this->load->library('form_validation');
+        $this->form_validation->set_message('required', 'Favor de completar este campo');
+        $this->form_validation->set_error_delimiters('<label style="color:#f5c6cb">', '</label>'); 
+
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+        $this->form_validation->set_rules('edad', 'Edad', 'required');
+        $this->form_validation->set_rules('fecha_nac', 'Fecha_nac', 'required');
+        $this->form_validation->set_rules('altura', 'Altura', 'required');
+        $this->form_validation->set_rules('plays', 'Plays', 'required');
+        $this->form_validation->set_rules('Drive', 'Drive', 'required');
+        $this->form_validation->set_rules('Reves', 'Reves', 'required');
+        $this->form_validation->set_rules('Servicio', 'Servicio', 'required');
+        $this->form_validation->set_rules('Velocidad', 'Velocidad', 'required');
+        $this->form_validation->set_rules('Mentalidad', 'Mentalidad', 'required');
+        
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('admin/editprofile_empty');
+        }
+        else
+        {
 
         $result=$this->Jugador->insertPlayer($datos);
 
@@ -737,6 +788,8 @@ class admin extends CI_Controller{
         }
         
         echo "si";
+        }
+
         //redirect('/admin/jugadores');
     }
     

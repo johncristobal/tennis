@@ -7,7 +7,7 @@
 		$this->load->view("headeradmin");
 ?>
         
-    <form method="post" action="" id="uploadimage" enctype="multipart/form-data">
+    <form method="post" action="<?php echo base_url()?>admin/update_player" id="uploadimage" enctype="multipart/form-data">
         <div class="container">
                     
             <h3>Actualizar información</h3>
@@ -16,31 +16,31 @@
                 <div class="col-md-6">
                    <p>
                         <div class="form-group">
-                        <label>Nombre completo:</label>
+                        <label>Nombre completo:</label>&nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('nombre'); ?>
                         <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $datos->nombre;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                    </p>
                     <p>
                         <div class="form-group">
-                        <label>Edad:</label>
+                        <label>Edad:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('edad'); ?>
                         <input type="text" class="form-control" id="edad" name="edad" value="<?php echo $datos->edad;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Altura:</label>
+                        <label>Altura:</label>&nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('altura'); ?>
                         <input type="text" class="form-control" id="altura" name="altura" value="<?php echo $datos->altura;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Fecha de nacimiento:</label>
+                        <label>Fecha de nacimiento:</label>&nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('fecha_nac'); ?>
                         <input type="date" class="form-control" id="fecha_nac" name="fecha_nac" value="<?php echo $datos->fecha_nac;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Plays:</label>
+                        <label>Plays:</label> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('plays'); ?>
                         <input type="text" class="form-control" id="plays" name="plays" value="<?php echo $datos->plays;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
@@ -48,31 +48,31 @@
                  <div class="col-md-6">                    
                     <p>
                         <div class="form-group">
-                        <label>Drive:</label>
+                        <label>Drive:</label>&nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Drive'); ?>
                         <input type="text" class="form-control" id="Drive" name="Drive" value="<?php echo $datos->Drive;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Reves:</label>
+                        <label>Reves:</label> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Reves'); ?>
                         <input type="text" class="form-control" id="Reves" name="Reves" value="<?php echo $datos->Reves;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Servicio:</label>
+                        <label>Servicio:</label>  &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Servicio'); ?>
                         <input type="text" class="form-control" id="Servicio" name="Servicio" value="<?php echo $datos->Servicio;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Velocidad:</label>
+                        <label>Velocidad:</label>&nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Velocidad'); ?>
                         <input type="text" class="form-control" id="Velocidad" name="Velocidad" value="<?php echo $datos->Velocidad;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
                     <p>
                         <div class="form-group">
-                        <label>Mentalidad:</label>
+                        <label>Mentalidad:</label>&nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('Mentalidad'); ?>
                         <input type="text" class="form-control" id="Mentalidad" name="Mentalidad" value="<?php echo $datos->Mentalidad;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
@@ -83,7 +83,7 @@
                 <div class="row">                    
                     <h4 align="center"><i class="fa fa-angle-right"></i>Imagenes</h4>
                     <br>
-                    <p class="col-md-6 text-center">                       
+                    <p class="col-md-6 text-center centered">                       
                         <img id="previewing" <?php if($datos->foto == "1"){ ?>
                             src="<?php echo base_url();?>img/jugadores/<?=$datos->id?>/perfil.jpg"
                                 <?php }else { ?> 
@@ -94,7 +94,8 @@
                         <input type="file" name="foto" id="foto" value="0"/>
 
                     </p>
-                    <p class="col-md-6 text-center">
+                    <p class="col-md-6 text-center centered">
+                        <br><br>
                         <img id="previewingrank" <?php if($datos->foto == "1"){ ?>
                             src="<?php echo base_url();?>img/jugadores/<?=$datos->id?>/h2h.png"
                                 <?php }else{ ?>                             
@@ -152,7 +153,7 @@
     };*/
     
     $(document).ready(function (e) {
-        $("#uploadimage").on('submit',(function(e) {
+        /*$("#uploadimage").on('submit',(function(e) {
             e.preventDefault();
             $("#message").empty();
             $('#loading').show();
@@ -170,7 +171,7 @@
                     window.location.href = "<?php echo base_url();?>admin/jugadores";                    
                 }
             });
-        }));
+        }));*/
         
         $(function() {
             $("#foto_rank").change(function() {
