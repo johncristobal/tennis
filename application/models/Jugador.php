@@ -44,6 +44,14 @@ class Jugador extends CI_Model{
         }
     }
     
+    public function getEstauts($idestatus){
+        $last_row=$this->db->select('estatus')->from('jugador')->where('id',$idestatus)->limit(1)->get()->row();
+        if(isset($last_row))
+            return $last_row->estatus;   
+        else
+            return "0";
+    }
+    
     public function getJugadorSemana(){
         $last_row=$this->db->select('id,nombre,edad')->from('jugador')->where('estatus',4)->limit(1)->get()->row();
         if(isset($last_row))

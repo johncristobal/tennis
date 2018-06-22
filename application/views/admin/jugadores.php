@@ -62,19 +62,22 @@
                 <div class="col-md-1">
                     Editar
                 </div>
-                <div class="col-md-1">
+                <!--div class="col-md-1">
                     Eliminar
+                </div-->
+                <div class="col-md-2 centered">
+                    Elegir jugador de la semana
                 </div>
 
 
             </div><!-- End row -->
 
+            
             <?php
            foreach ($datos as $row) { 
             ?>
             <div class="container">
-                <div class="row">
-                    
+                <div class="row">                    
                     <div class="col-md-1">
                         <?=$row->id?>
                     </div>
@@ -87,8 +90,13 @@
                     <div class="col-md-1">
                         <img src="<?php echo base_url()?>img/baseline_build_black_18dp.png" onclick="editPlayer(<?=$row->id?>)">
                     </div>
-                    <div class="col-md-1">
+                    <!--div class="col-md-1">
                         <img src="<?php echo base_url()?>img/baseline_delete_black_18dp.png" onclick="deletePlayer(<?=$row->id?>)">
+                    </div-->
+                    <div class="col-md-2">
+                    <div class="radio">
+                        <label style="padding-left: 0px;"><input type="radio" name="optradio" value="<?=$row->id?>" style="display: block;padding-left: 0px;" <?php if($row->descripcion == "Jugador de la semana"){echo "checked='true'"; $idactual = $row->id;}?> onclick="updatePlayer(<?=$row->id?>);"></label>
+                    </div>           
                     </div>
                 </div><!-- End row -->
             </div> <!-- End container -->
@@ -133,6 +141,24 @@
         }else{
             //no hago nada :) 
         }
+     }
+     
+     function updatePlayer(id){
+        //e.preventDefault();
+        $.ajax({
+            url: "<?php echo base_url()?>admin/updateStatusPlayer/"+id+"/"+<?=$idactual;?>, // Url to which the request is send
+            type: "GET",             // Type of request to be send, called as method
+            //data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            success: function(data)   // A function to be called if request succeeds
+            {
+                $('#loading').hide();
+                $("#message").html(data);
+                window.location.href = "<?php echo base_url();?>admin/jugadores";                    
+            }
+        });
      }
 
  </script>

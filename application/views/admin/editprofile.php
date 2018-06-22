@@ -44,6 +44,10 @@
                         <input type="text" class="form-control" id="plays" name="plays" value="<?php echo $datos->plays;?>" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
+                    <br>
+                    <!--select>
+                        
+                    </select-->
                 </div>
                  <div class="col-md-6">                    
                     <p>

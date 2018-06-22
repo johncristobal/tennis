@@ -639,6 +639,20 @@ class admin extends CI_Controller{
         $this->load->view('admin/editprofile',$data);
     }
 
+    //--------------------update status player-----------------------------
+    public function updateStatusPlayer($idc,$idactual){
+        //$id = $this->input->get('id');
+        $datos = array("estatus" => 4);
+        $result=$this->Jugador->updatePlayer($datos,$idc);
+        
+        //recuperar estatus
+        //$getesatusactual = $this->Jugador->getEstauts($idactual);
+        $datos2 = array("estatus" => 1);
+        $result2=$this->Jugador->updatePlayer($datos2,$idactual);
+
+        echo $result2;
+    }
+    
     //--------------------edit specifi player-----------------------------
     public function update_player(){
         /*
