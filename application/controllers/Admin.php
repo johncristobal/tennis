@@ -650,33 +650,94 @@ class admin extends CI_Controller{
         $id = $this->input->post('id');
         $result=$this->Jugador->updatePlayer($datos,$id);
 
-        if($result == "0"){
-            
+        if($result == -1){
+            echo "error";
         }else{
             
+            //create folder to save data
+            $tempPath = "img/jugadores/".$id;//.$_FILES['file']['name']; // Target path where file is to be stored
+            if (!is_dir($tempPath)) {
+               mkdir($tempPath);
+            }
+            
+            //validate if photo uploaded
+            if(isset($_FILES["foto"]["type"])){
+                //remember  chmod -R 777 .
+                $sourcePath = $_FILES['foto']['tmp_name']; // Storing source path of the file in a variable
+                $targetPath = "img/jugadores/".$id."/perfil.jpg";//.$_FILES['file']['name']; // Target path where file is to be stored
+                move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+                $foto = 1;
+            }else{
+                $foto = 0;                
+            }
+            //validate if photo uploaded
+            if(isset($_FILES["foto_rank"]["type"])){
+                //remember  chmod -R 777 .
+                $sourcePath = $_FILES['foto_rank']['tmp_name']; // Storing source path of the file in a variable
+                $targetPath = "img/jugadores/".$id."/h2h.png";//.$_FILES['file']['name']; // Target path where file is to be stored
+                move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+                $foto_rank = 1;
+            }else{
+                $foto_rank = 0;                
+            }
+            
+            //when upload both photos, then update database
+            $datos = array(
+                "foto" => $foto,
+                "foto_rank" => $foto_rank
+            );
+            $result_temp=$this->Jugador->updatePlayer($datos,$id);
         }
         
-        redirect('/admin/jugadores');
+        echo "si";
     }
     
     public function insert_player(){
         $datos = $this->input->post();
 
-        /*$result=$this->Jugador->insertPlayer($datos);
+        $result=$this->Jugador->insertPlayer($datos);
 
-        if($result == "0"){
-            
+        if($result == -1){
+            echo "error";
         }else{
             
+            //create folder to save data
+            $tempPath = "img/jugadores/".$result;//.$_FILES['file']['name']; // Target path where file is to be stored
+            if (!is_dir($tempPath)) {
+               mkdir($tempPath);
+            }
+            
+            //validate if photo uploaded
+            if(isset($_FILES["file"]["type"])){
+                //remember  chmod -R 777 .
+                $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+                $targetPath = "img/jugadores/".$result."/perfil.jpg";//.$_FILES['file']['name']; // Target path where file is to be stored
+                move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+                $foto = 1;
+            }else{
+                $foto = 0;                
+            }
+            //validate if photo uploaded
+            if(isset($_FILES["filerank"]["type"])){
+                //remember  chmod -R 777 .
+                $sourcePath = $_FILES['filerank']['tmp_name']; // Storing source path of the file in a variable
+                $targetPath = "img/jugadores/".$result."/h2h.png";//.$_FILES['file']['name']; // Target path where file is to be stored
+                move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+                $foto_rank = 1;
+            }else{
+                $foto_rank = 0;                
+            }
+            
+            //when upload both photos, then update database
+            $datos = array(
+                "foto" => $foto,
+                "foto_rank" => $foto_rank
+            );
+            $result_temp=$this->Jugador->updatePlayer($datos,$result);
         }
         
-        redirect('/admin/jugadores');*/
-        //remember  chmod -R 777 .
-        $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
-        $targetPath = "img/".$_FILES['file']['name']; // Target path where file is to be stored
-        move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
-
-        echo "Si";
+        echo "si";
+        //redirect('/admin/jugadores');
     }
     
     public function cerrar(){

@@ -85,10 +85,14 @@
                     <br>
                     <p class="col-md-6 text-center">
                         <img src="<?php echo base_url();?>img/profile.jpg" id="previewing" alt="" class="img-circle style img-responsive">
+                        <br />
+                        <input type="file" name="file" id="file"/>
                     </p>
                     <p class="col-md-6 text-center">                       
-                        <img src="<?php echo base_url();?>img/blog-1.jpg" alt="" class="style img-responsive" style="box-shadow: 0px 0px 0px 10px #e8e8e8;">
-                    </p>    
+                        <img src="<?php echo base_url();?>img/blog-1.jpg"  id="previewingrank" alt="" class="style img-responsive" style="box-shadow: 0px 0px 0px 10px #e8e8e8;">
+                        <br />
+                        <input type="file" name="filerank" id="filerank"/>
+                    </p>
                 </div>
                                 
                <!-- <div class="row add_top_30">
@@ -113,8 +117,6 @@
                     
                 </div><!-- End row -->
                 <div class="container">
-                    <br />
-                    <input type="file" name="file" id="file"/>
                 </div>
                 <!--Submit para actualizar informacion-->
                 <div class="container">
@@ -161,9 +163,31 @@
                 {
                     $('#loading').hide();
                     $("#message").html(data);
+                    window.location.href = "<?php echo base_url();?>admin/jugadores";                    
                 }
             });
         }));
+        
+        $(function() {
+            $("#filerank").change(function() {
+                $("#message").empty(); // To remove the previous error message
+                var file = this.files[0];
+                var imagefile = file.type;
+                var match= ["image/jpeg","image/png","image/jpg"];
+                if(!((imagefile==match[0]) || (imagefile==match[1]) || (imagefile==match[2])))
+                {
+                    $('#previewing').attr('src','<?php echo base_url();?>img/profile.jpg');
+                    $("#message").html("<p id='error'>Please Select A valid Image File</p>"+"<h4>Note</h4>"+"<span id='error_message'>Only jpeg, jpg and png Images type allowed</span>");
+                    return false;
+                }
+                else
+                {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoadedRank;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });           
+        });
 
         // Function to preview image after validation
         $(function() {
@@ -184,8 +208,9 @@
                     reader.onload = imageIsLoaded;
                     reader.readAsDataURL(this.files[0]);
                 }
-            });
+            });           
         });
+        
         function imageIsLoaded(e) {
             $("#file").css("color","green");
             $('#image_preview').css("display", "none");
@@ -193,6 +218,15 @@
             //$('#previewing').attr('width', '250px');
             //$('#previewing').attr('height', '230px');
         };
+        
+        function imageIsLoadedRank(e) {
+            $("#filerank").css("color","green");
+            //$('#image_preview').css("display", "none");
+            $('#previewingrank').attr('src', e.target.result);
+            //$('#previewing').attr('width', '250px');
+            //$('#previewing').attr('height', '230px');
+        };
+
     });
 </script>        
 <?php $this->load->view("footer");?>        

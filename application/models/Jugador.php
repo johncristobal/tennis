@@ -62,6 +62,7 @@ class Jugador extends CI_Model{
     public function insertPlayer($datos){
         $this->db->insert('jugador', $datos);
         $id = $this->db->insert_id();
+        
         $estadistcias = array(
             'jganados' => 0,
             'jperdidos' => 0,
@@ -74,7 +75,7 @@ class Jugador extends CI_Model{
         );
         $this->db->insert('estadisticas_jugador', $estadistcias);        
         
-        return $this->db->affected_rows();
+        return $id;
     }
 
 }
