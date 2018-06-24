@@ -730,7 +730,8 @@ class admin extends CI_Controller{
             $result_temp=$this->Jugador->updatePlayer($datos,$id);
         }
         
-        echo "si";
+        //echo "si";
+        redirect('/admin/jugadores');
         }
     }
     
@@ -801,10 +802,10 @@ class admin extends CI_Controller{
             $result_temp=$this->Jugador->updatePlayer($datos,$result);
         }
         
-        echo "si";
+        //echo "si";
+        redirect('/admin/jugadores');
         }
 
-        //redirect('/admin/jugadores');
     }
     
     public function cerrar(){

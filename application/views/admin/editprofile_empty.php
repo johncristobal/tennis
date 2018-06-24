@@ -44,6 +44,17 @@
                         <input type="number" class="form-control" id="plays" name="plays" value="" style="background-color: #fff; border: 1px solid #00aeef;">
                         </div>
                     </p>
+                    <p>
+                        <div class="form-group">
+                        <label>Estatus:</label> &nbsp;&nbsp;&nbsp;&nbsp; <?php echo form_error('estatus'); ?>
+                        <select class="form-control" id="estatus" name="estatus" value="<?php echo $datos->plays;?>" style="background-color: #fff; border: 1px solid #00aeef;">
+                            <option value="1">Activo</option>
+                            <option value="2">Lesionado</option>
+                            <option value="3">No activo</option>
+                            <option value="4">Jugador de la semana</option>
+                        </select>
+                        </div>
+                    </p>
                 </div>
                  <div class="col-md-6">                    
                     <p>
