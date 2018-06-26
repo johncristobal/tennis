@@ -37,10 +37,14 @@
         <div class="col-md-3 text-center"></div>
         <div class="col-md-6 text-center">
             <form method="post" action="<?php echo base_url();?>admin/inicio">
-            <div class="form-bg-1 ui-widget"><input type="text" id="name_1" class="form-control" placeholder="usuario"></div>
+                <div class="form-bg-1 ui-widget"><input type="text" name="name_1" id="name_1" class="form-control" placeholder="correo"></div>
+            <?php echo form_error('name_1'); ?>
             <br>
-            <div class="form-bg-1 ui-widget"><input type="text" id="name_2" class="form-control" placeholder="password"></div>
+            <div class="form-bg-1 ui-widget"><input type="password" name="name_2" id="name_2" class="form-control" placeholder="password"></div>
+            <?php echo form_error('name_2'); ?>
             <br>
+            <label style="color:#f5c6cb;font-size: 18px;"><?php if(isset($error)){echo $error;}?></label>
+            <br><br>
             <input type="submit" class="button_small" value="Enviar">
             </form>
         </div>

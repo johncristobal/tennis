@@ -49,3 +49,5 @@ js/buscar.js
 !/application/views/admin/jugadores.php
 !/application/views/admin/editprofile.php
 !/application/views/admin/editprofile_empty.php
+!/application/models/Admin.php
+!/application/models/AdminModel.php

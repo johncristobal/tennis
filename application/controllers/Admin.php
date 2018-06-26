@@ -21,9 +21,9 @@ class admin extends CI_Controller{
         $this->load->model('Torneomodel');
         $this->load->model('Jugador');
         $this->load->model('Estadisticasmodel');
+        $this->load->model('AdminModel');
 
         $this->load->library("email");
-
     }
     //put your code here
     
@@ -33,12 +33,32 @@ class admin extends CI_Controller{
     
     public function inicio(){
         $this->session->set_userdata('admin','1');
+        $correo = $this->input->post('name_1');
+        $pass = $this->input->post('name_2');
         
-        //Load data from Torneos and show into view calendario        
-        $this->load->model('Torneomodel');        
-        $data['datos'] = $this->Torneomodel->gettorneos();
+        $this->load->library('form_validation');
+        $this->form_validation->set_message('required', 'Favor de completar este campo');
+        $this->form_validation->set_error_delimiters('<label style="color:#f5c6cb">', '</label>'); 
 
-        $this->load->view('admin/calendario',$data);        
+        $this->form_validation->set_rules('name_1', 'Name_1', 'required');
+        $this->form_validation->set_rules('name_2', 'Name_2', 'required');
+                
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('admin/login');
+        }else{
+            $back = $this->AdminModel->checkUser($correo,$pass);
+            if($back == "0"){
+                $datao["error"] = "Datos incorrectos, favor de verificar";
+                $this->load->view('admin/login',$datao);
+            }else{
+                //Load data from Torneos and show into view calendario        
+                $this->load->model('Torneomodel');        
+                $data['datos'] = $this->Torneomodel->gettorneos();
+
+                $this->load->view('admin/calendario',$data);                    
+            }
+        }
     }
     
     //solo el admin puede registrar torneo
