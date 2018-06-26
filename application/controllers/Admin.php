@@ -31,6 +31,13 @@ class admin extends CI_Controller{
         $this->load->view('admin/login');
     }
     
+    public function calendario(){
+        $this->load->model('Torneomodel');        
+        $data['datos'] = $this->Torneomodel->gettorneos();
+
+        $this->load->view('admin/calendario',$data);  
+    }
+    
     public function inicio(){
         $this->session->set_userdata('admin','1');
         $correo = $this->input->post('name_1');
