@@ -18,14 +18,13 @@
         </script>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                
+                <div class="col-md-12">                
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="<?php echo base_url();?>img/banners/vista1.png" alt="">
+                            <li><img src="<?php echo base_url();?>img/banners/bannernuevo1.png" alt="">
                                 <h1 class="flex-caption">Torneo de tenis - Madrugaytors</h1>
                             </li>
-                            <li><img src="<?php echo base_url();?>img/banners/vista2.png" alt="">
+                            <li><img src="<?php echo base_url();?>img/banners/bannernuevo2.png" alt="">
                             <h1 class="flex-caption">Conócenos</h1>
                             </li>
                             <li>
