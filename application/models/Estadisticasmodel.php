@@ -13,7 +13,7 @@ class Estadisticasmodel extends CI_Model{
 
         $this->db->from('estadisticas_jugador ej');
         $this->db->join('jugador j', 'j.id = ej.fkjugador');
-        $this->db->order_by('ej.fkjugador','asc');
+        $this->db->order_by('ej.rank_act','asc');
 
         //where year = 2017
         $query = $this->db->get();

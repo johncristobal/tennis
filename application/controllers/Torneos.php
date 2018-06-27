@@ -72,7 +72,8 @@ class Torneos extends CI_Controller{
                 $this->load->view('torneo/resultadorrobin',$data);            
                 break;
             case 2:
-                //$this->load->view('torneo/resultado');            
+							  $data['torneodata'] = $datatorneoo;
+                $this->load->view('torneo/resultadoelimdir',$data);            
                 break;
             default:
                 break;
