@@ -190,7 +190,7 @@
             <br><br>
             <form method="post" action="<?php echo base_url()?>torneos/updateTorneo">
             <div class="container hidden-xs">
-						
+							
                 <!--a href="<?= base_url()?>Estadisticas/tablaGeneral/<?=$torneodata[0]->id;?>" >Ver Tabla General</a-->
                 <div class="col-md-12" style="font-size: 15px;">
                     <!--div class="pricing-table-features">
@@ -201,7 +201,8 @@
                     </div-->
                 <?php
                 $i=1;
-                foreach ($partidos as $value){                    
+                foreach ($partidos as $value){   	
+								
                 ?>  
                     <table class="table-striped" width="100%">
                     <thead>
@@ -270,6 +271,7 @@
             </div>
 
             <div class="container visible-xs">
+					
                     <!--div class="pricing-table-features">
                             <p><strong>Six month</strong> valid</p>
                             <p><strong> Saving </strong> 30%</p>
