@@ -21,14 +21,14 @@
                 <div class="col-md-12">                
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="<?php echo base_url();?>img/banners/bannernuevo1.png" alt="">
-                                <h1 class="flex-caption">Torneo de tenis - Madrugaytors</h1>
+                            <li><img src="<?php echo base_url();?>img/banners/antonio.png" alt="">
+                                <h1 class="flex-caption">Madrugaytors</h1>
                             </li>
                             <li><img src="<?php echo base_url();?>img/banners/bannernuevo2.png" alt="">
-                            <h1 class="flex-caption">Conócenos</h1>
+                            <h1 class="flex-caption">Patrocinador</h1>
                             </li>
                             <li>
-                            <img src="<?php echo base_url();?>img/banners/vista3.png" alt="">
+                            <img src="<?php echo base_url();?>img/banners/bannernuevo1.png" alt="">
                             <h1 class="flex-caption">Inscríbete a nuestro próximo torneo</h1>
                             </li>
                             <li>

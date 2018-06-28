@@ -1397,8 +1397,8 @@ header, footer {max-width:100%;}
 }
 .why-desc { padding-top:0;}
 h1#logo a{
-	background: url(../img/logotipo2.png) no-repeat 0 0;
-        background-size: 240px 100px;
+	background: url(../img/newlogo.png) no-repeat 0 0;
+        background-size: 100px 110px;
 	width:auto;
 }
 #map {
