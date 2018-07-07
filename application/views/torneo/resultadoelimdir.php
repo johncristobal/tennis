@@ -114,7 +114,7 @@
                     <div class="row">
                         <div class="col-md-1 col-sm-1"></div>
                         <div class="col-md-2 col-sm-2 col-xs-5 no-padding"><span style="font-size: 12px;">(<?=$rondas->rank1?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador1;?>"><?=$rondas->nombre1;?></a></div>
-                        <div class="col-xs-2"> - </div>
+                        <div class="col-xs-1 hidden-md hidden-sm"> - </div>
                         <div class="col-md-2 col-sm-2 col-xs-5 no-padding"><span style="font-size: 12px;">(<?=$rondas->rank2?>)</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="<?php echo base_url();?>player/jugador/<?=$rondas->fkjugador2;?>"><?=$rondas->nombre2;?></a></div>
                                                 
                         <!--td width="20%">
@@ -130,7 +130,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-7"><input type="text" name="<?=$rondas->id;?>" value="<?=$rondas->resultado;?>" required="false" readonly="true" style="background-color:#ECF0F1"></div>
                         
                         <div class="col-md-3 col-sm-3 centered col-xs-4"><a class="button_small" style="border-radius: 10px; padding: 3px 30px;" value="H2H" onclick="verheadtohead(<?=$rondas->fkjugador1?>,<?=$rondas->fkjugador2?>);">H2H</a></div>
-                        <div class="col-xs-12 visible-xs">
+                        <div class="col-xs-12 visible-xs hidden-sm hidden-md">
                             <br>
                         </div>
 

@@ -52,9 +52,16 @@ class Estadisticasmodel extends CI_Model{
         $ganados1 = $this->db->select('count(ganador) as ganador')->from('partidos')->where('fkjugador1 = '.$id1)->where('fkjugador2 = '.$id2)->where('ganador = '.$id1)->get()->row();
         $ganados2 = $this->db->select('count(ganador) as ganador')->from('partidos')->where('fkjugador1 = '.$id1)->where('fkjugador2 = '.$id2)->where('ganador = '.$id2)->get()->row();
         
-        $data['ganados1'] = $ganados1->ganador;
-        $data['ganados2'] = $ganados2->ganador;
-                        
+        if($ganados1->ganador == "0" && $ganados2->ganador == "0"){
+            $ganados1 = $this->db->select('count(ganador) as ganador')->from('partidos')->where('fkjugador2 = '.$id1)->where('fkjugador1 = '.$id2)->where('ganador = '.$id2)->get()->row();
+            $ganados2 = $this->db->select('count(ganador) as ganador')->from('partidos')->where('fkjugador2 = '.$id1)->where('fkjugador1 = '.$id2)->where('ganador = '.$id1)->get()->row();
+            $data['ganados1'] = $ganados2->ganador;
+            $data['ganados2'] = $ganados1->ganador;
+        }else{
+            $data['ganados1'] = $ganados1->ganador;
+            $data['ganados2'] = $ganados2->ganador;            
+        }
+                                
         $this->db->select("j.id,j.edad,j.nombre,DATE_FORMAT(j.fecha_nac, '%d/%m/%Y') as fecha_nac,j.plays,j.altura,ej.rank_act,ej.jganados,ej.jperdidos,ej.torneosj");
         $this->db->from('estadisticas_jugador ej');
         $this->db->join('jugador j', 'j.id = ej.fkjugador');

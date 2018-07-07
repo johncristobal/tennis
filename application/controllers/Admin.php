@@ -680,7 +680,7 @@ class admin extends CI_Controller{
         echo $result2;
     }
     
-    //--------------------edit specifi player-----------------------------
+//--------------------edit specifi player-----------------------------
     public function update_player(){
         /*
          * get info from jugadores
@@ -835,9 +835,23 @@ class admin extends CI_Controller{
 
     }
     
+//============================edit banners home==============================
+    public function cambiarbanners(){
+        /*de la tabla parametria pbtengo la caprte de banners
+        * obtengo los archivos de esa carpeta
+        *mostrar una vista con esos banners donde podamos cambiarlos (como edit perfil)
+        *logica similar a subir archivo que ya tenemos...
+        *colocar que no deben ser mayor a 8 mb
+        *enviar y listo banners cambiados...
+        *OJO => opcion para subir nuevo banner
+        *ojo con los nombres          
+         */
+    }
+    
     public function cerrar(){
         $this->session->sess_destroy();
         redirect('/');
     }
+    
     
 }

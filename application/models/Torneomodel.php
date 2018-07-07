@@ -123,7 +123,7 @@ class Torneomodel extends CI_Model{
     
     public function gettorneos(){
         //$this->db->select('*');
-        $this->db->select('t.id,t.nombre,DATE_FORMAT(t.fecha_inicio, "%d/%m/%Y") as fecha_inicio,lug.lugar,tt.descripcion');
+        $this->db->select('t.id,t.nombre,t.fecha_inicio as inicial,DATE_FORMAT(t.fecha_inicio, "%d/%m/%Y") as fecha_inicio,lug.lugar,tt.descripcion');
         //$this->db->select("t.id, t.nombre, t.fecha_inicio, tt.descripcion, t.fecha_fin, t.lugar, t.tipo");
         //$this->db->select("DATE_FORMAT( t.fecha_inicio, '%d/%m/%Y')",      FALSE );
 

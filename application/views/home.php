@@ -25,7 +25,7 @@
                                 <h1 class="flex-caption">Madrugaytors</h1>
                             </li>
                             <li><img src="<?php echo base_url();?>img/banners/bannernuevo2.png" alt="">
-                            <h1 class="flex-caption">Patrocinador</h1>
+                                <h1 class="flex-caption">Patrocinador</h1>
                             </li>
                             <li>
                             <img src="<?php echo base_url();?>img/banners/bannernuevo1.png" alt="">
