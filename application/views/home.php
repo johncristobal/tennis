@@ -21,18 +21,18 @@
                 <div class="col-md-12">                
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="<?php echo base_url();?>img/banners/antonio.png" alt="">
+                            <li><img src="<?php echo base_url();?>img/banners/banner1.png" alt="">
                                 <h1 class="flex-caption">Madrugaytors</h1>
                             </li>
-                            <li><img src="<?php echo base_url();?>img/banners/bannernuevo2.png" alt="">
+                            <li><img src="<?php echo base_url();?>img/banners/banner2.png" alt="">
                                 <h1 class="flex-caption">Patrocinador</h1>
                             </li>
                             <li>
-                            <img src="<?php echo base_url();?>img/banners/bannernuevo1.png" alt="">
+                            <img src="<?php echo base_url();?>img/banners/banner3.png" alt="">
                             <h1 class="flex-caption">Inscríbete a nuestro próximo torneo</h1>
                             </li>
                             <li>
-                            <img src="<?php echo base_url();?>img/banners/vista4.png" alt="">
+                            <img src="<?php echo base_url();?>img/banners/banner4.png" alt="">
                             <h1 class="flex-caption">Excelentes canchas para practicar</h1>
                             </li>
                             <!--li>

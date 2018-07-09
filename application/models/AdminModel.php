@@ -13,6 +13,15 @@ class AdminModel extends CI_Model{
         else
             return "0";   
     }
+    
+    public function getParametro($key){
+        $last_row=$this->db->select('valor')->from('parametria')->where('parametro',$key)->limit(1)->get()->row();
+        if(isset($last_row))
+            return $last_row->valor;   
+        else
+            return "0";   
+
+    }
 }
 
 ?>

@@ -52,3 +52,4 @@ js/buscar.js
 !/application/models/Admin.php
 !/application/models/AdminModel.php
 !/application/views/torneo/resultadoelimdir.php
+!/application/views/admin/banners.php

@@ -846,6 +846,48 @@ class admin extends CI_Controller{
         *OJO => opcion para subir nuevo banner
         *ojo con los nombres          
          */
+        //parametro
+        $key = "banner";
+        $back = $this->AdminModel->getParametro($key);
+        //files
+        $this->load->helper('directory');
+        $map = directory_map($back);
+        asort($map);        
+        /*foreach($map as $file){
+            if(is_string($file)){
+                echo $file;
+            }
+        }*/
+        $data["banners"] = $map;
+        $data["urlfolder"] = $back;
+        //vista con banners
+        $this->load->view('admin/banners',$data);
+    }
+    
+    public function updateBanners(){        
+        //validamos los file que tiene - foreach
+        //si tiene nombre, entonces actualizo
+        //else - conservo el mismo banner
+        //ojo con el idnince, se mantiene el 1,2,3,4...
+        
+        $sourcePath = $_FILES;
+        $key = "banner";
+        $indice = 1;
+        $back = $this->AdminModel->getParametro($key);
+
+        foreach ($sourcePath as $value) {
+            if($value["name"] != "")
+            {                
+                $sourcePath = $value["tmp_name"]; // Storing source path of the file in a variable
+                $targetPath = $back."/banner".$indice.".png";//.$_FILES['file']['name']; // Target path where file is to be stored
+                move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file
+            }
+            $indice++;
+        }
+        
+        //redirect('/admin/cambiarbanners');
+        header('Location: '. base_url()."admin/cambiarbanners", true, 302);
+        exit;
     }
     
     public function cerrar(){
