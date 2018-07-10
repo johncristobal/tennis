@@ -872,6 +872,43 @@ class admin extends CI_Controller{
         
         $sourcePath = $_FILES;
         $key = "banner";
+        $indice = 0;
+        $back = $this->AdminModel->getParametro($key);
+
+        foreach ($sourcePath as $key => $value) {
+            if($value["name"] != "")
+            {                
+                if ($key == "foto9999"){
+                    $this->load->helper('directory');
+                    $map = directory_map($back);
+                    $cantidad = count($map);
+                    $sourcePath = $value["tmp_name"]; // Storing source path of the file in a variable
+                    $targetPath = $back."/banner".($cantidad+1).".png";//.$_FILES['file']['name']; // Target path where file is to be stored
+                    move_uploaded_file($sourcePath,$targetPath); // Moving Uploaded file       
+                    
+                }else{
+                    //si no es 9999, entonces salvo imagen normal
+                    $sourcePath = $value["tmp_name"]; // Storing source path of the file in a variable
+                    $targetPath = $back."/banner".$indice.".png";//.$_FILES['file']['name']; // Target path where file is to be stored
+                    move_uploaded_file($sourcePath,$targetPath) ; // Moving Uploaded file                    
+                }
+            }
+            $indice++;
+        }
+        
+        //redirect('/admin/cambiarbanners');
+        header('Location: '. base_url()."admin/cambiarbanners", true, 302);
+        exit;
+    }
+    
+    public function uploadNewBanners(){        
+        //validamos los file que tiene - foreach
+        //si tiene nombre, entonces actualizo
+        //else - conservo el mismo banner
+        //ojo con el idnince, se mantiene el 1,2,3,4...
+        
+        $sourcePath = $_FILES;
+        $key = "banner";
         $indice = 1;
         $back = $this->AdminModel->getParametro($key);
 

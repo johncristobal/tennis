@@ -1,25 +1,54 @@
 <!DOCTYPE html>
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+
 <?php 
     $this->load->view("head");
     $this->load->view("headeradmin");
 ?>
         
     <form method="post" action="<?php echo base_url()?>admin/updateBanners" id="uploadimage" enctype="multipart/form-data">
-        <div class="container">                    
+        <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-4">
                     <h3>Actualizar Banners</h3>
                 </div>
                 <div class="col-md-8 col-sm-8 align-right" style="text-align:right;">
-                    <button class="btn btn-info btn-lg">Subir nuevo banner</button>
+                    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Subir nuevo banner</button>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-8 col -md-8">
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4>Agregar nuevo banner</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p class="col-md-12 col-xs-12 col-sm-12 text-center centered">                       
+                            <input type="file" name="foto9999" id="foto9999" value="0" onchange="validar(this,9999);"/>
+                            <br />
+                            <img id="previewing9999" src="<?php echo base_url();?>img/slider/slide.jpg" alt="" class="style img-responsive" style="">
+                            <br>
+                            <hr style="border-width:2px;">
+                        </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-info savebanner" id="subirnuevomodal" value="Subir"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </div>
+            
             <?php
                 $indice = 1;
-                foreach($banners as $file){ 
+                foreach($banners as $file){
             ?>                
             <!--Validar si existe su imagen, si no poner la default y habilitar para actualizar-->
             <div class="row">                    
@@ -79,6 +108,50 @@
             filePath.innerHTML = "<b>Selected File: </b>" + fileName;
         };
     };*/
+    
+    /*$("#uploadimage").on('submit',(function(e) {
+        e.preventDefault();
+        //$("#message").empty();
+        //$('#loading').show();
+        $.ajax({
+            url: "<?php echo base_url()?>admin/uploadNewBanners", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            success: function(data)   // A function to be called if request succeeds
+            {
+                $('#loading').hide();
+                $("#message").html(data);
+            }
+        });
+    }));*/
+    
+    /*$('.savebanner').click(function(){
+        var book_id = "2";//2$(this).parent().data('id');
+        var imagen = $("#foto9999")[0].files[0];
+        $.ajax
+        ({
+            url: '<?php echo base_url()?>admin/uploadNewBanners',
+            data: {"imagen": imagen},
+            type: 'post',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(result)
+            {
+                $('.modal-box').text(result).fadeIn(700, function() 
+                {
+                    setTimeout(function() 
+                    {
+                        $('.modal-box').fadeOut();
+                    }, 2000);
+                });
+            }
+        });
+    });*/
+    
     var indiceChange = "";
     function validar(elemento,indice){
         //del elemento seleccionadosubo y actualizo foto del respectivo indice
@@ -102,8 +175,6 @@
         }
     }
     
-    
-    
     function imageIsLoaded(e) {
         $("#foto"+indiceChange).css("color","green");
         //$('#image_preview').css("display", "none");
@@ -111,8 +182,8 @@
         //$('#previewing').attr('width', '250px');
         //$('#previewing').attr('height', '230px');
     };
+    
 
-     
 </script>                
 <?php $this->load->view("footer");?>        
  
