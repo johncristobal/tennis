@@ -11,12 +11,13 @@
                 <li><a href="<?php echo base_url();?>admin/jugadores">Jugadores</a>
                 <li><a href="<?php echo base_url();?>admin/calendario">Torneos</a>
                 <li><a href="<?php echo base_url();?>admin/rememberMail">Recordatorios</a>
-                <!--ul>
-                    <li><a href="<?php echo base_url();?>torneos/calendario">Calendario</a></li>
-                        <li><a href="calories-burned-heart-rate.html">Partidos</a></li>
-                        <li><a href="calories-burned-calculator.html">Resultados</a></li>
-                  	</ul-->
-                </li>
+                    <li><a href="#">Banners</a>
+                        <ul>
+                        <li><a href="<?php echo base_url();?>admin/cambiarbanners">Actualizar banners</a></li>
+                        <li><a href="<?php echo base_url();?>admin/nuevobanner">Agregar nuevo banner</a></li>
+                        <li><a href="<?php echo base_url();?>admin/reorderindexbanner">Ordenar banners</a></li>
+                        </ul>
+                    </li>
                 <li><a href="<?php echo base_url();?>admin/cerrar">Cerrar sesión</a>
                 </li>				
                <!-- <li><a href="#">Pages</a>

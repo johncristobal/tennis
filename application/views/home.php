@@ -16,15 +16,17 @@
             });
         }
         </script>
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-12">                
                     <div class="flexslider">
                         <ul class="slides">
-                            <li><img src="<?php echo base_url();?>img/banners/banner1.png" alt="">
-                                <h1 class="flex-caption">Madrugaytors</h1>
+                            <?php foreach($banners as $file){?>
+                            <li>
+                                <img src="<?php echo base_url();?><?=$urlfolder?>/<?=$file?>" alt="">
                             </li>
-                            <li><img src="<?php echo base_url();?>img/banners/banner2.png" alt="">
+                            <!--li><img src="<?php echo base_url();?>img/banners/banner2.png" alt="">
                                 <h1 class="flex-caption">Patrocinador</h1>
                             </li>
                             <li>
@@ -34,7 +36,7 @@
                             <li>
                             <img src="<?php echo base_url();?>img/banners/banner4.png" alt="">
                             <h1 class="flex-caption">Excelentes canchas para practicar</h1>
-                            </li>
+                            </li-->
                             <!--li>
                             <img src="<?php echo base_url();?>img/slider/slide-4.jpg" alt="">
                             <p class="flex-caption">The pleasure of outdoor recreation</p>
@@ -43,6 +45,7 @@
                             <img src="<?php echo base_url();?>img/slider/slide-5.jpg" alt="">
                             <p class="flex-caption">Proper training will make you feel better</p>
                             </li-->
+                            <?php } ?>
                         </ul>
                     </div><!-- End slider -->
                     
@@ -127,8 +130,7 @@
                             <div id="your_cal_intake"><?=$ganados1;?></div>
                             </div>
                             <input type="hidden" name="calculator" value="daily_calorie"/>
-                    </form>
-		
+                    </form>		
 		</div><!-- End col-md-6 -->
         
 		<div class="col-md-6">

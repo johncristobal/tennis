@@ -836,6 +836,27 @@ class admin extends CI_Controller{
     }
     
 //============================edit banners home==============================
+    public function reorderindexbanner(){
+        $key = "banner";
+        $back = $this->AdminModel->getParametro($key);
+        //files
+        $this->load->helper('directory');
+        $map = directory_map($back);
+        asort($map);        
+        /*foreach($map as $file){
+            if(is_string($file)){
+                echo $file;
+            }
+        }*/
+        $data["banners"] = $map;
+        $data["urlfolder"] = $back;
+        $this->load->view('admin/bannerslist',$data);
+    }
+//============================edit banners home==============================
+    public function nuevobanner(){
+        $this->load->view('admin/bannernuevo');
+    }
+//============================edit banners home==============================
     public function cambiarbanners(){
         /*de la tabla parametria pbtengo la caprte de banners
         * obtengo los archivos de esa carpeta
@@ -927,10 +948,68 @@ class admin extends CI_Controller{
         exit;
     }
     
+    public function deletebanner($idbanner){
+        $key = "banner";
+        $back = $this->AdminModel->getParametro($key);
+        $this->load->helper('directory');
+        $map = directory_map($back);
+
+        asort($map);        
+        $flageraesd = 0;
+        foreach($map as $file){
+            
+            if($flageraesd == 1){
+                //aqui tenemos que renombraar al resto de los archivos
+                //exacto => obtenermos su numero y le restamos 1
+                $indicetemp = substr($file, 6, 1);
+                $newfile = "banner".($indicetemp-1).".png";
+                
+                rename($back."/".$file, $back."/".$newfile);
+                
+                continue;
+            }
+            
+            if (strpos($file, $idbanner) !== false) {
+                //"encontramos el archivo que hay que eliminar";
+                //lo eliminamos y los archivos restantes tenemos que renombrarlos
+                unlink($back."/".$file);
+                $flageraesd = 1;
+            }
+        }
+        header('Location: '. base_url()."admin/cambiarbanners", true, 302);
+        exit;
+        //echo $idbanner;
+    }
+    
+    public function reorderbanner(){
+        
+        $datos = $this->input->post();
+        $indice = 1;
+        $key = "banner";
+        $back = $this->AdminModel->getParametro($key);
+        
+        //crea banners2
+        mkdir($back."2", 0777);
+        
+        foreach ($datos as $key => $value) {
+            $newfile = "banner".($indice).".png";
+            rename($back."/".$value, $back."2/".$newfile);            
+            $indice++;
+        }
+        
+        //borramos banners
+        unlink($back);
+                
+        //banenrs 2 ahora es banners
+        rename($back."2", $back);   
+        
+        //redirect('/admin/cambiarbanners');
+        header('Location: '. base_url()."admin/cambiarbanners", true, 302);
+        exit;
+    }
+    
     public function cerrar(){
         $this->session->sess_destroy();
         redirect('/');
-    }
-    
-    
+    }    
 }

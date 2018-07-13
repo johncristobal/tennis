@@ -21,7 +21,21 @@ class Welcome extends CI_Controller {
          * get estaidisticas_jugador join jugador where rank_act = 1
          * 
          */
+        $this->load->model('AdminModel');
 
+        $key = 'banner';
+        $back = $this->AdminModel->getParametro($key);
+        //files
+        $this->load->helper('directory');
+        $map = directory_map($back);
+        asort($map);        
+        /*foreach($map as $file){
+            if(is_string($file)){
+                echo $file;
+            }
+        }*/
+        $data['banners'] = $map;
+        $data['urlfolder'] = $back;
         $data['torneo']=$this->Torneomodel->getTorneoActivo();
         $data['primer'] =$this->Estadisticasmodel->getFirstPlace();
 

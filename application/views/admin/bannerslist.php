@@ -7,111 +7,56 @@
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Expires" content="-1">
         
-    <form method="post" action="<?php echo base_url()?>admin/updateBanners" id="uploadimage" enctype="multipart/form-data">
+    <form method="post" action="<?php echo base_url()?>admin/reorderbanner" id="uploadimage" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <h3>Actualizar banners</h3>
+                    <h3>Actualizar Banners</h3>
                 </div>
                 <div class="col-md-8 col-sm-8">
                     <p>
-                        Puedes actualizar un banner existente o eliminarlo de la lista. 
+                        Elige un banner y arrastralo a la posición que deseas que aparezca en la pantalla principal.
                     </p>
                 </div>
-                <!--div class="col-md-8 col-sm-8 align-right" style="text-align:right;">
-                    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Subir nuevo banner</button>
-                </div-->
             </div>
 
-            <!--Modal to upload banner banner-->
-            <div class="row">
-                <div class="col-sm-8 col -md-8">
-                <!-- Modal -->
-                <div id="myModal" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4>Agregar nuevo banner</h4>
-                      </div>
-                      <div class="modal-body">
-                        <p class="col-md-12 col-xs-12 col-sm-12 text-center centered">                       
-                            <input type="file" name="foto9999" id="foto9999" value="0" onchange="validar(this,9999);"/>
-                            <br />
-                            <img id="previewing9999" src="<?php echo base_url();?>img/slider/slide.jpg" alt="" class="style img-responsive" style="">
-                            <br>
-                            <hr style="border-width:2px;">
-                        </p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <input type="submit" class="btn btn-info savebanner" id="subirnuevomodal" value="Subir"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-            </div>
-
-            <!--Modal to delete banner-->
-            <div class="row">
-                <div class="col-sm-8 col -md-8">
-                <!-- Modal -->
-                <div id="modalborrar" class="modal fade" role="dialog">
-                  <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4>Eliminar banner</h4>
-                      </div>
-                      <div class="modal-body">
-                        <p class="col-md-12 col-xs-12 col-sm-12 text-center centered">                       
-                            ¿Deseas eliminar esta banner?
-                        </p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                        <a class="btn btn-info savebanner" id="eliminarbanner" value="Eliminar"/>Eliminar</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-            </div>
-            
+            <ul id="sortable">
             <?php
                 $indice = 1;
                 foreach($banners as $file){
             ?>                
             <!--Validar si existe su imagen, si no poner la default y habilitar para actualizar-->
-            <div class="row">                    
+            <!--div class="row">                    
                 <p class="col-md-6 col-xs-6 text-center centered">       
                     <input type="file" value="Actualizar banner" name="foto<?=$indice?>" id="foto<?=$indice?>" onchange="validar(this,<?=$indice?>);"/>
                 </p>
                 <p class="col-md-6 col-xs-6 text-right right">       
                     <a class="btn btn-danger" onclick="eliminar(<?=$indice?>);">Eliminar banner</a>                    
                 </p>
-            </div>
+            </div-->
             <div class="row">
-                <div class="col-md-12 col-xs-12 text-center centered">
-                <img id="previewing<?=$indice?>" src="<?php echo base_url();?><?=$urlfolder?>/<?=$file?>" alt="" class="style img-responsive" style="">
+                <div class="col-md-3 col-xs-3"></div>
+                <div class="col-md-6 col-xs-6 text-center centered">
+                    <li class="ui-state-default">
+                        <input type="hidden" name="foto<?=$indice;?>" value="<?=$file?>"/>
+                        <img id="previewing<?=$indice?>" src="<?php echo base_url();?><?=$urlfolder?>/<?=$file?>" alt="" class="style img-responsive" style="height:250px; width: 100%;">
+                        <br>
+                    </li>
                 </div>
+                <div class="col-md-3 col-xs-3"></div>
+
             </div>
-            <div class="row">
+            <!--div class="row">
                 <div class="col-md-12 col-xs-12 text-center centered">
                     <hr>
                     <br><br>
                 </div>
-            </div>
+            </div-->
             <?php 
                 $indice++;
                 }
             ?>
-                                
+            </ul>             
                <!-- <div class="row add_top_30">
                 
                 	<div class="col-md-4">
@@ -136,9 +81,9 @@
 
             <div class="container">
             <div class="modal-footer centered">
-                <input type="submit" class="btn btn-info btn-lg" data-dismiss="modal" value="Actualizar información"/>
+                <input type="submit" class="btn btn-info btn-lg" data-dismiss="modal" value="Actualizar posición banners"/>
             </div>
-            </div>                
+            </div>
         </form>
         <!-- End container -->
 		
@@ -174,7 +119,12 @@
             }
         });
     }));*/
-            
+          
+    $( function() {
+        $("#sortable").sortable();
+        $("#sortable").disableSelection();
+    } );
+    
     var indiceChange = "";
     var ideliminado = "";
 
