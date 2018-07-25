@@ -55,3 +55,4 @@ js/buscar.js
 !/application/views/admin/banners.php
 !/application/views/admin/bannernuevo.php
 !/application/views/admin/bannerslist.php
+!/application/views/admin/registrodobles.php

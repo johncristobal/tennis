@@ -132,7 +132,7 @@ class admin extends CI_Controller{
         }        
     }
    
-    public function generaRoundRobin($total,$jugadoresSelected){		
+    public function generaRoundRobin($total,$jugadoresSelected){
         //if($this->input->post()){
 	
         //$total=$this->input->post('no_jugadores');
@@ -884,7 +884,7 @@ class admin extends CI_Controller{
         //vista con banners
         $this->load->view('admin/banners',$data);
     }
-    
+//============================update banners home==============================    
     public function updateBanners(){        
         //validamos los file que tiene - foreach
         //si tiene nombre, entonces actualizo
@@ -921,7 +921,7 @@ class admin extends CI_Controller{
         header('Location: '. base_url()."admin/cambiarbanners", true, 302);
         exit;
     }
-    
+//============================upload new banners home=========================   
     public function uploadNewBanners(){        
         //validamos los file que tiene - foreach
         //si tiene nombre, entonces actualizo
@@ -947,7 +947,7 @@ class admin extends CI_Controller{
         header('Location: '. base_url()."admin/cambiarbanners", true, 302);
         exit;
     }
-    
+//============================delete banners home==============================    
     public function deletebanner($idbanner){
         $key = "banner";
         $back = $this->AdminModel->getParametro($key);
@@ -980,7 +980,7 @@ class admin extends CI_Controller{
         exit;
         //echo $idbanner;
     }
-    
+//============================reorder banners home==============================    
     public function reorderbanner(){
         
         $datos = $this->input->post();
@@ -1006,6 +1006,17 @@ class admin extends CI_Controller{
         //redirect('/admin/cambiarbanners');
         header('Location: '. base_url()."admin/cambiarbanners", true, 302);
         exit;
+    }
+
+
+//===========================================================================
+//============================inscripciones dobles home=====================
+//===========================================================================
+    public function registroDobles(){
+        //abrir ventana para buscar los dos jugadores que entraran como pareja
+        //now get data t launch view
+        $data=$this->Estadisticasmodel->getdatah2h(3,4);
+        $this->load->view('admin/registrodobles',$data);
     }
     
     public function cerrar(){
