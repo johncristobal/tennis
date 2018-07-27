@@ -1015,8 +1015,32 @@ class admin extends CI_Controller{
     public function registroDobles(){
         //abrir ventana para buscar los dos jugadores que entraran como pareja
         //now get data t launch view
-        $data=$this->Estadisticasmodel->getdatah2h(3,4);
+        $data['parejas']=$this->AdminModel->getAllDobles();
         $this->load->view('admin/registrodobles',$data);
+    }
+
+    public function salvarpareja(){
+        $name1 = $this->input->post('name1');
+        $name2 = $this->input->post('name2');
+        
+        //get id's from nombre
+        $id1 = $this->Torneomodel->getIdFromName($name1);
+        $id2 = $this->Torneomodel->getIdFromName($name2);
+        
+        $data = array(
+            'id_pareja1' => $id1->id,
+            'id_pareja2' => $id2->id,
+            'fktorneo' => 0,
+            'estatus' => 1,
+            'fecha_update' => date('Y-m-d')
+        );
+        
+        $res = $this->AdminModel->savePlayersDobles($data);
+        if($res <= 0){
+            echo "error";
+        }else{
+            echo "yes";
+        }
     }
     
     public function cerrar(){

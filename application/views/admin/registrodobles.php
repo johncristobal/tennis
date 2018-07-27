@@ -49,15 +49,15 @@
             var value2 = $("#name_2").val();
 
             //get id from catch dat from headtohead
-            /*$.ajax({
+            $.ajax({
                 type:'POST',
-                url:'<?php echo base_url("torneos/saveidplayers"); ?>',
-                data:{'id1':id1,'id2':id2},
+                url:'<?php echo base_url("admin/salvarpareja"); ?>',
+                data:{'name1':value1,'name2':value2},
                 success:function(data){                    
                     //alert(data);
-                    location.href = "<?php echo base_url();?>torneos/headtohead";
+                    location.href = "<?php echo base_url();?>admin/registrodobles";
                 }
-            });*/
+            });
         }
         
         </script>
@@ -74,20 +74,6 @@
     <section class="row">
     <div class="col-md-12">
      <!--h4>Accordion</h4-->
-    <?php
-        $imagen1 = base_url()."img/jugadores/".$datos1->id."/perfil.jpg";
-        $imagen2 = base_url()."img/jugadores/".$datos2->id."/perfil.jpg";
-
-        try{
-            if(!file_exists("img/jugadores/".$datos1->id."/perfil.jpg")){
-                $imagen1 = base_url()."img/jugadores/nofoto.png";
-            }
-            if(!file_exists("img/jugadores/".$datos2->id."/perfil.jpg")){
-                $imagen2 = base_url()."img/jugadores/nofoto.png";
-            }
-        }catch(Exception $e){
-        }
-    ?>
 
     <h3 class="title">Registro torneo dobles</h3>
     
@@ -105,10 +91,69 @@
         </div>
         <div class="col-md-3 col-centered">
             <br><br>
-            <a class="verh2h button_medium" onclick="getInfoLoad();">Inscribir pareja</a>
+            <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Inscribir pareja</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col -md-8">
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4>Inscribir pareja</h4>
+              </div>
+              <div class="modal-body">
+                <h4 class="col-md-12 col-xs-12 col-sm-12 text-center centered">                       
+                    ¿Deseas inscribir esta pareja?
+                </h4>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-info savebanner" onclick="getInfoLoad()" value="Subir">Inscribir</button>
+              </div>
+            </div>
+          </div>
+        </div>
         </div>
     </div>
     <hr>
+    <div class="row">
+        <div class="col-sm-8">
+            <h3> Parejas inscritas </h3>
+            <br>
+        </div>
+        <div class="col-sm-8 col -md-8 text-center">
+        <!-- Modal -->
+        <?php if(count($parejas) == 0)
+            {
+        ?>
+        <?php
+            } else {
+                foreach ($parejas as $value) {
+                    $name1 = $this->Torneomodel->getNameFromId($value->id_pareja1);
+                    $name2 = $this->Torneomodel->getNameFromId($value->id_pareja2);
+        ?>
+        <div class="row">    
+            <div class="col-sm-2 col-md-2">
+                <?=$value->id?>
+            </div>
+            <div class="col-md-4">
+                <?=$name1?>
+            </div>
+            <div class="col-md-4">
+                <?=$name2?>
+            </div>
+        </div>
+        <?php 
+                }
+            } 
+        ?>
+        </div>
+    </div>
     <!--div class="row">
         <div class="col-md-3">
             <p class="text-center"><img src="<?=$imagen1?>" alt="" class="img-circle style img-responsive" style="height:250px"></p>

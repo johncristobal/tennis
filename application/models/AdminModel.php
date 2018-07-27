@@ -22,6 +22,25 @@ class AdminModel extends CI_Model{
             return "0";   
 
     }
+    
+    public function savePlayersDobles($data){
+        $this->db->insert('parejas', $data);
+        
+        $insert_id = $this->db->insert_id();
+        return  $insert_id;
+    }
+    
+    public function getAllDobles(){
+        $this->db->select('*');
+        $this->db->from('parejas t');
+        //$this->db->where('t.id', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0 )
+        {            
+            $row = $query->result();
+            return $row;
+        }
+    }
 }
 
 ?>
