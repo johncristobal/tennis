@@ -7,8 +7,14 @@
             	<ul id="main-nav" class="sf-menu" >
                 <!--li><a href="<?php echo base_url();?>Player/perfil">Jugadores</a></li-->
                     <!--li><a href="profile.html"></a></li-->
-                				
-                <li><a href="<?php echo base_url();?>admin/jugadores">Jugadores</a>
+                
+                    <li><a href="#">Jugadores</a>
+                        <ul>
+                        <li><a href="<?php echo base_url();?>admin/jugadores">Lista de jugadores</a></li>
+                        <li><a href="<?php echo base_url();?>admin/registro_jugador">Agregar jugador</a></li>
+                        <li><a href="<?php echo base_url();?>admin/registroDobles">Inscribir dobles</a></li>
+                        </ul>
+                    </li>
                 <li><a href="<?php echo base_url();?>admin/calendario">Torneos</a>
                 <li><a href="<?php echo base_url();?>admin/rememberMail">Recordatorios</a>
                     <li><a href="#">Banners</a>

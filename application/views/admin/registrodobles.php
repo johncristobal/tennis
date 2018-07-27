@@ -9,31 +9,6 @@
     $this->load->view("headeradmin");
 ?>      
 
-<script type="text/javascript">
-    $("#verh2h").click(function(){
-       alert('alerta'); 
-    });
-    
-    function saveAndShowH2h()
-    {
-        //recuperar nombrees de los input name_1_2
-        //mandarlos a ajax para recueprar ids a partide de sus nombre y salvarlos en session
-        //hacer reload de esta pagian para recuperar nuevo h2h
-        var nombre1 = $("#name_1").val();
-        var nombre2 = $("#name_2").val();
-        
-        //alert(nombre1+"-"+nombre2);
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("torneos/saveidplayersfromname"); ?>',
-            data:{'nombre1':nombre1,'nombre2':nombre2},
-            success:function(data){
-                //alert(data);
-                location.href = "<?php echo base_url();?>torneos/headtohead";
-            }
-        });
-    }
-</script>
 
 <style>
     .col-centered{
@@ -47,17 +22,22 @@
             //alert(id2);
             var value1 = $("#name_1").val();
             var value2 = $("#name_2").val();
+            
+            if(value1 == "" || value2==""){
+                alert("Coloca los nombres de las parejas a inscribir...");
+            }else{
 
-            //get id from catch dat from headtohead
-            $.ajax({
-                type:'POST',
-                url:'<?php echo base_url("admin/salvarpareja"); ?>',
-                data:{'name1':value1,'name2':value2},
-                success:function(data){                    
-                    //alert(data);
-                    location.href = "<?php echo base_url();?>admin/registrodobles";
-                }
-            });
+                //get id from catch dat from headtohead
+                $.ajax({
+                    type:'POST',
+                    url:'<?php echo base_url("admin/salvarpareja"); ?>',
+                    data:{'name1':value1,'name2':value2},
+                    success:function(data){                    
+                        //alert(data);
+                        location.href = "<?php echo base_url();?>admin/registrodobles";
+                    }
+                });
+            }
         }
         
         </script>
@@ -80,14 +60,14 @@
     <div class="row">
         <div class="col-md-4">
             Buscar jugador 1<br><br>
-            <div class="form-bg-1 ui-widget"><input type="text" id="name_1" class="form-control" placeholder="Nombre..."></div>
+            <div class="form-bg-1 ui-widget"><input type="text" id="name_1" class="form-control" placeholder="Nombre..." required="true"></div>
         </div>
         <div class="col-md-1 col-centered">
             <h4>&nbsp;</h4>
         </div>
         <div class="col-md-4">
             Buscar jugador 2<br><br>
-            <div class="form-bg-1"><input type="text" id="name_2" class="form-control" placeholder="Nombre..."></div>
+            <div class="form-bg-1"><input type="text" id="name_2" class="form-control" placeholder="Nombre..." required="true"></div>
         </div>
         <div class="col-md-3 col-centered">
             <br><br>
