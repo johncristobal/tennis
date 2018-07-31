@@ -166,12 +166,35 @@ class Torneomodel extends CI_Model{
     }
 	
     public function getJugadores(){
-		$query="SELECT * FROM jugador";
-		$results=$this->db->query($query);
-		if($results->num_rows()>0){
-			return $results->result();
-		}		
-	}
+        $query="SELECT * FROM jugador";
+        $results=$this->db->query($query);
+        if($results->num_rows()>0){
+                return $results->result();
+        }		
+    }
+    
+    public function getJugadoresdobles(){
+        $query="SELECT * FROM parejas";
+        $results=$this->db->query($query);
+        $arreglofinal = array();
+        
+        //agregar unicamente id y nombres juntos
+        if($results->num_rows()>0){
+            foreach ($results->result() as $value){
+                $nombrefk1 = "a";
+                $nombrefk2 = "b";
+                                
+                $datos = array(
+                    "nombre" => $nombrefk1." y ".$nombrefk2,
+                    "id" => $value->id
+                );
+                
+                array_push($arreglofinal,$datos);
+            }
+        }
+        
+        return $arreglofinal;
+    }
 
     public function selectJugadores($where){
         //Seleccionar aleatoriamente el numero de jugadores para el torneo

@@ -83,6 +83,21 @@ class admin extends CI_Controller{
         //$this->load->view('torneo/creartorneoel');
     }
     
+        //solo el admin puede registrar torneo
+    public function registrotorneodobles(){
+        //vista form registro torneo
+        //cargamos modelo 
+        $this->load->model('Torneomodel');
+        $data['jugadoresdobles']=$this->Torneomodel->getJugadoresdobles();
+        $this->load->view('admin/creartorneodobles',$data);
+
+        //vista torneo RR
+        //$this->load->view('torneo/creartorneorr');
+        
+        //vista torneo RR
+        //$this->load->view('torneo/creartorneoel');
+    }
+    
     //admin crea trorneos
     public function creartorneo(){
         //vista form registro torneo
@@ -91,13 +106,14 @@ class admin extends CI_Controller{
 			
             //faltan validaciones....
             //Guardamos informacion en seson
-            $jugadores=explode(',',$this->input->post('array')); 
+            $jugadores=explode(',',$this->input->post('array'));
             $data['jugadores']=$jugadores;
             $data['nombre'] = $this->input->post('nombre');
             $data['tipo_torneo'] = $this->input->post('tipo');
             $data['fecha'] = $this->input->post('fecha');
             $data['lugar'] = $this->Torneomodel->getLugar($this->input->post('lugar'));
-            $data['campo'] = $this->Torneomodel->getCampo($this->input->post('campo'));//$this->input->post('campo');
+            $data['campo'] = $this->Torneomodel->getCampo($this->input->post('campo'));
+            //$this->input->post('campo');
 
             $newdata = array(
                 'nombre' => $this->input->post('nombre'),
@@ -108,9 +124,9 @@ class admin extends CI_Controller{
                 'jugadoresTorneo'=>$jugadores
             );
 
-            $this->session->set_userdata($newdata); 
+            $this->session->set_userdata($newdata);
         
-            //Si es 1..Rodun robin y lanzamos------------------
+            //Si es 1..Rodun robin y lanzamos----------------------------
             if($data['tipo_torneo'] == "1"){
                 //vista torneo RR
                 //$this->load->view('torneo/creartorneorr',$data);
@@ -119,7 +135,7 @@ class admin extends CI_Controller{
                 $jugadoresSelected=$this->session->userdata('jugadoresTorneo');
                 $this->generaRoundRobin($total,$jugadoresSelected);
             }
-            //Caso 2.....elimincacion directa.------------------
+            //Caso 2.....elimincacion directa.---------------------------
             else if($data['tipo_torneo'] == "2"){
                 $data['datarank']=$this->Estadisticasmodel->getAllRankings();
 
@@ -129,7 +145,7 @@ class admin extends CI_Controller{
             }
         }else{
             echo "error";
-        }        
+        }
     }
    
     public function generaRoundRobin($total,$jugadoresSelected){

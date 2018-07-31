@@ -15,8 +15,14 @@
                         <li><a href="<?php echo base_url();?>admin/registroDobles">Inscribir dobles</a></li>
                         </ul>
                     </li>
-                <li><a href="<?php echo base_url();?>admin/calendario">Torneos</a>
-                <li><a href="<?php echo base_url();?>admin/rememberMail">Recordatorios</a>
+                    <li><a href="#">Torneos</a>
+                        <ul>
+                        <li><a href="<?php echo base_url();?>admin/calendario">Ver torneos</a></li>
+                        <li><a href="<?php echo base_url();?>admin/registrotorneo">Crear torneo simple</a></li>
+                        <li><a href="<?php echo base_url();?>admin/registrotorneodobles">Crear torneo dobles</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<?php echo base_url();?>admin/rememberMail">Recordatorios</a>
                     <li><a href="#">Banners</a>
                         <ul>
                         <li><a href="<?php echo base_url();?>admin/cambiarbanners">Actualizar banners</a></li>

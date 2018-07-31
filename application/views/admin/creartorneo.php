@@ -64,10 +64,9 @@
     <form method="post" name="formulario" action="<?php echo base_url();?>admin/creartorneo"> 
     <input name="array" type="hidden" name="array" value="">
     <div class="container">
-
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#home">Registro de torneo</a></li>
-          <li><a data-toggle="tab" href="#menu1">Seleccionar jugadores</a></li>
+          <li><a data-toggle="tab" href="#menu1" id="jugadores">Seleccionar jugadores</a></li>
         </ul>
 
         <div class="tab-content">
@@ -145,26 +144,7 @@
                 <th></th>
                 <th></th>
                 </thead>
-                <tbody>
-                    <!--tr>
-                        <td>
-                            
-                            <div class='[ form-group ]'>
-                                        <input type="checkbox" onClick="toggle(this)" autocomplete='off'>
-                                
-                                        <div class='[ btn-group ]'>
-                                            <label for='' class='[ btn btn-primary ]' onclick='toggle(this)'>
-                                                <span class='[ glyphicon glyphicon-ok ]'></span>
-                                                <span>&nbsp;</span>
-                                            </label>
-                                            <label for='' class='[ btn btn-default active ]' style='width:200px;' onclick='toggle(this)'>
-                                                Seleccionar todos
-                                            </label>
-                                        </div>  
-                                    </div>
-                        </td>
-                    </tr-->    
-            
+                <tbody id="cuerpotabla">            
                 <?php 
                 if($jugadores){
                     
@@ -172,49 +152,42 @@
                     echo "<tr>";
                     
                     foreach($jugadores as $fila){
-                        /*echo "
-                        <tr>
-                        <td><input type='button' class='button' name='jugadores' onclick='agregar(".$fila->id.")' value='>'></td>					
-                        <td id='".$fila->id."'>".$fila->nombre."</td>
-
-                        </tr>
-                        ";*/
                         
                         if($i>3){
                             echo "</tr>";
                             echo "<tr>";
                             $i=0;                            
-                        }
-                        
+                        }                        
                         echo "                            
-                                <td>
-                                    <div class='[ form-group ]'>
-                                        <input type='checkbox' name='jugadores' id='".$fila->id."' autocomplete='off'>
-                                
-                                        <div class='[ btn-group ]'>
-                                            <label for='".$fila->id."' class='[ btn btn-primary ]' onclick='agregar(".$fila->id.")'>
-                                                <span class='[ glyphicon glyphicon-ok ]'></span>
-                                                <span>&nbsp;</span>
-                                            </label>
-                                            <label for='".$fila->id."' class='[ btn btn-default active ]' style='width:200px;' onclick='agregar(".$fila->id.")'>
-                                                ".$fila->nombre."
-                                            </label>
-                                        </div>  
-                                    </div>
-                                </td>
-                            ";
+                            <td>
+                                <div class='[ form-group ]'>
+                                    <input type='checkbox' name='jugadores' id='".$fila->id."' autocomplete='off'>
+
+                                    <div class='[ btn-group ]'>
+                                        <label for='".$fila->id."' class='[ btn btn-primary ]' onclick='agregar(".$fila->id.")'>
+                                            <span class='[ glyphicon glyphicon-ok ]'></span>
+                                            <span>&nbsp;</span>
+                                        </label>
+                                        <label for='".$fila->id."' class='[ btn btn-default active ]' style='width:200px;' onclick='agregar(".$fila->id.")'>
+                                            ".$fila->nombre."
+                                        </label>
+                                    </div>  
+                                </div>
+                            </td>
+                        ";
                         
                         $i++;
                     }
                 }
                 ?>
-
                 </tbody>
+                
+                
                 </table>
             </div>
-        </div>	  
+        </div>
             
-        <!--Modal -->
+        <!--Modal to confirm torneo-->
         <div class="row">
         <!-- Modal -->
         <div class="col-sm-4"></div>
@@ -264,7 +237,8 @@
     $this->load->view("scriptfoo");
 ?> 
 <script>
- function agregar(id){
+    
+function agregar(id){
 	//var color=document.getElementById(id).style.backgroundColor;
 	//if(color.length == 0){
 	if(!jugadores.includes(id)){
@@ -291,24 +265,7 @@ function toggle(source) {
         checkboxes[i].checked = source.checked;
     }
 }
-/*$("#formulario").submit(function () {
-	var formData = $("#formulario").serialize();
-      var destino="<?php echo base_url();?>Torneos/generaRoundRobin";        
-                    
-                    $.ajax({
-                        url: destino,
-                        type: "POST",
-                        data: formData+"&jugadores="+jugadores,
-                        contentType: false,
-                        processData: false,
-                        success: function (datos)
-                        {
-							alert(datos);
-                           // $("#resultado").html(datos);
-                        }
-                    });
-                    return false;
-            });*/
+
 </script>
 </body>
 </html>
