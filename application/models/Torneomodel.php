@@ -92,33 +92,60 @@ class Torneomodel extends CI_Model{
         }
     }
     
-    public function getGames($id){
+    public function getGames($id,$tipo){
         
-        //then---the idea is
-        //get the number of round and return data separated in block
-        $last_row=$this->db->select('ronda')->from('partidos')->where('fktorneo',$id)->order_by('ronda',"desc")->limit(1)->get()->row();
-        //here we have $idtorneo and $lastronda...so...
-        $arregloRondas = array();
-        
-        for($i=0;$i<=$last_row->ronda;$i++){
-            $partidosi = $this->db->select("id,ganador, fecha,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2,estatus")
-                    ->from('partidos p')
-                    ->where('fktorneo',$id)
-                    ->where('ronda',$i)
-                    ->get()->result();
-            
-            foreach ($partidosi as $rondas) {      
-                $rondas->rank1 = $this->getrankingfromid($rondas->fkjugador1);
-                $rondas->rank2 = $this->getrankingfromid($rondas->fkjugador2);
-                $rondas->nombre1 = $this->getNameFromId($rondas->fkjugador1);
-                $rondas->nombre2 = $this->getNameFromId($rondas->fkjugador2);
+        if($tipo == "dobles")
+        {
+            //then---the idea is
+            //get the number of round and return data separated in block
+            $last_row=$this->db->select('ronda')->from('partidos')->where('fktorneo',$id)->order_by('ronda',"desc")->limit(1)->get()->row();
+            //here we have $idtorneo and $lastronda...so...
+            $arregloRondas = array();
+
+            for($i=0;$i<=$last_row->ronda;$i++){
+                $partidosi = $this->db->select("id,ganador, fecha,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2,estatus")
+                        ->from('partidos p')
+                        ->where('fktorneo',$id)
+                        ->where('ronda',$i)
+                        ->get()->result();
+
+                foreach ($partidosi as $rondas) {      
+                    $rondas->rank1 = "-";//$this->getrankingfromid($rondas->fkjugador1);
+                    $rondas->rank2 = "-";//$this->getrankingfromid($rondas->fkjugador2);
+                    $rondas->nombre1 = $this->getNameFromIdDobles($rondas->fkjugador1);
+                    $rondas->nombre2 = $this->getNameFromIdDobles($rondas->fkjugador2);
+                }
+
+                array_push($arregloRondas, $partidosi);
             }
-            
-            array_push($arregloRondas, $partidosi);
+            return $arregloRondas;
+        }else{
+        
+            //then---the idea is
+            //get the number of round and return data separated in block
+            $last_row=$this->db->select('ronda')->from('partidos')->where('fktorneo',$id)->order_by('ronda',"desc")->limit(1)->get()->row();
+            //here we have $idtorneo and $lastronda...so...
+            $arregloRondas = array();
+
+            for($i=0;$i<=$last_row->ronda;$i++){
+                $partidosi = $this->db->select("id,ganador, fecha,resultado,'nombre1' as nombre1, 'nombre2' as nombre2, fkjugador1,fkjugador2,ronda,'rank1' as rank1, 'rank2' as rank2,estatus")
+                        ->from('partidos p')
+                        ->where('fktorneo',$id)
+                        ->where('ronda',$i)
+                        ->get()->result();
+
+                foreach ($partidosi as $rondas) {      
+                    $rondas->rank1 = $this->getrankingfromid($rondas->fkjugador1);
+                    $rondas->rank2 = $this->getrankingfromid($rondas->fkjugador2);
+                    $rondas->nombre1 = $this->getNameFromId($rondas->fkjugador1);
+                    $rondas->nombre2 = $this->getNameFromId($rondas->fkjugador2);
+                }
+
+                array_push($arregloRondas, $partidosi);
+            }
+            return $arregloRondas;
         }
         
-        return $arregloRondas;
- 
     }
     
     public function gettorneos(){
@@ -181,11 +208,11 @@ class Torneomodel extends CI_Model{
         //agregar unicamente id y nombres juntos
         if($results->num_rows()>0){
             foreach ($results->result() as $value){
-                $nombrefk1 = "a";
-                $nombrefk2 = "b";
+                $nombrefk1 = $this->getNameFromId($value->id_pareja1);
+                $nombrefk2 = $this->getNameFromId($value->id_pareja2);
                                 
                 $datos = array(
-                    "nombre" => $nombrefk1." y ".$nombrefk2,
+                    "nombre" => $nombrefk1." <br> ".$nombrefk2,
                     "id" => $value->id
                 );
                 
@@ -199,6 +226,15 @@ class Torneomodel extends CI_Model{
     public function selectJugadores($where){
         //Seleccionar aleatoriamente el numero de jugadores para el torneo
         $query="SELECT * FROM jugador WHERE $where ORDER BY rand()";
+        $results=$this->db->query($query);
+        if($results->num_rows()>0){
+            return $results->result();
+        }		
+    }
+    
+    public function selectJugadoresDobles($where){
+        //Seleccionar aleatoriamente el numero de jugadores para el torneo
+        $query="SELECT * FROM parejas WHERE $where ORDER BY rand()";
         $results=$this->db->query($query);
         if($results->num_rows()>0){
             return $results->result();
@@ -246,6 +282,12 @@ class Torneomodel extends CI_Model{
         $last_row=$this->db->select('id')->from($tabla)->order_by('id',"desc")->limit(1)->get()->row();
         return $last_row;
     }
+
+    public function getIdFromNameDoble($name){
+        $last_row=$this->db->select('id')->from('parejas')->where('nombre',$name)->limit(1)->get()->row();
+        return $last_row;
+        
+    }
     
     public function getIdFromName($name){
         $last_row=$this->db->select('id')->from('jugador')->where('nombre',$name)->limit(1)->get()->row();
@@ -256,6 +298,11 @@ class Torneomodel extends CI_Model{
     public function getFechaFromId($id){
         $last_row=$this->db->select("DATE_FORMAT(fecha, '%d/%m/%Y') as fecha")->from('partidos')->where('id',$id)->limit(1)->get()->row();
         return $last_row->fecha;        
+    }
+
+    public function getNameFromIdDobles($id){
+        $last_row=$this->db->select('nombre')->from('parejas')->where('id',$id)->limit(1)->get()->row();
+        return $last_row->nombre;        
     }
     
     public function getNameFromId($id){

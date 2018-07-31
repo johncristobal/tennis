@@ -97,6 +97,56 @@ class admin extends CI_Controller{
         //vista torneo RR
         //$this->load->view('torneo/creartorneoel');
     }
+
+        //admin crea trorneos
+    public function creartorneodobles(){
+        //vista form registro torneo
+        //$this->load->view('torneo/creartorneo');
+        if($this->input->post()){
+			
+            //faltan validaciones....
+            //Guardamos informacion en seson
+            $jugadores=explode(',',$this->input->post('array'));
+            $data['jugadores']=$jugadores;
+            $data['nombre'] = $this->input->post('nombre');
+            $data['tipo_torneo'] = $this->input->post('tipo');
+            $data['fecha'] = $this->input->post('fecha');
+            $data['lugar'] = $this->Torneomodel->getLugar($this->input->post('lugar'));
+            $data['campo'] = $this->Torneomodel->getCampo($this->input->post('campo'));
+            //$this->input->post('campo');
+
+            $newdata = array(
+                'nombre' => $this->input->post('nombre'),
+                'tipo' => $this->input->post('tipo'),
+                'fecha' =>  $this->input->post('fecha'),
+                'lugar' =>  $this->input->post('lugar'),
+                'campo' =>  $this->input->post('campo'),
+                'jugadoresTorneo'=>$jugadores
+            );
+
+            $this->session->set_userdata($newdata);
+        
+            //Si es 1..Rodun robin y lanzamos----------------------------
+            if($data['tipo_torneo'] == "1" || $data['tipo_torneo'] == "3"){
+                //vista torneo RR
+                //$this->load->view('torneo/creartorneorr',$data);
+
+                $total=count($jugadores);//$this->input->post('no_jugadores');
+                $jugadoresSelected=$this->session->userdata('jugadoresTorneo');
+                $this->generaRoundRobinDobles($total,$jugadoresSelected);
+            }
+            //Caso 2.....elimincacion directa.---------------------------
+            else if($data['tipo_torneo'] == "2"){
+                $data['datarank']=$this->Estadisticasmodel->getAllRankings();
+
+                //echo count($buscar['datarank']);
+                //vista form registro torneo
+                $this->load->view('admin/creartorneoel',$data);
+            }
+        }else{
+            echo "error";
+        }
+    }
     
     //admin crea trorneos
     public function creartorneo(){
@@ -148,6 +198,55 @@ class admin extends CI_Controller{
         }
     }
    
+    public function generaRoundRobinDobles($total,$jugadoresSelected){
+        for($i=0;$i<count($jugadoresSelected);$i++){
+            $contador=count($jugadoresSelected);
+            @$where.=" id=".$jugadoresSelected[$i];
+            if(($i+1)<$contador){
+                $where.=" OR ";	
+            }
+        }
+
+        $buscar=$this->Torneomodel->selectJugadoresDobles($where);
+        $jugadores=array();
+        if($buscar){
+            foreach($buscar as $fila){
+                array_push($jugadores,$fila->nombre);
+            }
+        }
+
+        if(($total%2)==0){
+            $calen = $this->roundRobinPar($total,$jugadores);
+            //load view with data
+            $data['calendario'] = $calen;
+            $data['total'] = $total;
+
+            $newdata = array(
+               'calen_par' => $calen,
+               'total' => $total
+               );
+
+            $this->session->set_userdata($newdata);
+
+            $this->load->view('admin/res_torneo_rrp',$data);
+        }else{
+            $calen = $this->roundRobinImpar($total,$jugadores);
+            //load view with data
+
+            $data['calendario'] = $calen;
+            $data['total'] = $total;
+
+            $newdata = array(
+               'calen_impar' => $calen,
+               'total' => $total
+               );
+
+            $this->session->set_userdata($newdata);
+
+            $this->load->view('admin/res_torneo_rrip',$data);
+        }
+    }
+    
     public function generaRoundRobin($total,$jugadoresSelected){
         //if($this->input->post()){
 	
@@ -304,7 +403,7 @@ class admin extends CI_Controller{
         //for round 1 its the same, round 2 +1, round 3 plus7, round 4 pluss = (+1+7)        
         date_default_timezone_set('America/Mexico_City');
         $fechatoupdate = new DateTime($this->session->userdata('fecha'));
-        
+        $tipo = $this->session->userdata('tipo');
         $data = array(
             "id" => $idtorneo,
             'nombre' => $this->session->userdata('nombre'),
@@ -342,9 +441,17 @@ class admin extends CI_Controller{
                         $games['fktorneo'] = $idtorneo; 
                         $games['ronda'] = $i; 
                         //jugador 1 
-                        $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
-                        //jugador 2
-                        $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1-$j])->id;
+                        if($tipo == 3){
+                            $games['fkjugador1'] = $this->Torneomodel->getIdFromNameDoble($calendario[$i][$j])->id;
+                            //jugador 2
+                            $games['fkjugador2'] = $this->Torneomodel->getIdFromNameDoble($calendario[$i][$total-1-$j])->id;
+                            
+                        }else{
+                            $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;                            
+                            //jugador 2
+                            $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1-$j])->id;
+                        }
+                        //$games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
                         $games['fecha'] = $fechatoupdate->format('y-m-d');
                         $games['ganador'] = "0";
                         $this->Torneomodel->saveGames($games);
@@ -365,10 +472,18 @@ class admin extends CI_Controller{
                     $contador += 1;
                     
                     for($j=0;$j<(($total-1)/2);$j++){
-                        //jugador 1
-                        $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
-                        //jugador 2
-                        $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-2-$j])->id;
+                        if($tipo == 3){
+                            //jugador 1
+                            $games['fkjugador1'] = $this->Torneomodel->getIdFromNameDoble($calendario[$i][$j])->id;
+                            //jugador 2
+                            $games['fkjugador2'] = $this->Torneomodel->getIdFromNameDoble($calendario[$i][$total-2-$j])->id;
+                            
+                        }else{
+                            //jugador 1
+                            $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$j])->id;
+                            //jugador 2
+                            $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-2-$j])->id;
+                        }
                           
                         $games['resultado'] = "0"; 
                         $games['ganador'] = "0";
@@ -379,10 +494,18 @@ class admin extends CI_Controller{
                     }
                     //descansa                    
                     $games['ganador'] = "0";
-                    //descansa                    
-                    $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;
-                    //descansa                    
-                    $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;
+                    if($tipo == 3){
+                        //jugador 1
+                        $games['fkjugador1'] = $this->Torneomodel->getIdFromNameDoble($calendario[$i][$j])->id;
+                        //jugador 2
+                        $games['fkjugador2'] = $this->Torneomodel->getIdFromNameDoble($calendario[$i][$total-2-$j])->id;
+
+                    }else{
+                        //descansa                    
+                        $games['fkjugador1'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;
+                        //descansa                    
+                        $games['fkjugador2'] = $this->Torneomodel->getIdFromName($calendario[$i][$total-1])->id;                        
+                    }
                     $games['resultado'] = "0"; 
                     $games['fktorneo'] = $idtorneo; 
                     $games['ronda'] = $i; 
@@ -417,7 +540,7 @@ class admin extends CI_Controller{
         
         switch ($datatorneoo[0]->tipo) {
             case 1:
-                $partidos = $this->Torneomodel->getGames($i);
+                $partidos = $this->Torneomodel->getGames($i,"");
                 //$estats = $this->Estadisticasmodel->getDataPlayer($i);
                 //echo "...".$partidos->ronda;
                 $data['torneodata'] = $datatorneoo;
@@ -441,6 +564,29 @@ class admin extends CI_Controller{
                 break;
             case 2:
                 //$this->load->view('torneo/resultado');            
+                break;
+            case 3:
+                $partidos = $this->Torneomodel->getGames($i,"dobles");
+                //$estats = $this->Estadisticasmodel->getDataPlayer($i);
+                //echo "...".$partidos->ronda;
+                $data['torneodata'] = $datatorneoo;
+                $data['partidos'] = $partidos;
+                
+                /*echo count($partidos);
+                echo "<br>";
+                //echo $partidos;
+                foreach ($partidos as $value) {
+                    echo "Cantidad de datos en value: ".count($value)."<br>";
+                    echo "Ronda: n<br>";
+                    foreach ($value as $rondas) {
+                        
+                        echo "Jugador1 = ".$rondas->fkjugador1."<br>";
+                        echo "Jugador2 = ".$rondas->fkjugador2."<br>";
+                    }
+                    //echo $value[0]->fkjugador1."<br>";
+                    //echo $value[1]->fkjugador1."<br>";
+                }*/
+                $this->load->view('admin/resultadorrobin',$data);            
                 break;
             default:
                 break;
@@ -1044,11 +1190,12 @@ class admin extends CI_Controller{
         $id2 = $this->Torneomodel->getIdFromName($name2);
         
         $data = array(
-            'id_pareja1' => $id1->id,
-            'id_pareja2' => $id2->id,
+            'id_pareja1' => $id1->id+0,
+            'id_pareja2' => $id2->id+0,
             'fktorneo' => 0,
             'estatus' => 1,
-            'fecha_update' => date('Y-m-d')
+            'fecha_update' => date('Y-m-d'),
+            'nombre' => $name1." ".$name2
         );
         
         $res = $this->AdminModel->savePlayersDobles($data);

@@ -61,7 +61,7 @@
     	
     </div><!--  End col-md-6 --> 
         
-    <form method="post" name="formulario" action="<?php echo base_url();?>admin/creartorneo"> 
+    <form method="post" name="formulario" action="<?php echo base_url();?>admin/creartorneodobles"> 
     <input name="array" type="hidden" name="array" value="">
     <div class="container">
         <ul class="nav nav-tabs">
@@ -90,8 +90,9 @@
                 <div class="form-group">
                 <label>Selecciona el tipo de torneo a crear:</label>
                 <select class="form-control" name="tipo" style="background-color: #fff; border: 1px solid #00aeef;">
-                    <option value="1">Round Robin</option>
-                    <option value="2">Eliminación Directa</option>
+                    <!--option value="1">Round Robin</option>
+                    <option value="2">Eliminación Directa</option-->
+                    <option value="3">Round Robin Dobles</option>
                 </select>
             </div>
             </div>
