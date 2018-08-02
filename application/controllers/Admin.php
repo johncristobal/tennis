@@ -185,13 +185,34 @@ class admin extends CI_Controller{
                 $jugadoresSelected=$this->session->userdata('jugadoresTorneo');
                 $this->generaRoundRobin($total,$jugadoresSelected);
             }
-            //Caso 2.....elimincacion directa.---------------------------
+            //Caso 2.....elimincacion directa.------------------
             else if($data['tipo_torneo'] == "2"){
-                $data['datarank']=$this->Estadisticasmodel->getAllRankings();
+                $jugadores=explode(',',$this->input->post('array'));
+                for($i=0;$i<count($jugadores);$i++){
+                                $contador=count($jugadores);
+                                @$where.=" t1.id=".$jugadores[$i];
+                                if(($i+1)<$contador){
+                                                $where.=" OR ";	
+                                }
+                }
 
-                //echo count($buscar['datarank']);
-                //vista form registro torneo
-                $this->load->view('admin/creartorneoel',$data);
+                $buscar=$this->Torneomodel->selectJugadores($where);
+                $jugadoresNombre=array();
+                if($buscar){
+                                foreach($buscar as $fila){
+                                                array_push($jugadoresNombre,$fila->nombre);
+                                }
+                }
+                $params=array(
+                'jugadores'=>$jugadoresNombre,
+                'numeroJugadores'=>'',
+                'tipo'=>1
+                );					
+                 $this->load->library("bracketsgenerator",$params);
+                 $data=array(
+                 'llaves'=> $this->bracketsgenerator->printBrackets()
+                 );
+                 $this->load->view('admin/creartorneoel',$data);    	
             }
         }else{
             echo "error";

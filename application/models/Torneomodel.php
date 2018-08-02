@@ -225,7 +225,7 @@ class Torneomodel extends CI_Model{
 
     public function selectJugadores($where){
         //Seleccionar aleatoriamente el numero de jugadores para el torneo
-        $query="SELECT * FROM jugador WHERE $where ORDER BY rand()";
+        $query="SELECT t1.* FROM jugador t1 INNER JOIN estadisticas_jugador t2 ON t1.id=t2.fkjugador WHERE $where ORDER BY t2.rank_act";
         $results=$this->db->query($query);
         if($results->num_rows()>0){
             return $results->result();

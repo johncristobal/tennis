@@ -3,13 +3,20 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
 <!--<![endif]-->
-
+						<?php 
+								
+								if($llaves){
+									echo $llaves;
+								}
+						?>    
 <?php   
     $this->load->view("head");
+		
     $this->load->view("headeradmin");
-?>            
+?>    
+    
+	 <link href="<?php echo base_url();?>css/styleBrackets.css" rel="stylesheet">
 
-  
     <div class="container">
         
     <!--div id="sub-head">
@@ -37,80 +44,26 @@
     </div><!--  End col-md-6 --> 
     
     <div class="container">
+
         <div class="row">
             <div class="col-md-4">
+			
                 <div class="form-group">
                     <label>Nombre del torneo: <?=$this->session->userdata('nombre');?></label>                    
                     <br>
                     <label>Fecha de inicio: <?=$this->session->userdata('fecha');?></label>                    
                 </div>
             </div>      
-                <div class="col-md-4">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label>Lugar: <?=$this->session->userdata('lugar');?></label>                    
                     <br>
                     <label>Torneo: <?=$this->session->userdata('tipo_torneo');?></label>                    
                 </div>
             </div> 
-        </div>
-        <div class="row"><br></div>
-        <div class="row">
-            <div class="col-md-5">
-                <div class="form-group">
-                <h4>El ranking actual es:</h4>
-                <br>
-               <table class="table" width="100%">
-                    <thead>
-                        <tr style="background-color: #00aeef; color: #fff;">
-                            <th width="25%"><h5>Ranking</h5></th>
-                            <th width="75%"><h5>Nombre</h5></th>
-                        </tr>
-                    </thead>
-                <?php
-                foreach ($datarank as $value) {
-                ?>
-                    <tr>
-                        <td width="25%" style="text-align: center;"><?=$value->rank_act;?></td>
-                        <td width="75%"><?=$value->nombre;?></td>
-                    </tr>
-                <?php
-                }
-                ?>
-                </table>
-                </div>
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-5">
-                <h4>El torneo queda de la siguiente manera:</h4>
-                <br>
-                <table class="table" width="100%">
-                    <thead>
-                        <tr style="text-align: center; background-color: #00aeef; color: #fff;">
-                            <th width="30%"><h5>Jugador 1</h5></th>
-                            <th width="15%"><h5>vs</h5></th>
-                            <th width="30%"><h5>Jugador 2</h5></th>
-                        </tr>
-                    </thead>
-                <?php
-                $lastitem = count($datarank)-1;
-                for ($i=0;$i<(count($datarank)/2);$i++){
-                ?>
-                    <tr>
-                        <td width="30%"><?=$datarank[$i]->nombre;?></td>
-                        <td width="15%" style="text-align: center;"></td>
-                        <td width="30%"><?=$datarank[$lastitem]->nombre;?></td>
-                    </tr>
-                <?php
-                $lastitem--;
-                }
-                ?>
-                </table>
 
-            </div>
-            </div>
 
-        <div class="col-md-4"><br><br></div>
-
+					
         </div>
 
     <div class="container">
