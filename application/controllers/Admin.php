@@ -210,7 +210,7 @@ class admin extends CI_Controller{
                 );					
                  $this->load->library("bracketsgenerator",$params);
                  $data=array(
-                 'llaves'=> $this->bracketsgenerator->printBrackets()
+                    'llaves'=> $this->bracketsgenerator->printBrackets()
                  );
                  $this->load->view('admin/creartorneoel',$data);    	
             }

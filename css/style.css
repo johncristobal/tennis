@@ -228,7 +228,7 @@ header {
 	margin-bottom:30px;
 }
 
-h1#logo a{
+h2#logo a{
 	text-indent:-99999px;
 	background: url(../img/newlogo.png) no-repeat 0 0;
         background-position: center;
@@ -1396,7 +1396,7 @@ header, footer {max-width:100%;}
 	border-right:0;
 }
 .why-desc { padding-top:0;}
-h1#logo a{
+h2#logo a{
 	background: url(../img/newlogo.png) no-repeat 0 0;
         background-size: 100px 110px;
 	width:auto;
