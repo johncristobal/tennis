@@ -276,7 +276,7 @@ class admin extends CI_Controller{
 
         for($i=0;$i<count($jugadoresSelected);$i++){
             $contador=count($jugadoresSelected);
-            @$where.=" id=".$jugadoresSelected[$i];
+            @$where.=" t1.id=".$jugadoresSelected[$i];
             if(($i+1)<$contador){
                 $where.=" OR ";	
             }
